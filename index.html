@@ -114,28 +114,40 @@
                 flex-direction: row; 
                 align-items: flex-start;
                 padding: 15px 5%;
+                z-index: 3000;
             }
 
             #imgLogo { 
-                height: 70px !important; /* Logo más pequeño para que no estorbe */
+                height: 110px !important; /* Logo más grande en celular como pediste */
+                width: auto;
+                margin-top: 5px;
+            }
+
+            nav ul {
+                margin-top: 15px; /* Alinea el menú con el nuevo tamaño del logo */
             }
 
             nav ul li a {
-                font-size: 0.75rem; /* Menú más discreto */
+                font-size: 0.8rem;
             }
 
             .hero {
-                padding-top: 100px; /* Empuja el título hacia abajo del logo */
-                justify-content: center;
+                /* Aumentamos el espacio superior para que el logo grande no pise las letras */
+                padding-top: 160px; 
+                justify-content: flex-start;
+                height: auto;
+                min-height: 80vh;
             }
 
             .hero h1 { 
-                font-size: 1.8rem; /* Título equilibrado */
-                line-height: 1.2;
+                font-size: 1.9rem; 
+                line-height: 1.1;
+                margin-bottom: 15px;
             }
 
             .hero p {
-                font-size: 1rem !important;
+                font-size: 1.1rem !important;
+                padding: 0 15px;
             }
         }
     </style>
@@ -254,4 +266,5 @@ Lo que nos mueve en Lock and Go RD:
     </script>
 </body>
 </html>
+
 
