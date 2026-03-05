@@ -1,24 +1,26 @@
-const productos = [
+ 
+
+ const productos = [
     {
         nombre: "V80 PRO",
         categoria: "hogar",
         precio: "Desde RD$18,699",
-        imagen: "llavin1.png.png", // Nombre exacto como me indicaste
-        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, códigos y desbloqueo remoto desde cualquier parte del mundo."
+        imagen: "llavin1.png.png",
+        descripcion: "Reconocimiento facial, huella y remoto."
     },
     {
         nombre: "AURUM X3 IA",
         categoria: "hogar",
         precio: "Desde RD$31,699",
         imagen: "aurumx3ia.png",
-        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, códigos, 3 cámaras de seguridad, inteligencia artificial integrada y desbloqueo remoto desde cualquier parte del mundo."
+        descripcion: "3 cámaras de seguridad e IA integrada."
     },
     {
         nombre: "H18 PRO MAX",
         categoria: "hogar",
         precio: "Desde RD$17,699",
         imagen: "H18PROMAX.png",
-        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, códigos, 3 cámaras de seguridad, inteligencia artificial integrada y desbloqueo remoto desde cualquier parte del mundo."
+        descripcion: "Lo último en seguridad inteligente."
     }
 ];
 
@@ -27,43 +29,27 @@ function mostrarProductos(filtro) {
     if(!contenedor) return;
     contenedor.innerHTML = ""; 
 
-    const productosFiltrados = filtro === 'todos' 
-        ? productos 
-        : productos.filter(p => p.categoria.toLowerCase() === filtro.toLowerCase());
+    const filtrados = filtro === 'todos' ? productos : productos.filter(p => p.categoria === filtro);
 
-    productosFiltrados.forEach(producto => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.nombre}" onerror="this.src='logo1.png'">
-            <h3>${producto.nombre}</h3>
-            <p>${producto.descripcion}</p>
-            <p class="precio">${producto.precio}</p>
-            <button class="btn-cotizar" onclick="cotizar('${producto.nombre}')">Cotizar por WhatsApp</button>
+    filtrados.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+            <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
+            <h3>${p.nombre}</h3>
+            <p>${p.descripcion}</p>
+            <p class="precio">${p.precio}</p>
+            <button onclick="window.open('https://wa.me/18292783114?text=Me+interesa+${p.nombre}')">Cotizar</button>
         `;
-        contenedor.appendChild(card);
+        contenedor.appendChild(div);
     });
 }
 
-function cotizar(nombreProducto) {
-    const mensaje = `Hola Lock and Go RD, me interesa información sobre el producto: ${nombreProducto}`;
-    const url = `https://wa.me/18292783114?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
-}
+document.getElementById('formCotizar').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const n = document.getElementById('nombre').value;
+    const s = document.getElementById('servicio').value;
+    window.open(`https://wa.me/18292783114?text=Hola, soy ${n} y busco ${s}`);
+});
 
-// Lógica para el formulario de contacto
-const form = document.getElementById('formCotizar');
-if(form) {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const nombre = document.getElementById('nombre').value;
-        const servicio = document.getElementById('servicio').value;
-        const mensajeUsuario = document.getElementById('mensaje').value;
-        const mensaje = `Hola, mi nombre es ${nombre}. Estoy interesado en el servicio de: ${servicio}. Mensaje: ${mensajeUsuario}`;
-        const url = `https://wa.me/18292783114?text=${encodeURIComponent(mensaje)}`;
-        window.open(url, '_blank');
-    });
-}
-
-// Cargar todos los productos al iniciar
 window.onload = () => mostrarProductos('todos');
