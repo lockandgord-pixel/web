@@ -1,5 +1,5 @@
- 
-                    <!DOCTYPE html>
+  
+ <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -30,74 +30,106 @@
             z-index: -1;
         }
 
-        /* NAVEGACIÓN PROFESIONAL */
+        /* NAVEGACIÓN TRANSPARENTE (SIN SOMBREADO NI BARRAS) */
         header {
-            position: fixed;
+            position: absolute; /* Para que no bloquee el fondo al inicio */
             top: 0; width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px 5%;
+            background: transparent; /* Totalmente transparente */
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 2000;
-            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
         }
 
         #imgLogo { 
-            height: 90px; /* Tamaño aumentado */
+            height: 100px; /* Tamaño destacado */
             width: auto;
-            filter: drop-shadow(0 0 10px rgba(0, 209, 255, 0.4)); /* Brillo sutil, no difuminado */
-            transition: 0.3s;
+            filter: drop-shadow(0 5px 15px rgba(0, 209, 255, 0.3));
+            mix-blend-mode: lighten;
         }
 
-        nav ul { list-style: none; display: flex; gap: 25px; }
-        nav ul li a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
+        nav ul { list-style: none; display: flex; gap: 35px; }
+        nav ul li a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 1rem; 
+            text-transform: uppercase; 
+            transition: 0.3s;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8); /* Sombra al texto para legibilidad */
+        }
         nav ul li a:hover { color: #00D1FF; }
 
         /* SECCIONES */
         section { padding: 100px 10%; position: relative; z-index: 10; }
 
-        .hero { height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .hero h1 { font-size: 4rem; font-weight: 900; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.4); }
+        .hero { height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .hero h1 { font-size: 4.5rem; font-weight: 900; color: #00D1FF; text-shadow: 0 0 30px rgba(0, 209, 255, 0.5); }
 
-        /* NOSOTROS */
-        .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .info-box { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(0, 209, 255, 0.2); text-align: center; }
-        .info-box i { font-size: 2rem; color: #00D1FF; margin-bottom: 15px; }
-        .info-box h3 { margin-bottom: 10px; text-transform: uppercase; }
+        /* NOSOTROS - FLOTANTE */
+        .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .info-box { 
+            background: rgba(255, 255, 255, 0.03); 
+            padding: 40px; 
+            border-radius: 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            text-align: center; 
+            transition: 0.4s;
+        }
+        .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
+        .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
 
         /* CATÁLOGO FLOTANTE */
-        #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
+        #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
         
         .card { 
             background: rgba(255, 255, 255, 0.03); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 30px; padding: 40px; 
+            border-radius: 35px; padding: 40px; 
             text-align: center; transition: 0.5s ease;
         }
-        .card:hover { transform: translateY(-20px); border-color: #00D1FF; background: rgba(0, 209, 255, 0.05); }
+        .card:hover { transform: translateY(-20px); border-color: #00D1FF; }
 
         .card img { 
-            width: 100%; height: 300px; 
+            width: 100%; height: 320px; 
             object-fit: contain; 
             mix-blend-mode: lighten; 
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.9)); /* Sombra para que flote */
+            filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); 
             margin-bottom: 25px;
         }
 
-        .precio-tag { color: #00FF88; font-size: 2rem; font-weight: 900; margin: 20px 0; display: block; }
-        .btn-wa { background: #00D1FF; color: black; border: none; padding: 15px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; }
+        .precio-tag { color: #00FF88; font-size: 2.2rem; font-weight: 900; margin: 20px 0; display: block; }
+        .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
 
-        /* BURBUJA WHATSAPP */
-        .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 20px rgba(0,0,0,0.4); text-decoration: none; transition: 0.3s; }
-        .whatsapp-bubble:hover { transform: scale(1.1); }
-        .whatsapp-bubble i { color: white; font-size: 40px; }
+        /* FORMULARIO */
+        .formulario-container { max-width: 650px; margin: 0 auto; background: rgba(0, 0, 0, 0.5); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        input, select { width: 100%; padding: 18px; margin: 12px 0; border-radius: 12px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
+        .btn-form { background: #00D1FF; color: black; border: none; padding: 20px; border-radius: 12px; font-weight: 900; width: 100%; cursor: pointer; text-transform: uppercase; }
 
-        .formulario-container { max-width: 600px; margin: 0 auto; background: rgba(0, 0, 0, 0.8); padding: 50px; border-radius: 30px; border: 1px solid #00D1FF; text-align: center; }
-        input, select { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; background: #111; color: white; border: 1px solid #333; }
-        .btn-form { background: #00D1FF; color: black; border: none; padding: 18px; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; }
+        /* REDES SOCIALES AL FINAL */
+        .social-footer {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .social-footer a {
+            color: white;
+            font-size: 2.5rem;
+            transition: 0.3s;
+        }
+        .social-footer a:hover {
+            color: #00D1FF;
+            transform: scale(1.2);
+        }
 
-        h2.titulo { font-size: 3rem; text-align: center; margin-bottom: 20px; color: white; }
+        /* BURBUJA WHATSAPP FLOTANTE */
+        .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-decoration: none; transition: 0.3s; }
+        .whatsapp-bubble i { color: white; font-size: 45px; }
+
+        h2.titulo { font-size: 3.5rem; text-align: center; margin-bottom: 30px; font-weight: 900; }
+        footer { padding: 50px; text-align: center; opacity: 0.5; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -114,63 +146,72 @@
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#contacto">Contacto</a></li>
-                <li><a href="https://www.instagram.com/lockandgord/" target="_blank"><i class="fab fa-instagram"></i></a></li>
             </ul>
         </nav>
     </header>
 
     <section id="inicio" class="hero">
         <h1>LOCK AND GO RD</h1>
-        <p>Tu llave al futuro de la seguridad.</p>
+        <p style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px;">TECNOLOGÍA QUE PROTEGE TU MUNDO</p>
     </section>
 
     <section id="nosotros">
-        <h2 class="titulo">Sobre Nosotros</h2>
+        <h2 class="titulo">Nuestra Esencia</h2>
         <div class="nosotros-grid">
             <div class="info-box">
                 <i class="fas fa-bullseye"></i>
                 <h3>Misión</h3>
-                <p>Brindar tranquilidad a nuestros clientes mediante tecnología de seguridad inteligente de vanguardia.</p>
+                <p>Brindar tranquilidad mediante soluciones de seguridad inteligente de alta fidelidad y fácil acceso.</p>
             </div>
             <div class="info-box">
                 <i class="fas fa-eye"></i>
                 <h3>Visión</h3>
-                <p>Ser el referente líder en República Dominicana en soluciones de acceso inteligente para hogares y negocios.</p>
+                <p>Liderar la transformación digital de la seguridad en RD, instalando confianza en cada puerta.</p>
             </div>
             <div class="info-box">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-medal"></i>
                 <h3>Valores</h3>
-                <p>Integridad, Innovación, Calidad de Servicio y Compromiso con la protección de lo que más importa.</p>
+                <p>Calidad premium, integridad innegociable e innovación constante en cada cerradura.</p>
             </div>
         </div>
     </section>
 
     <section id="catalogo">
-        <h2 class="titulo">Modelos de Élite</h2>
+        <h2 class="titulo">Selección Premium</h2>
         <div id="grid-catalogo"></div>
     </section>
 
     <section id="contacto">
         <div class="formulario-container">
-            <h2>CLUB LOCK & GO</h2>
-            <p>Registra tus datos para recibir ofertas exclusivas.</p>
+            <h2>HABLEMOS DE TU SEGURIDAD</h2>
+            <p style="margin-bottom: 20px; opacity: 0.8;">Déjanos tus datos para una asesoría personalizada.</p>
             <form id="formCotizar">
                 <input type="text" id="nombre" placeholder="Nombre completo" required>
-                <input type="email" id="correo" placeholder="Email" required>
+                <input type="email" id="correo" placeholder="Correo electrónico" required>
                 <select id="servicio">
-                    <option value="Instalación">Instalación Profesional</option>
-                    <option value="Compra">Venta de Equipos</option>
+                    <option value="Cerraduras Residenciales">Cerraduras Residenciales</option>
+                    <option value="Línea Airbnb">Proyectos Airbnb</option>
+                    <option value="Instalación">Servicio Técnico / Instalación</option>
                 </select>
-                <button type="submit" class="btn-form">ENVIAR Y CONTACTAR</button>
+                <button type="submit" class="btn-form">ENVIAR SOLICITUD</button>
             </form>
+
+            <div class="social-footer">
+                <a href="https://www.instagram.com/lockandgord/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/18292783114" target="_blank" title="WhatsApp Directo"><i class="fab fa-whatsapp"></i></a>
+            </div>
         </div>
     </section>
 
+    <footer>
+        <p>&copy; 2026 LOCK AND GO RD | República Dominicana</p>
+    </footer>
+
     <script>
         const productos = [
-            { nombre: "V80 PRO", precio: "RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D Premium." },
-            { nombre: "AURUM X3 IA", precio: "RD$31,699", imagen: "aurumx3ia.png", desc: "3 Cámaras e Inteligencia Artificial." },
-            { nombre: "H18 PRO MAX", precio: "RD$17,699", imagen: "H18PROMAX.png", desc: "Biometría de alta precisión." }
+            { nombre: "V80 PRO", precio: "RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D y Control App." },
+            { nombre: "AURUM X3 IA", precio: "RD$31,699", imagen: "aurumx3ia.png", desc: "Doble cámara con IA y Visión Nocturna." },
+            { nombre: "H18 PRO MAX", precio: "RD$17,699", imagen: "H18PROMAX.png", desc: "Acceso biométrico ultra rápido y seguro." }
         ];
 
         function render() {
@@ -179,9 +220,9 @@
                 <div class="card">
                     <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
                     <h3>${p.nombre}</h3>
-                    <p>${p.desc}</p>
+                    <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
                     <span class="precio-tag">${p.precio}</span>
-                    <button class="btn-wa" onclick="window.open('https://wa.me/18292783114?text=Cotizar ${p.nombre}')">Cotizar por WhatsApp</button>
+                    <button class="btn-wa" onclick="window.open('https://wa.me/18292783114?text=Me interesa el modelo: ${p.nombre}')">Consultar disponibilidad</button>
                 </div>
             `).join('');
         }
@@ -189,7 +230,8 @@
         document.getElementById('formCotizar').onsubmit = (e) => {
             e.preventDefault();
             const n = document.getElementById('nombre').value;
-            window.open(`https://wa.me/18292783114?text=Hola! Soy ${n}, me interesa información.`);
+            const s = document.getElementById('servicio').value;
+            window.open(`https://wa.me/18292783114?text=Hola! Soy ${n}. Me interesa información sobre: ${s}`);
         };
 
         window.onload = render;
