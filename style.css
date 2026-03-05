@@ -1,0 +1,21 @@
+ * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+body { background-color: #0b0f19; color: white; }
+header { background: #161d2f; padding: 15px; text-align: center; border-bottom: 2px solid #00D1FF; position: sticky; top: 0; z-index: 100; }
+#imgLogo { height: 70px; }
+nav ul { list-style: none; display: flex; justify-content: center; padding: 10px; }
+nav ul li { margin: 0 15px; }
+nav ul li a { color: white; text-decoration: none; font-weight: bold; }
+#bienvenida { height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; background: #000; }
+#bienvenida h1 { color: #00D1FF; font-size: 2.5rem; }
+.titulo-seccion { text-align: center; margin: 40px 0; color: #00D1FF; }
+.filtros { text-align: center; margin-bottom: 30px; }
+.filtros button { background: none; border: 1px solid #00D1FF; color: white; padding: 8px 15px; cursor: pointer; margin: 5px; border-radius: 5px; }
+#grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+.card { background: #161d2f; padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #1f2937; }
+.card img { width: 100%; height: 250px; object-fit: contain; margin-bottom: 15px; background: #fff; border-radius: 10px; }
+.precio-tag { color: #00FF88; font-size: 1.3rem; font-weight: bold; margin: 15px 0; }
+.btn-wa { background: #00D1FF; border: none; padding: 12px; cursor: pointer; width: 100%; border-radius: 8px; font-weight: bold; }
+.whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; }
+.whatsapp-float img { width: 35px; }
+.formulario-container { max-width: 500px; margin: 50px auto; background: #161d2f; padding: 30px; border-radius: 15px; }
+input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; }
