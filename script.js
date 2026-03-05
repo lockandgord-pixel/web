@@ -1,27 +1,26 @@
     const productos = [
     {
         nombre: "V80 PRO",
-        categoria: "Hogar",
+        categoria: "hogar", // Cambiado a minúscula
         precio: "Desde RD$18,699",
-        imagen: "llavin1.png.png", // Asegúrate de que el nombre coincida con tu foto en GitHub
-        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, codigos y desbloqueo remoto desde cualquier parte del mundo."
+        imagen: "llavin1.png", // Corregido: quité el doble .png
+        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, códigos y desbloqueo remoto desde cualquier parte del mundo."
     },
     {
         nombre: "AURUM X3 IA",
-        categoria: "Hogar",
+        categoria: "hogar", // Cambiado a minúscula
         precio: "Desde RD$31,699",
         imagen: "aurumx3ia.png",
-        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, codigos, 3 camaras de seguridad, inteligencia artificial integrada y desbloqueo remoto desde cualquier parte del mundo."
+        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, códigos, 3 cámaras de seguridad, inteligencia artificial integrada y desbloqueo remoto desde cualquier parte del mundo."
     },
     {
         nombre: "H18 PRO MAX",
-        categoria: "Hogar",
-        precio: " Desde RD$17,699",
+        categoria: "hogar", // Cambiado a minúscula
+        precio: "Desde RD$17,699",
         imagen: "H18PROMAX.png",
-        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, codigos, 3 camaras de seguridad, inteligencia artificial integrada y desbloqueo remoto desde cualquier parte del mundo."
+        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, códigos, 3 cámaras de seguridad, inteligencia artificial integrada y desbloqueo remoto desde cualquier parte del mundo."
     }
 ];
-
 function mostrarProductos(filtro) {
     const contenedor = document.getElementById('grid-catalogo');
     contenedor.innerHTML = ""; // Limpia el catálogo antes de mostrar
@@ -62,6 +61,7 @@ document.getElementById('formCotizar').addEventListener('submit', function(e) {
 
 // Cargar todos los productos al iniciar
 window.onload = () => mostrarProductos('todos');
+
 
 
 
