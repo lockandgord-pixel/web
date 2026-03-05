@@ -1,10 +1,10 @@
     const productos = [
     {
-        nombre: "Modelo Pro Airbnb",
-        categoria: "airbnb",
-        precio: "RD$ 8,500",
-        imagen: "producto1.jpg", // Asegúrate de que el nombre coincida con tu foto en GitHub
-        descripcion: "Ideal para rentas cortas, acceso remoto."
+        nombre: "V80 PRO",
+        categoria: "Hogares",
+        precio: "RD$18,699",
+        imagen: "llavin1.png.png", // Asegúrate de que el nombre coincida con tu foto en GitHub
+        descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, codigos y desbloqueo remoto desde cualquier parte del mundo."
     },
     {
         nombre: "Smart Home Black",
@@ -62,3 +62,4 @@ document.getElementById('formCotizar').addEventListener('submit', function(e) {
 
 // Cargar todos los productos al iniciar
 window.onload = () => mostrarProductos('todos');
+
