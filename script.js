@@ -1,8 +1,7 @@
- 
- const productos = [
-    { nombre: "V80 PRO", precio: "RD$18,699", imagen: "llavin1.png.png", descripcion: "Facial 3D y Acceso Remoto." },
-    { nombre: "AURUM X3 IA", precio: "RD$31,699", imagen: "aurumx3ia.png", descripcion: "Doble cámara con IA." },
-    { nombre: "H18 PRO MAX", precio: "RD$17,699", imagen: "H18PROMAX.png", descripcion: "Biometría de alta precisión." }
+const productos = [
+    { nombre: "V80 PRO", precio: "RD$18,699", imagen: "llavin1.png.png", descripcion: "Facial 3D y Acceso Remoto total." },
+    { nombre: "AURUM X3 IA", precio: "RD$31,699", imagen: "aurumx3ia.png", descripcion: "Doble cámara con Inteligencia Artificial." },
+    { nombre: "H18 PRO MAX", precio: "RD$17,699", imagen: "H18PROMAX.png", descripcion: "Biometría avanzada y visión nocturna." }
 ];
 
 function mostrarProductos() {
@@ -17,7 +16,7 @@ function mostrarProductos() {
             <h3>${p.nombre}</h3>
             <p>${p.descripcion}</p>
             <span class="precio-tag">${p.precio}</span>
-            <button class="btn-wa" onclick="window.open('https://wa.me/18292783114?text=Cotizar ${p.nombre}')">WhatsApp</button>
+            <button class="btn-wa" onclick="window.open('https://wa.me/18292783114?text=Cotizar modelo: ${p.nombre}')">WhatsApp</button>
         `;
         contenedor.appendChild(div);
     });
