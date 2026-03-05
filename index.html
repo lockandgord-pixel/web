@@ -1,141 +1,61 @@
  
- <!DOCTYPE html>
+  
+             <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lock and Go RD | Seguridad de Élite</title>
+    <title>Lock and Go RD | Seguridad Élite</title>
     <link rel="icon" type="image/png" href="logo1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* CONFIGURACIÓN DEL FONDO TOTAL */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+    <link rel="stylesheet" href="Styles.css?v=600">
+</head>
+<body>
 
-        body {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondo1.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: white;
-            overflow-x: hidden;
-        }
+    <a href="https://wa.me/18292783114" class="whatsapp-bubble" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-        /* NAVEGACIÓN FLOTANTE (GLASSMORPHISM) */
-        header {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1200px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 10px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 2000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+    <header>
+        <img src="logo1.png" alt="Lock and Go" id="imgLogo">
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos-seccion">Catálogo</a></li>
+                <li class="social-top">
+                    <a href="https://www.instagram.com/lockandgord/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-        #imgLogo { 
-            height: 60px; 
-            filter: drop-shadow(0 0 8px rgba(0, 209, 255, 0.6));
-            mix-blend-mode: lighten;
-        }
+    <section id="inicio" class="hero">
+        <h1>LOCK AND GO RD</h1>
+        <p>Seguridad inteligente flotando en la palma de tu mano.</p>
+        <a href="#productos-seccion" class="btn-main">EXPLORAR CATÁLOGO</a>
+    </section>
 
-        nav ul { list-style: none; display: flex; align-items: center; }
-        nav ul li { margin-left: 25px; }
-        nav ul li a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
-        nav ul li a:hover { color: #00D1FF; }
+    <section id="productos-seccion">
+        <h2 class="titulo-seccion">Catálogo Élite</h2>
+        <div id="grid-catalogo"></div>
+    </section>
 
-        .social-top a { font-size: 1.2rem; color: white; margin-left: 15px; transition: 0.3s; }
-        .social-top a:hover { color: #00D1FF; transform: translateY(-3px); }
+    <section id="contacto">
+        <div class="formulario-container">
+            <h2>CLUB VIP</h2>
+            <p>Déjanos tu correo para ofertas exclusivas.</p>
+            <form id="formCotizar">
+                <input type="text" id="nombre" placeholder="Nombre completo" required>
+                <input type="email" id="correo" placeholder="Correo electrónico" required>
+                <select id="servicio">
+                    <option value="Instalación">Instalación Profesional</option>
+                    <option value="Compra">Compra Directa</option>
+                </select>
+                <button type="submit" class="btn-form">REGISTRAR Y CONTACTAR</button>
+            </form>
+        </div>
+    </section>
 
-        /* SECCIÓN HERO */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero h1 { font-size: 4rem; font-weight: 800; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.5); line-height: 1; }
-        .hero p { font-size: 1.4rem; margin: 20px 0; max-width: 600px; font-weight: 300; }
-
-        /* CATÁLOGO FLOTANTE */
-        .titulo-seccion { text-align: center; font-size: 3rem; margin-bottom: 50px; color: white; text-transform: uppercase; letter-spacing: 4px; }
-        
-        #grid-catalogo { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 40px; 
-            padding: 50px 20px; 
-            max-width: 1300px; 
-            margin: 0 auto; 
-        }
-
-        .card { 
-            background: rgba(255, 255, 255, 0.03); 
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            transition: 0.5s;
-        }
-        .card:hover { transform: translateY(-15px); border-color: #00D1FF; background: rgba(0, 209, 255, 0.05); }
-
-        .card img { 
-            width: 100%; 
-            height: 300px; 
-            object-fit: contain; 
-            margin-bottom: 20px;
-            /* El truco para que se vean flotando sin fondo */
-            mix-blend-mode: lighten; 
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-        }
-
-        .card h3 { font-size: 1.5rem; margin-bottom: 10px; color: #00D1FF; }
-        .precio-tag { font-size: 1.8rem; font-weight: 800; color: #00FF88; margin: 15px 0; display: block; }
-
-        .btn-wa { 
-            background: #00D1FF; color: black; border: none; padding: 15px; 
-            border-radius: 50px; font-weight: 800; cursor: pointer; width: 100%;
-            text-transform: uppercase; transition: 0.3s;
-        }
-        .btn-wa:hover { box-shadow: 0 0 20px #00D1FF; transform: scale(1.02); }
-
-        /* FORMULARIO DE CAPTURA (LEADS) */
-        .formulario-container { 
-            max-width: 600px; margin: 100px auto; 
-            background: rgba(0, 0, 0, 0.6); 
-            padding: 50px; border-radius: 40px; 
-            border: 1px solid #00D1FF; text-align: center;
-            backdrop-filter: blur(20px);
-        }
-
-        input, select { 
-            width: 100%; padding: 15px; margin: 10px 0; 
-            border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2); 
-            background: rgba(255, 255, 255, 0.05); color: white; font-size: 1rem;
-        }
-
-        .btn-form { 
-            background: #00D1FF; color: black; border: none; padding: 20px; 
-            border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer;
-            margin-top: 20px; transition: 0.3s;
-        }
-
-        /* BURBUJA WHATSAPP SIEMPRE VISIBLE */
-        .whatsapp-bubble { 
-            position: fixed; bottom: 30px; right: 30px; 
-            background: #25d366; border-radius: 50%; 
-            width:
+    <script src="script.js?v=600"></script>
+</body>
+</html>
