@@ -32,3 +32,4 @@ input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; 
 button[type="submit"] { width: 100%; background: #00D1FF; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #0b0f19; }
 
 footer { text-align: center; padding: 40px; border-top: 1px solid #1f2937; margin-top: 50px; font-size: 0.8rem; opacity: 0.6; }
+
