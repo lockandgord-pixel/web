@@ -1,50 +1,57 @@
-const MI_WHATSAPP = "18292783114";
-
+ 
 const productos = [
-    { cat: "airbnb", nombre: "Ocllo Smart-A", precio: "RD$9,500", img: "llavin1.png.png", desc: "Perfecta para rentas. Códigos temporales vía App." },
-    { cat: "airbnb", nombre: "Lock-Go Wifi", precio: "RD$11,200", img: "llavin1.png.png", desc: "Control total remoto. No requiere Hub." },
-    { cat: "hogar", nombre: "Bio-Shield Pro", precio: "RD$14,500", img: "llavin1.png.png", desc: "Huella dactilar y reconocimiento facial 3D." },
-    { cat: "hogar", nombre: "LiteTouch V2", precio: "RD$7,800", img: "llavin1.png.png", desc: "Elegante, compacta y segura para apartamentos." },
-    { cat: "oficina", nombre: "Master-Control X", precio: "RD$18,900", img: "llavin1.png.png", desc: "Registro de entrada/salida para 200 usuarios." },
-    { cat: "oficina", nombre: "Business Card-Lock", precio: "RD$12,400", img: "llavin1.png.png", desc: "Acceso con tarjetas magnéticas de alta frecuencia." }
+    {
+        nombre: "V80 PRO",
+        precio: "RD$18,699",
+        imagen: "llavin1.png.png",
+        descripcion: "Reconocimiento Facial 3D y Acceso Remoto desde cualquier parte del mundo."
+    },
+    {
+        nombre: "AURUM X3 IA",
+        precio: "RD$31,699",
+        imagen: "aurumx3ia.png",
+        descripcion: "Doble cámara de seguridad frontal con Inteligencia Artificial y Visión Nocturna."
+    },
+    {
+        nombre: "H18 PRO MAX",
+        precio: "RD$17,699",
+        imagen: "H18PROMAX.png",
+        descripcion: "Biometría de alta precisión con cámara integrada para máxima seguridad."
+    }
 ];
 
-function mostrarProductos(filtro = 'todos') {
-    const contenedor = document.getElementById('grid-catalogo-completo');
-    if (!contenedor) return;
-    contenedor.innerHTML = "";
-    
-    const filtrados = filtro === 'todos' ? productos : productos.filter(p => p.cat === filtro);
-    
-    filtrados.forEach(p => {
-        contenedor.innerHTML += `
-            <div class="card">
-                <div class="tag">${p.cat.toUpperCase()}</div>
-                <img src="${p.img}" alt="${p.nombre}">
-                <h3>${p.nombre}</h3>
-                <p style="font-size:0.8rem; color:#ccc; margin: 10px 0;">${p.desc}</p>
-                <p class="precio">${p.precio}</p>
-                <button class="btn-cotizar" onclick="whatsappDirecto('${p.nombre}')">Cotizar ahora</button>
-            </div>
+function mostrarProductos() {
+    const contenedor = document.getElementById('grid-catalogo');
+    if(!contenedor) return;
+    contenedor.innerHTML = ""; 
+    productos.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+            <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
+            <h3>${p.nombre}</h3>
+            <p>${p.descripcion}</p>
+            <span class="precio-tag">${p.precio}</span>
+            <button class="btn-wa" onclick="window.open('https://wa.me/18292783114?text=Hola! Me interesa información del modelo: ${p.nombre}')">COTIZAR POR WHATSAPP</button>
         `;
+        contenedor.appendChild(div);
     });
 }
 
-function whatsappDirecto(producto) {
-    const msg = encodeURIComponent(`¡Hola Lock and go RD! Me interesa el modelo: ${producto}. ¿Qué incluye la instalación?`);
-    window.open(`https://wa.me/${MI_WHATSAPP}?text=${msg}`, '_blank');
+const form = document.getElementById('formCotizar');
+if(form) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const n = document.getElementById('nombre').value;
+        const c = document.getElementById('correo').value;
+        const s = document.getElementById('servicio').value;
+        
+        // Simulación de captura (ver en consola F12)
+        console.log("Lead registrado:", { nombre: n, email: c, interes: s });
+        
+        const mensaje = encodeURIComponent(`Hola! Soy ${n}. Mi correo es ${c} y estoy interesado en: ${s}.`);
+        window.open(`https://wa.me/18292783114?text=${mensaje}`);
+    });
 }
 
-document.getElementById('formCotizar').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const nombre = document.getElementById('nombre').value;
-    const correo = document.getElementById('correo').value;
-    const servicio = document.getElementById('servicio').value;
-    
-    const texto = encodeURIComponent(`*Nueva Solicitud Web*%0A👤: ${nombre}%0A📧: ${correo}%0A🛠️: ${servicio}`);
-    alert(`¡Gracias ${nombre}! Te estamos redirigiendo a nuestro WhatsApp.`);
-    window.open(`https://wa.me/${MI_WHATSAPP}?text=${texto}`, '_blank');
-    this.reset();
-});
-
-window.onload = () => mostrarProductos('todos');
+window.onload = mostrarProductos;
