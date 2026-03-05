@@ -48,11 +48,6 @@
             transition: transform 0.4s ease, filter 0.4s ease;
         }
 
-        #imgLogo:hover {
-            transform: scale(1.03);
-            filter: drop-shadow(0 0 35px rgba(0, 209, 255, 0.9)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
-        }
-
         nav ul { 
             list-style: none; 
             display: flex; 
@@ -87,7 +82,6 @@
 
         .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .info-box { background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; transition: 0.4s; }
-        .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
         .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
 
         #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
@@ -105,65 +99,44 @@
         .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-decoration: none; transition: 0.3s; }
         .whatsapp-bubble i { color: white; font-size: 45px; }
 
-        h2.titulo { font-size: 3.5rem; text-align: center; margin-bottom: 30px; font-weight: 900; }
-        footer { padding: 50px; text-align: center; opacity: 0.5; font-size: 0.9rem; }
+        /* ESTILOS ICONOS REDES SOCIALES */
+        .social-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
 
-        /* --- ARREGLO ESPECÍFICO PARA CELULARES --- */
+        .social-icon {
+            color: white;
+            font-size: 2.5rem;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+        }
+
+        .social-icon:hover {
+            color: #00D1FF;
+            transform: scale(1.2) translateY(-5px);
+            filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.6));
+        }
+
+        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* ARREGLO MÓVILES */
         @media (max-width: 480px) {
-            /* Fix para que el fondo cubra TODA la página sin saltos */
-            body::before {
-                background-attachment: scroll !important; 
-                height: 100%; /* Cubre todo el largo del contenido */
-                position: fixed; /* Mantiene la imagen fija mientras bajas */
-                background-size: cover;
-                -webkit-background-size: cover;
-            }
-
-            header {
-                flex-direction: row; 
-                align-items: flex-start;
-                padding: 15px 5%;
-                z-index: 3000;
-            }
-
-            #imgLogo { 
-                height: 110px !important; 
-                width: auto;
-                margin-top: 5px;
-            }
-
-            nav ul {
-                margin-top: 15px;
-            }
-
-            nav ul li a {
-                font-size: 0.8rem;
-            }
-
-            .hero {
-                padding-top: 160px; 
-                justify-content: flex-start;
-                height: auto;
-                min-height: 70vh;
-            }
-
-            .hero h1 { 
-                font-size: 1.9rem; 
-                line-height: 1.1;
-                margin-bottom: 15px;
-            }
-
-            /* Ajuste para que los textos sobre el fondo sean siempre legibles */
-            .info-box, .card, .formulario-container {
-                background: rgba(0, 0, 0, 0.7) !important; /* Un poco más oscuro para resaltar sobre el fondo */
-                backdrop-filter: blur(5px); /* Efecto de cristal esmerilado muy elegante */
-                border: 1px solid rgba(0, 209, 255, 0.3);
-            }
-
-            h2.titulo {
-                font-size: 2.2rem;
-                margin-top: 20px;
-            }
+            body::before { background-attachment: scroll !important; height: 100%; position: fixed; background-size: cover; }
+            header { flex-direction: row; align-items: flex-start; padding: 15px 5%; z-index: 3000; }
+            #imgLogo { height: 110px !important; margin-top: 5px; }
+            nav ul { margin-top: 15px; }
+            nav ul li a { font-size: 0.8rem; }
+            .hero { padding-top: 160px; justify-content: flex-start; height: auto; min-height: 70vh; }
+            .hero h1 { font-size: 1.9rem; line-height: 1.1; margin-bottom: 15px; }
+            .info-box, .card, .formulario-container { background: rgba(0, 0, 0, 0.7) !important; backdrop-filter: blur(5px); border: 1px solid rgba(0, 209, 255, 0.3); }
+            h2.titulo { font-size: 2.2rem; margin-top: 20px; }
+            .social-container { gap: 25px; }
+            .social-icon { font-size: 2rem; }
         }
     </style>
 </head>
@@ -191,42 +164,28 @@
     </section>
 
     <section id="nosotros">
-        <h2 class="titulo">Nuestra Esencia</h2>
+        <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
         <div class="nosotros-grid">
             <div class="info-box">
                 <i class="fas fa-bullseye"></i>
                 <h3>Misión</h3>
-                <p>🌟 MISIÓN – Lo que hacemos hoy
-Brindar soluciones de seguridad modernas, accesibles y confiables para hogares, negocios y Airbnb, mediante un servicio profesional, transparente y orientado a la satisfacción total del cliente.
-Nos comprometemos a ofrecer instalaciones precisas, asesoría clara y soporte continuo para garantizar tranquilidad y protección en cada espacio.
-</p>
+                <p>Brindar soluciones de seguridad modernas y confiables para hogares y negocios mediante un servicio profesional y transparente.</p>
             </div>
             <div class="info-box">
                 <i class="fas fa-eye"></i>
                 <h3>Visión</h3>
-                <p>🚀 VISIÓN – Hacia dónde vamos
-Ser la empresa líder en soluciones de seguridad inteligente en la República Dominicana, reconocida por su formalidad, innovación, excelencia en el servicio y expansión sostenible a nivel nacional.
-Aspiramos a convertirnos en la marca de confianza que transforma la forma en que las personas protegen sus espacios.
-</p>
+                <p>Ser la empresa líder en seguridad inteligente en RD, reconocida por nuestra innovación y excelencia en el servicio.</p>
             </div>
             <div class="info-box">
                 <i class="fas fa-medal"></i>
                 <h3>Valores</h3>
-                <p>💙 VALORES
-Lo que nos mueve en Lock and Go RD:
-🔹 Transparencia: hablamos claro y actuamos con honestidad.
-🔹 Innovación: tecnología que facilita tu vida.
-🔹 Responsabilidad: cumplimos, respondemos y damos garantía real.
-🔹 Servicio humano: atención cercana, cálida y profesional.
-🔹 Excelencia técnica: cada instalación, un trabajo bien hecho.
-🔹 Compromiso: estamos cuando nos necesitas.
-</p>
+                <p>Transparencia, Innovación, Responsabilidad y un Servicio Humano cercano y profesional.</p>
             </div>
         </div>
     </section>
 
     <section id="catalogo">
-        <h2 class="titulo">Colección Lock And Go</h2>
+        <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Colección Lock And Go</h2>
         <div id="grid-catalogo"></div>
     </section>
 
@@ -245,6 +204,13 @@ Lo que nos mueve en Lock and Go RD:
             </form>
         </div>
     </section>
+
+    <div class="social-container">
+        <a href="https://wa.me/18292783114" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/lockandgord/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@tu_usuario" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/tu_pagina" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+    </div>
 
     <footer>
         <p>&copy; 2026 LOCK AND GO RD | República Dominicana</p>
@@ -281,7 +247,3 @@ Lo que nos mueve en Lock and Go RD:
     </script>
 </body>
 </html>
-
-
-
-
