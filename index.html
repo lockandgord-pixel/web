@@ -1,238 +1,141 @@
+ 
  <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lock and go RD | Seguridad Inteligente</title>
+    <title>Lock and Go RD | Seguridad de Élite</title>
     <link rel="icon" type="image/png" href="logo1.png">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* DISEÑO INTEGRADO PARA EVITAR ERRORES DE CARGA */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
+        /* CONFIGURACIÓN DEL FONDO TOTAL */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
 
-        body { 
-            background-color: #05080a; 
-            color: #ffffff; 
-            /* Intentamos cargar tu fondo, si no, queda un degradado elegante */
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo1.jpeg');
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondo1.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
+            color: white;
+            overflow-x: hidden;
         }
 
+        /* NAVEGACIÓN FLOTANTE (GLASSMORPHISM) */
         header {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 10px 0;
             position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #00D1FF;
-        }
-
-        .header-container {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
             max-width: 1200px;
-            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 10px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            z-index: 2000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         #imgLogo { 
-            height: 75px; 
-            mix-blend-mode: lighten; /* Integra el logo al fondo oscuro */
-            filter: drop-shadow(0 0 5px rgba(0, 209, 255, 0.3));
+            height: 60px; 
+            filter: drop-shadow(0 0 8px rgba(0, 209, 255, 0.6));
+            mix-blend-mode: lighten;
         }
 
-        nav ul { list-style: none; display: flex; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a { color: #fff; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
+        nav ul { list-style: none; display: flex; align-items: center; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
         nav ul li a:hover { color: #00D1FF; }
 
+        .social-top a { font-size: 1.2rem; color: white; margin-left: 15px; transition: 0.3s; }
+        .social-top a:hover { color: #00D1FF; transform: translateY(-3px); }
+
+        /* SECCIÓN HERO */
         .hero {
-            height: 70vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
-            padding-top: 80px;
+            padding: 0 20px;
         }
 
-        .hero h1 { font-size: 3.5rem; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.5); letter-spacing: 2px; }
-        .hero p { font-size: 1.2rem; margin: 15px 0; opacity: 0.9; }
+        .hero h1 { font-size: 4rem; font-weight: 800; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.5); line-height: 1; }
+        .hero p { font-size: 1.4rem; margin: 20px 0; max-width: 600px; font-weight: 300; }
 
-        .btn-main { 
-            background: #00D1FF; color: #000; padding: 15px 35px; 
-            text-decoration: none; border-radius: 50px; font-weight: bold; 
-            transition: 0.3s; margin-top: 20px; box-shadow: 0 0 15px rgba(0, 209, 255, 0.4);
-        }
-
-        .titulo-seccion { text-align: center; margin: 60px 0 30px; font-size: 2.5rem; color: #00D1FF; }
-
+        /* CATÁLOGO FLOTANTE */
+        .titulo-seccion { text-align: center; font-size: 3rem; margin-bottom: 50px; color: white; text-transform: uppercase; letter-spacing: 4px; }
+        
         #grid-catalogo { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 30px; 
-            padding: 20px; 
-            max-width: 1200px; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 40px; 
+            padding: 50px 20px; 
+            max-width: 1300px; 
             margin: 0 auto; 
         }
 
         .card { 
-            background: rgba(22, 29, 47, 0.85); 
-            padding: 25px; 
-            border-radius: 20px; 
-            text-align: center; 
-            border: 1px solid rgba(0, 209, 255, 0.2); 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 30px;
             backdrop-filter: blur(10px);
-            transition: 0.3s;
+            text-align: center;
+            transition: 0.5s;
         }
-        .card:hover { transform: translateY(-10px); border-color: #00D1FF; }
+        .card:hover { transform: translateY(-15px); border-color: #00D1FF; background: rgba(0, 209, 255, 0.05); }
 
         .card img { 
             width: 100%; 
-            height: 250px; 
+            height: 300px; 
             object-fit: contain; 
-            margin-bottom: 15px; 
-            background: #fff; 
-            border-radius: 12px; 
-            padding: 10px; 
+            margin-bottom: 20px;
+            /* El truco para que se vean flotando sin fondo */
+            mix-blend-mode: lighten; 
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
         }
 
-        .precio-tag { color: #00FF88; font-size: 1.5rem; font-weight: bold; display: block; margin: 10px 0; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 10px; color: #00D1FF; }
+        .precio-tag { font-size: 1.8rem; font-weight: 800; color: #00FF88; margin: 15px 0; display: block; }
 
         .btn-wa { 
-            background: #00D1FF; color: #000; border: none; padding: 12px; 
-            border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%;
+            background: #00D1FF; color: black; border: none; padding: 15px; 
+            border-radius: 50px; font-weight: 800; cursor: pointer; width: 100%;
+            text-transform: uppercase; transition: 0.3s;
         }
+        .btn-wa:hover { box-shadow: 0 0 20px #00D1FF; transform: scale(1.02); }
 
-        .whatsapp-float { 
-            position: fixed; bottom: 30px; right: 30px; background: #25d366; 
-            border-radius: 50%; width: 60px; height: 60px; display: flex; 
-            align-items: center; justify-content: center; z-index: 2000; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-        .whatsapp-float img { width: 35px; height: 35px; }
-
+        /* FORMULARIO DE CAPTURA (LEADS) */
         .formulario-container { 
-            max-width: 550px; margin: 80px auto; 
-            background: rgba(0, 0, 0, 0.85); 
-            padding: 40px; border-radius: 25px; 
+            max-width: 600px; margin: 100px auto; 
+            background: rgba(0, 0, 0, 0.6); 
+            padding: 50px; border-radius: 40px; 
             border: 1px solid #00D1FF; text-align: center;
+            backdrop-filter: blur(20px);
         }
 
-        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; background: #111; color: #fff; border: 1px solid #333; }
-        .btn-form { background: #00D1FF; color: #000; border: none; padding: 16px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; font-size: 1rem; margin-top: 10px; }
-
-        footer { text-align: center; padding: 50px; opacity: 0.5; font-size: 0.9rem; }
-    </style>
-</head>
-<body>
-
-    <a href="https://wa.me/18292783114" class="whatsapp-float" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
-
-    <header>
-        <div class="header-container">
-            <img src="logo1.png" alt="Lock and go RD" id="imgLogo">
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#productos-seccion">Catálogo</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section id="inicio" class="hero">
-        <h1>LOCK AND GO RD</h1>
-        <p>Seguridad inteligente para tu tranquilidad total.</p>
-        <a href="#productos-seccion" class="btn-main">EXPLORAR CATÁLOGO</a>
-    </section>
-
-    <section id="productos-seccion">
-        <h2 class="titulo-seccion">Nuestra Selección</h2>
-        <div id="grid-catalogo"></div>
-    </section>
-
-    <section id="contacto">
-        <div class="formulario-container">
-            <h2>Captura de Ofertas VIP</h2>
-            <p>Registra tu correo para recibir promociones exclusivas.</p>
-            <form id="formCotizar">
-                <input type="text" id="nombre" placeholder="Nombre completo" required>
-                <input type="email" id="correo" placeholder="Correo electrónico" required>
-                <select id="servicio">
-                    <option value="Instalación">Instalación Profesional</option>
-                    <option value="Airbnb">Línea Airbnb</option>
-                    <option value="Ventas">Compra de Productos</option>
-                </select>
-                <button type="submit" class="btn-form">ENVIAR Y CONTACTAR WHATSAPP</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Lock and go RD | Santo Domingo, República Dominicana.</p>
-    </footer>
-
-    <script>
-        const productos = [
-            {
-                nombre: "V80 PRO",
-                precio: "RD$18,699",
-                imagen: "llavin1.png.png",
-                descripcion: "Seguridad facial y acceso remoto."
-            },
-            {
-                nombre: "AURUM X3 IA",
-                precio: "RD$31,699",
-                imagen: "aurumx3ia.png",
-                descripcion: "3 cámaras e inteligencia artificial."
-            },
-            {
-                nombre: "H18 PRO MAX",
-                precio: "RD$17,699",
-                imagen: "H18PROMAX.png",
-                descripcion: "Biometría avanzada y elegancia."
-            }
-        ];
-
-        function mostrarProductos() {
-            const contenedor = document.getElementById('grid-catalogo');
-            if(!contenedor) return;
-            contenedor.innerHTML = ""; 
-            productos.forEach(p => {
-                const div = document.createElement('div');
-                div.className = 'card';
-                div.innerHTML = `
-                    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
-                    <h3>${p.nombre}</h3>
-                    <p>${p.descripcion}</p>
-                    <span class="precio-tag">${p.precio}</span>
-                    <button class="btn-wa" onclick="window.open('https://wa.me/18292783114?text=Cotizar ${p.nombre}')">Cotizar WhatsApp</button>
-                `;
-                contenedor.appendChild(div);
-            });
+        input, select { 
+            width: 100%; padding: 15px; margin: 10px 0; 
+            border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2); 
+            background: rgba(255, 255, 255, 0.05); color: white; font-size: 1rem;
         }
 
-        document.getElementById('formCotizar').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const n = document.getElementById('nombre').value;
-            const c = document.getElementById('correo').value;
-            const s = document.getElementById('servicio').value;
-            // Aquí capturas el dato para tu base de datos
-            console.log("Datos capturados:", { n, c, s });
-            window.open(`https://wa.me/18292783114?text=Hola! Soy ${n}, mi correo es ${c} y me interesa: ${s}`);
-        });
+        .btn-form { 
+            background: #00D1FF; color: black; border: none; padding: 20px; 
+            border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer;
+            margin-top: 20px; transition: 0.3s;
+        }
 
-        window.onload = mostrarProductos;
-    </script>
-</body>
-</html>
+        /* BURBUJA WHATSAPP SIEMPRE VISIBLE */
+        .whatsapp-bubble { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background: #25d366; border-radius: 50%; 
+            width:
