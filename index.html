@@ -1,16 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock and go RD | Seguridad Inteligente</title>
     <link rel="icon" type="image/png" href="logo1.png">
-    <link rel="stylesheet" href="Styles.css?v=200">
-    <style>
-        /* Estilo de emergencia por si el CSS tarda en cargar */
-        body { background-color: #0b0f19; color: white; font-family: sans-serif; }
-        .whatsapp-float img { width: 50px; height: 50px; }
-    </style>
+    <link rel="stylesheet" href="Styles.css?v=300">
 </head>
 <body>
 
@@ -19,46 +14,53 @@
     </a>
 
     <header>
-        <img src="logo1.png" alt="Lock and go RD" id="imgLogo">
-        <nav>
-            <ul>
-                <li><a href="#bienvenida">Inicio</a></li>
-                <li><a href="#productos-seccion">Catálogo</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <img src="logo1.png" alt="Lock and go RD" id="imgLogo">
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos-seccion">Catálogo</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section id="bienvenida">
-        <div class="intro-texto">
-            <h1>Seguridad del Futuro en RD</h1>
-            <p>Protección inteligente para Hogares, Airbnbs y Oficinas.</p>
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Mas proteccion, mas vida.</h1>
+            <p>Protección premium para lo que más valoras en RD.</p>
+            <a href="#productos-seccion" class="btn-main">Ver Catálogo</a>
         </div>
     </section>
 
     <section id="productos-seccion">
-        <h2 class="titulo-seccion">Catálogo Lock and Go</h2>
+        <h2 class="titulo-seccion">Nuestra Selección Premium</h2>
         <div id="grid-catalogo"></div>
     </section>
 
     <section id="contacto">
         <div class="formulario-container">
-            <h2>Solicitar Servicio</h2>
+            <h2>Únete a nuestra lista VIP</h2>
+            <p>Recibe ofertas exclusivas y lanzamientos antes que nadie.</p>
             <form id="formCotizar">
-                <input type="text" id="nombre" placeholder="Tu Nombre" required>
+                <input type="text" id="nombre" placeholder="Nombre completo" required>
+                <input type="email" id="correo" placeholder="Tu mejor correo electrónico" required>
                 <select id="servicio">
-                    <option value="Instalación Profesional">Instalación Profesional</option>
-                    <option value="Asesoría Airbnb">Asesoría Airbnb</option>
+                    <option value="Interés en Productos">Interés en Productos</option>
+                    <option value="Instalación">Solicitud de Instalación</option>
+                    <option value="Airbnb">Asesoría para Airbnb</option>
                 </select>
-                <button type="submit">Enviar a WhatsApp</button>
+                <button type="submit">Enviar y Contactar WhatsApp</button>
             </form>
+            <p class="data-notice">* Al enviar, te contactaremos por WhatsApp y guardaremos tu correo para ofertas especiales.</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Lock and go RD.</p>
+        <p>&copy; 2026 Lock and go RD | Santo Domingo, República Dominicana.</p>
     </footer>
 
-    <script src="script.js?v=200"></script>
+    <script src="script.js?v=300"></script>
 </body>
 </html>
