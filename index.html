@@ -197,7 +197,18 @@ Lo que nos mueve en Lock and Go RD:
             </div>
         </div>
     </section>
+<section id="asistente" style="background: rgba(0, 209, 255, 0.05); border-radius: 40px; margin: 20px 10%; padding: 40px; text-align: center; border: 1px dashed #00D1FF;">
+        <h2 style="font-size: 2rem; margin-bottom: 20px;">¿NO SABES CUÁL ELEGIR?</h2>
+        <p style="margin-bottom: 25px;">Responde 2 preguntas y nuestra IA te dirá tu cerradura ideal.</p>
+        <div id="quiz-container">
+            <button class="btn-wa" onclick="iniciarQuiz()" style="width: auto; padding: 15px 40px;">INICIAR ASISTENTE</button>
+        </div>
+    </section>
 
+    <section id="catalogo">
+        <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Colección Lock And Go</h2>
+        <div id="grid-catalogo"></div>
+    </section>
     <section id="catalogo">
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Colección Lock And Go</h2>
         <div id="grid-catalogo"></div>
@@ -229,7 +240,43 @@ Lo que nos mueve en Lock and Go RD:
     <footer>
         <p>&copy; 2026 LOCK AND GO RD | Derechos reservados República Dominicana</p>
     </footer>
+function iniciarQuiz() {
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto;">
+            <p>1. ¿Para qué uso la necesitas?</p>
+            <button class="btn-form" onclick="pregunta2('Airbnb')">Proyectos Airbnb</button>
+            <button class="btn-form" onclick="pregunta2('Hogar')">Uso Residencial</button>
+        </div>
+    `;
+}
 
+function pregunta2(uso) {
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto;">
+            <p>2. ¿Cómo prefieres abrir tu puerta?</p>
+            <button class="btn-form" onclick="resultado('${uso}', 'Facial')">Reconocimiento Facial (Premium)</button>
+            <button class="btn-form" onclick="resultado('${uso}', 'Huella')">Huella y Código</button>
+        </div>
+    `;
+}
+
+function resultado(uso, tech) {
+    let recomendado = "";
+    if(tech === 'Facial') recomendado = "AURUM X3 IA";
+    else if(uso === 'Airbnb') recomendado = "V80 PRO";
+    else recomendado = "H18 PRO MAX";
+
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = `
+        <div style="padding: 20px; border: 2px solid #00D1FF; border-radius: 20px;">
+            <h3 style="color:white;">Tu cerradura ideal es: <br><span style="color: #00D1FF; font-size: 2rem;">${recomendado}</span></h3>
+            <p style="margin: 15px 0;">Este modelo es el más eficiente para ${uso}.</p>
+            <button class="btn-wa" onclick="window.open('https://wa.me/18094572656?text=El asistente de la web me recomendó la ${recomendado} para mi ${uso}')">COTIZAR ${recomendado} AHORA</button>
+        </div>
+    `;
+}
     <script>
         const productos = [
             { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos,tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
@@ -261,5 +308,6 @@ Lo que nos mueve en Lock and Go RD:
     </script>
 </body>
 </html>
+
 
 
