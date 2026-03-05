@@ -258,7 +258,7 @@ Lo que nos mueve en Lock and Go RD:
             { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, reconocimiento de palma, huellas, codigos, tarjeta token y desbloqueo remoto." }
         ];
 
-        function render() {
+       function render() {
             const container = document.getElementById('grid-catalogo');
             container.innerHTML = productos.map(p => `
                 <div class="card">
@@ -266,7 +266,7 @@ Lo que nos mueve en Lock and Go RD:
                     <h3>${p.nombre}</h3>
                     <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
                     <span class="precio-tag">${p.precio}</span>
-                    <button class="btn-wa" onclick="window.open('https://wa.me/18292783114?text=Me interesa el modelo: ${p.nombre}')">Consultar disponibilidad</button>
+                    <button class="btn-wa" onclick="window.open('https://wa.me/18292783114?text=Me interesa el modelo: ${p.nombre}')">Solicitar cotización</button>
                 </div>
             `).join('');
         }
@@ -281,11 +281,7 @@ Lo que nos mueve en Lock and Go RD:
         window.onload = render;
     </script>
 </body>
-
-
-
-
-
+</html>
 
 
 
