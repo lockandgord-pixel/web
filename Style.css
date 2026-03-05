@@ -1,122 +1,124 @@
- * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; scroll-behavior: smooth; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
 
 body { 
-    background-color: #05080a; 
-    color: #ffffff; 
-    /* ACTIVACIÓN DE TU FONDO */
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo1.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                url('fondo1.jpeg') no-repeat center center fixed; 
+    background-size: cover; color: white; overflow-x: hidden; 
 }
 
-header {
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 10px 0;
+/* WHATSAPP FLOTANTE */
+.whatsapp-float {
     position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #00D1FF;
-}
-
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-#imgLogo { 
-    height: 80px; 
-    mix-blend-mode: lighten; /* Integra el logo al fondo */
-}
-
-nav ul { list-style: none; display: flex; }
-nav ul li { margin-left: 20px; }
-nav ul li a { color: #fff; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-
-.hero {
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.hero h1 { font-size: 3rem; color: #00D1FF; text-shadow: 2px 2px 10px #000; }
-
-.titulo-seccion { text-align: center; margin: 60px 0 30px; font-size: 2.5rem; color: #00D1FF; }
-
-#grid-catalogo { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 30px; 
-    padding: 20px; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-}
-
-.card { 
-    background: rgba(22, 29, 47, 0.8); 
-    padding: 20px; 
-    border-radius: 15px; 
-    text-align: center; 
-    border: 1px solid rgba(0, 209, 255, 0.3); 
-    backdrop-filter: blur(5px);
-}
-
-.card img { 
-    width: 100%; 
-    height: 250px; 
-    object-fit: contain; 
-    margin-bottom: 15px; 
-    background: #fff; 
-    border-radius: 10px; 
-}
-
-.precio-tag { color: #00FF88; font-size: 1.4rem; font-weight: bold; display: block; margin: 10px 0; }
-
-.btn-wa, .btn-main { 
-    background: #00D1FF; 
-    color: #000; 
-    border: none; 
-    padding: 12px; 
-    border-radius: 8px; 
-    font-weight: bold; 
-    cursor: pointer; 
-    text-decoration: none;
-}
-
-.whatsapp-float { 
-    position: fixed; 
-    bottom: 20px; 
-    right: 20px; 
-    background: #25d366; 
-    border-radius: 50%; 
-    width: 60px; 
-    height: 60px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    z-index: 1000; 
+    width: 60px; height: 60px; bottom: 20px; right: 20px;
+    background-color: #25d366; border-radius: 50px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2000; box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
 }
 .whatsapp-float img { width: 35px; }
 
-.formulario-container { 
-    max-width: 500px; 
-    margin: 80px auto; 
-    background: rgba(0, 0, 0, 0.8); 
-    padding: 40px; 
-    border-radius: 20px; 
-    border: 1px solid #00D1FF; 
-    text-align: center;
+/* HEADER - LOGO IZQUIERDA, MENÚ DERECHA */
+header {
+    background: rgba(0,0,0,0.9);
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; background: #111; color: #fff; border: 1px solid #333; }
+#imgLogo { 
+    height: 120px; /* Tamaño ideal escritorio */
+    width: auto; 
+    object-fit: contain; 
+}
 
-footer { text-align: center; padding: 40px; opacity: 0.6; }
+nav ul { display: flex; list-style: none; gap: 20px; }
+nav a { color: white; text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+
+/* SECCIÓN BIENVENIDA */
+#bienvenida { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 150px 20px 50px 20px; }
+#bienvenida h1 { font-size: 3rem; text-transform: uppercase; line-height: 1.1; }
+#bienvenida p { font-size: 1.2rem; margin-top: 15px; color: #00D1FF; }
+
+/* NOSOTROS */
+#nosotros { padding: 60px 5%; }
+.cuadros-dinamicos { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.cuadro {
+    background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+    padding: 30px; border-radius: 20px; flex: 1; min-width: 280px; text-align: center; border-bottom: 4px solid #00D1FF;
+}
+
+/* CATÁLOGO CENTRADO */
+#productos-seccion { padding: 80px 5%; text-align: center; }
+.titulo-seccion { margin-bottom: 30px; font-size: 2.2rem; text-transform: uppercase; }
+
+.filtros { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+.filtros button {
+    background: transparent; color: white; border: 1px solid #00D1FF;
+    padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 0.8rem;
+}
+
+.wrapper-catalogo { width: 100%; overflow-x: auto; padding-bottom: 20px; }
+.catalogo-desplegable { display: flex; gap: 20px; padding: 0 10px; }
+
+.card {
+    min-width: 280px; background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+}
+.card img { width: 100%; height: 180px; object-fit: contain; }
+.precio { color: #00D1FF; font-weight: 800; font-size: 1.5rem; margin: 15px 0; }
+.btn-cotizar {
+    background: #00D1FF; color: black; padding: 12px; border-radius: 10px; border: none; width: 100%; font-weight: bold;
+}
+
+/* CONTACTO */
+#contacto { padding: 60px 5%; }
+.formulario-container { max-width: 500px; margin: 0 auto; background: rgba(0, 0, 0, 0.5); padding: 30px; border-radius: 20px; border: 1px solid #00D1FF; }
+#formCotizar input, #formCotizar select, #formCotizar textarea { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; background: rgba(255,255,255,0.1); color: white; border: none; }
+#formCotizar button { background: #00D1FF; color: black; padding: 15px; width: 100%; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; }
+
+footer { padding: 40px; text-align: center; background: black; }
+
+/* ==========================================
+   AJUSTES PARA CELULARES (Móvil First)
+   ========================================== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Logo arriba, menú abajo */
+        padding: 15px 5%;
+        text-align: center;
+    }
+
+    #imgLogo { 
+        height: 100px; /* Logo un poco más pequeño en celular para que no tape todo */
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 0.75rem; /* Letra más pequeña para que quepa en una línea */
+    }
+
+    #bienvenida {
+        padding-top: 180px; /* Más espacio para no chocar con el menú */
+    }
+
+    #bienvenida h1 {
+        font-size: 2rem; /* Título más pequeño para que no se corte */
+    }
+
+    .titulo-seccion {
+        font-size: 1.8rem;
+    }
+
+    .cuadro {
+        min-width: 100%; /* Cuadros de misión/visión uno debajo de otro */
+    }
+}
