@@ -1,6 +1,4 @@
- 
-  
-             <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +6,7 @@
     <title>Lock and Go RD | Seguridad Élite</title>
     <link rel="icon" type="image/png" href="logo1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="Styles.css?v=600">
+    <link rel="stylesheet" href="Styles.css?v=24h">
 </head>
 <body>
 
@@ -17,45 +15,52 @@
     </a>
 
     <header>
-        <img src="logo1.png" alt="Lock and Go" id="imgLogo">
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#productos-seccion">Catálogo</a></li>
-                <li class="social-top">
-                    <a href="https://www.instagram.com/lockandgord/" target="_blank"><i class="fab fa-instagram"></i></a>
-                </li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <img src="logo1.png" alt="Lock and Go" id="imgLogo">
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos-seccion">Catálogo</a></li>
+                    <li><a href="https://www.instagram.com/lockandgord/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section id="inicio" class="hero">
-        <h1>LOCK AND GO RD</h1>
-        <p>Seguridad inteligente flotando en la palma de tu mano.</p>
-        <a href="#productos-seccion" class="btn-main">EXPLORAR CATÁLOGO</a>
+        <div class="hero-content">
+            <h1>Mas proteccion, mas vida.</h1>
+            <p>Seguridad inteligente para tu tranquilidad total.</p>
+            <a href="#productos-seccion" class="btn-main">EXPLORAR CATÁLOGO</a>
+        </div>
     </section>
 
     <section id="productos-seccion">
-        <h2 class="titulo-seccion">Catálogo Élite</h2>
+        <h2 class="titulo-seccion">Nuestra Selección</h2>
         <div id="grid-catalogo"></div>
     </section>
 
     <section id="contacto">
         <div class="formulario-container">
             <h2>CLUB VIP</h2>
-            <p>Déjanos tu correo para ofertas exclusivas.</p>
+            <p>Registra tu correo para ofertas y asesoría personalizada.</p>
             <form id="formCotizar">
                 <input type="text" id="nombre" placeholder="Nombre completo" required>
                 <input type="email" id="correo" placeholder="Correo electrónico" required>
                 <select id="servicio">
-                    <option value="Instalación">Instalación Profesional</option>
-                    <option value="Compra">Compra Directa</option>
+                    <option value="Instalación Profesional">Instalación Profesional</option>
+                    <option value="Proyectos Airbnb">Línea Airbnb</option>
+                    <option value="Ventas">Compra de Equipos</option>
                 </select>
-                <button type="submit" class="btn-form">REGISTRAR Y CONTACTAR</button>
+                <button type="submit" class="btn-form">ENVIAR Y CONTACTAR</button>
             </form>
         </div>
     </section>
 
-    <script src="script.js?v=600"></script>
+    <footer>
+        <p>&copy; 2026 Lock and Go RD | Santo Domingo, RD.</p>
+    </footer>
+
+    <script src="script.js?v=24h"></script>
 </body>
 </html>
