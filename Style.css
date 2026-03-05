@@ -1,0 +1,34 @@
+/* RESET GENERAL */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+body { background-color: #0b0f19; color: white; line-height: 1.6; }
+
+/* LOGO Y NAVEGACIÓN */
+header { background: #161d2f; padding: 20px; text-align: center; border-bottom: 2px solid #00D1FF; position: sticky; top: 0; z-index: 1000; }
+#imgLogo { height: 70px; margin-bottom: 10px; }
+nav ul { list-style: none; display: flex; justify-content: center; }
+nav ul li { margin: 0 15px; }
+nav ul li a { color: white; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+
+/* HERO SECCIÓN */
+#bienvenida { height: 35vh; display: flex; align-items: center; justify-content: center; text-align: center; background: #000; padding: 20px; }
+#bienvenida h1 { color: #00D1FF; font-size: 2.2rem; margin-bottom: 10px; }
+
+/* CATÁLOGO */
+.titulo-seccion { text-align: center; margin: 40px 0; color: #00D1FF; font-size: 2rem; }
+#grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+.card { background: #161d2f; padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #1f2937; transition: 0.3s; }
+.card:hover { border-color: #00D1FF; transform: translateY(-5px); }
+.card img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 15px; background: #fff; border-radius: 10px; padding: 10px; }
+.precio-tag { color: #00FF88; font-size: 1.4rem; font-weight: bold; margin: 15px 0; }
+.btn-wa { background: #00D1FF; border: none; padding: 12px; cursor: pointer; width: 100%; border-radius: 8px; font-weight: bold; color: #0b0f19; }
+
+/* WHATSAPP FLOTANTE (ESTO ARREGLA EL TAMAÑO GIGANTE) */
+.whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+.whatsapp-float img { width: 35px; height: 35px; }
+
+/* FORMULARIO */
+.formulario-container { max-width: 500px; margin: 50px auto; background: #161d2f; padding: 30px; border-radius: 15px; border: 1px solid #1f2937; }
+input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #1f2937; background: #0b0f19; color: white; }
+button[type="submit"] { width: 100%; background: #00D1FF; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #0b0f19; }
+
+footer { text-align: center; padding: 40px; border-top: 1px solid #1f2937; margin-top: 50px; font-size: 0.8rem; opacity: 0.6; }
