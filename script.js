@@ -1,50 +1,64 @@
-  const MI_WHATSAPP = "18292783114";
-
-const productos = [
-    { cat: "airbnb", nombre: "Ocllo Smart-A", precio: "RD$9,500", img: "llavin1.png.png", desc: "Perfecta para rentas. Códigos temporales vía App." },
-    { cat: "airbnb", nombre: "Lock-Go Wifi", precio: "RD$11,200", img: "llavin1.png.png", desc: "Control total remoto. No requiere Hub." },
-    { cat: "hogar", nombre: "Bio-Shield Pro", precio: "RD$14,500", img: "llavin1.png.png", desc: "Huella dactilar y reconocimiento facial 3D." },
-    { cat: "hogar", nombre: "LiteTouch V2", precio: "RD$7,800", img: "llavin1.png.png", desc: "Elegante, compacta y segura para apartamentos." },
-    { cat: "oficina", nombre: "Master-Control X", precio: "RD$18,900", img: "llavin1.png.png", desc: "Registro de entrada/salida para 200 usuarios." },
-    { cat: "oficina", nombre: "Business Card-Lock", precio: "RD$12,400", img: "llavin1.png.png", desc: "Acceso con tarjetas magnéticas de alta frecuencia." }
+    const productos = [
+    {
+        nombre: "Modelo Pro Airbnb",
+        categoria: "airbnb",
+        precio: "RD$ 8,500",
+        imagen: "producto1.jpg", // Asegúrate de que el nombre coincida con tu foto en GitHub
+        descripcion: "Ideal para rentas cortas, acceso remoto."
+    },
+    {
+        nombre: "Smart Home Black",
+        categoria: "hogar",
+        precio: "RD$ 6,200",
+        imagen: "producto2.jpg",
+        descripcion: "Elegancia y seguridad para tu hogar."
+    },
+    {
+        nombre: "Cerradura Office Gold",
+        categoria: "oficina",
+        precio: "RD$ 9,800",
+        imagen: "producto3.jpg",
+        descripcion: "Control de huella dactilar y tarjetas."
+    }
 ];
 
-function mostrarProductos(filtro = 'todos') {
-    const contenedor = document.getElementById('grid-catalogo-completo');
-    if (!contenedor) return;
-    contenedor.innerHTML = "";
-    
-    const filtrados = filtro === 'todos' ? productos : productos.filter(p => p.cat === filtro);
-    
-    filtrados.forEach(p => {
-        contenedor.innerHTML += `
-            <div class="card">
-                <div class="tag">${p.cat.toUpperCase()}</div>
-                <img src="${p.img}" alt="${p.nombre}">
-                <h3>${p.nombre}</h3>
-                <p style="font-size:0.8rem; color:#ccc; margin: 10px 0;">${p.desc}</p>
-                <p class="precio">${p.precio}</p>
-                <button class="btn-cotizar" onclick="whatsappDirecto('${p.nombre}')">Cotizar ahora</button>
-            </div>
+function mostrarProductos(filtro) {
+    const contenedor = document.getElementById('grid-catalogo');
+    contenedor.innerHTML = ""; // Limpia el catálogo antes de mostrar
+
+    const productosFiltrados = filtro === 'todos' 
+        ? productos 
+        : productos.filter(p => p.categoria === filtro);
+
+    productosFiltrados.forEach(producto => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.descripcion}</p>
+            <p class="precio">${producto.precio}</p>
+            <button class="btn-cotizar" onclick="cotizar('${producto.nombre}')">Cotizar por WhatsApp</button>
         `;
+        contenedor.appendChild(card);
     });
 }
 
-function whatsappDirecto(producto) {
-    const msg = encodeURIComponent(`¡Hola Lock and go RD! Me interesa el modelo: ${producto}. ¿Qué incluye la instalación?`);
-    window.open(`https://wa.me/${MI_WHATSAPP}?text=${msg}`, '_blank');
+function cotizar(nombreProducto) {
+    const mensaje = `Hola Lock and Go RD, me interesa información sobre el producto: ${nombreProducto}`;
+    const url = `https://wa.me/18292783114?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
 }
 
+// Lógica para el formulario de contacto
 document.getElementById('formCotizar').addEventListener('submit', function(e) {
     e.preventDefault();
     const nombre = document.getElementById('nombre').value;
-    const correo = document.getElementById('correo').value;
     const servicio = document.getElementById('servicio').value;
-    
-    const texto = encodeURIComponent(`*Nueva Solicitud Web*%0A👤: ${nombre}%0A📧: ${correo}%0A🛠️: ${servicio}`);
-    alert(`¡Gracias ${nombre}! Te estamos redirigiendo a nuestro WhatsApp.`);
-    window.open(`https://wa.me/${MI_WHATSAPP}?text=${texto}`, '_blank');
-    this.reset();
+    const mensaje = `Hola, mi nombre es ${nombre}. Estoy interesado en el servicio de: ${servicio}.`;
+    const url = `https://wa.me/18292783114?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
 });
 
+// Cargar todos los productos al iniciar
 window.onload = () => mostrarProductos('todos');
