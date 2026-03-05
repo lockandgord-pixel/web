@@ -1,3 +1,4 @@
+ 
  <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +8,7 @@
     
     <link rel="icon" type="image/png" href="logo1.png">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
 
@@ -29,36 +30,16 @@
 
     <section id="bienvenida">
         <div class="intro-texto">
-            <h1>Más protección, más vida.</h1>
-            <p>Controla tu puerta desde cualquier lugar.</p>
+            <h1>Seguridad del Futuro en RD</h1>
+            <p>Protección inteligente para Hogares, Airbnbs y Oficinas.</p>
         </div>
     </section>
 
     <section id="nosotros">
         <div class="cuadros-dinamicos">
-            <div class="cuadro">
-                <h3 style="color: #00D1FF; margin-bottom: 15px;">🌟 MISIÓN</h3>
-                <p>Brindar soluciones de seguridad modernas, accesibles y confiables para hogares, negocios y Airbnb, mediante un servicio profesional, transparente y orientado a la satisfacción total del cliente.</p>
-                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8; border-top: 1px solid rgba(0,209,255,0.2); padding-top: 10px;">Nos comprometemos a ofrecer instalaciones precisas, asesoría clara y soporte continuo para garantizar tranquilidad y protección en cada espacio.</p>
-            </div>
-
-            <div class="cuadro">
-                <h3 style="color: #00D1FF; margin-bottom: 15px;">🚀 VISIÓN</h3>
-                <p>Ser la empresa líder en soluciones de seguridad inteligente en la República Dominicana, reconocida por su formalidad, innovación, excelencia en el servicio y expansión sostenible a nivel nacional.</p>
-                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8; border-top: 1px solid rgba(0,209,255,0.2); padding-top: 10px;">Aspiramos a convertirnos en la marca de confianza que transforma la forma en que las personas protegen sus espacios.</p>
-            </div>
-
-            <div class="cuadro">
-                <h3 style="color: #00D1FF; margin-bottom: 15px;">💎 VALORES</h3>
-                <ul style="list-style: none; text-align: left; font-size: 0.9rem; line-height: 1.4;">
-                    <li style="margin-bottom: 8px;"><strong>🔹 Transparencia:</strong> Hablamos claro y actuamos con honestidad.</li>
-                    <li style="margin-bottom: 8px;"><strong>🔹 Innovación:</strong> Tecnología que facilita tu vida.</li>
-                    <li style="margin-bottom: 8px;"><strong>🔹 Responsabilidad:</strong> Cumplimos, respondemos y damos garantía real.</li>
-                    <li style="margin-bottom: 8px;"><strong>🔹 Servicio Humano:</strong> Atención cercana, cálida y profesional.</li>
-                    <li style="margin-bottom: 8px;"><strong>🔹 Excelencia Técnica:</strong> Cada instalación, un trabajo bien hecho.</li>
-                    <li style="margin-bottom: 8px;"><strong>🔹 Compromiso:</strong> Estamos cuando nos necesitas.</li>
-                </ul>
-            </div>
+            <div class="cuadro"><h3>🌟 MISIÓN</h3><p>Brindar soluciones de seguridad modernas y confiables.</p></div>
+            <div class="cuadro"><h3>🚀 VISIÓN</h3><p>Ser líderes en seguridad inteligente en RD.</p></div>
+            <div class="cuadro"><h3>💎 VALORES</h3><p>Transparencia, Innovación y Excelencia.</p></div>
         </div>
     </section>
 
@@ -66,11 +47,9 @@
         <h2 class="titulo-seccion">Catálogo Especializado</h2>
         <div class="filtros">
             <button onclick="mostrarProductos('todos')">Todos</button>
+            <button onclick="mostrarProductos('hogar')">Línea Hogar</button>
             <button onclick="mostrarProductos('airbnb')">Línea Airbnb</button>
-            <button onclick="mostrarProductos('hogar')">Hogar Inteligente</button>
-            <button onclick="mostrarProductos('oficina')">Oficinas y Negocios</button>
         </div>
-        
         <div class="wrapper-catalogo">
             <div id="grid-catalogo" class="catalogo-desplegable"></div>
         </div>
@@ -79,14 +58,12 @@
     <section id="contacto">
         <div class="formulario-container">
             <h2>Solicitar Servicio</h2>
-            <p style="margin-bottom:20px; color:#00D1FF;">Escríbenos y te asesoramos de inmediato.</p>
             <form id="formCotizar">
                 <input type="text" id="nombre" placeholder="Tu Nombre" required>
                 <input type="email" id="correo" placeholder="Tu Correo" required>
                 <select id="servicio">
                     <option value="Instalación Profesional">Instalación Profesional</option>
                     <option value="Asesoría Airbnb">Asesoría para Airbnb</option>
-                    <option value="Proyecto Comercial">Proyecto para Negocios</option>
                 </select>
                 <textarea id="mensaje" placeholder="¿En qué podemos ayudarte?" rows="4"></textarea>
                 <button type="submit">Enviar Solicitud por WhatsApp</button>
@@ -95,15 +72,9 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Lock and go RD. Todos los derechos reservados.</p>
-        <div class="redes-sociales">
-            <a href="https://www.instagram.com/lockandgord/" target="_blank">Instagram</a>
-            <a href="https://wa.me/18292783114" target="_blank">WhatsApp Directo</a>
-        </div>
+        <p>&copy; 2026 Lock and go RD.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 </html>
-
-
