@@ -1,5 +1,4 @@
- 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +7,7 @@
     
     <link rel="icon" type="image/png" href="logo1.png">
     
-    <link rel="stylesheet" href="Styles.css">
+    <link rel="stylesheet" href="Styles.css?v=99">
 </head>
 <body>
 
@@ -21,7 +20,6 @@
         <nav>
             <ul>
                 <li><a href="#bienvenida">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#productos-seccion">Catálogo</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -35,23 +33,15 @@
         </div>
     </section>
 
-    <section id="nosotros">
-        <div class="cuadros-dinamicos">
-            <div class="cuadro"><h3>🌟 MISIÓN</h3><p>Brindar soluciones de seguridad modernas y confiables.</p></div>
-            <div class="cuadro"><h3>🚀 VISIÓN</h3><p>Ser líderes en seguridad inteligente en RD.</p></div>
-            <div class="cuadro"><h3>💎 VALORES</h3><p>Transparencia, Innovación y Excelencia.</p></div>
-        </div>
-    </section>
-
     <section id="productos-seccion">
-        <h2 class="titulo-seccion">Catálogo Especializado</h2>
+        <h2 class="titulo-seccion">Catálogo Lock and Go</h2>
         <div class="filtros">
             <button onclick="mostrarProductos('todos')">Todos</button>
             <button onclick="mostrarProductos('hogar')">Línea Hogar</button>
             <button onclick="mostrarProductos('airbnb')">Línea Airbnb</button>
         </div>
         <div class="wrapper-catalogo">
-            <div id="grid-catalogo" class="catalogo-desplegable"></div>
+            <div id="grid-catalogo"></div>
         </div>
     </section>
 
@@ -60,21 +50,20 @@
             <h2>Solicitar Servicio</h2>
             <form id="formCotizar">
                 <input type="text" id="nombre" placeholder="Tu Nombre" required>
-                <input type="email" id="correo" placeholder="Tu Correo" required>
                 <select id="servicio">
                     <option value="Instalación Profesional">Instalación Profesional</option>
-                    <option value="Asesoría Airbnb">Asesoría para Airbnb</option>
+                    <option value="Asesoría Airbnb">Asesoría Airbnb</option>
+                    <option value="Proyecto Oficina">Proyecto Oficina</option>
                 </select>
-                <textarea id="mensaje" placeholder="¿En qué podemos ayudarte?" rows="4"></textarea>
-                <button type="submit">Enviar Solicitud por WhatsApp</button>
+                <button type="submit">Enviar Solicitud a WhatsApp</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Lock and go RD.</p>
+        <p>&copy; 2026 Lock and go RD. Expertos en Seguridad.</p>
     </footer>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=99"></script>
 </body>
 </html>
