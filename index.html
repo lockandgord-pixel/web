@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock and go RD | Seguridad Inteligente</title>
-    <link rel="icon" type="image/png" href="logo1.png">
-    <link rel="stylesheet" href="Styles.css?v=400">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -14,52 +13,80 @@
     </a>
 
     <header>
-        <div class="header-container">
-            <img src="logo1.png" alt="Lock and go RD" id="imgLogo">
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#productos-seccion">Catálogo</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
+        <img src="logo1.png" alt="Lock and go RD" id="imgLogo">
+        <nav>
+            <ul>
+                <li><a href="#bienvenida">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#productos-seccion">Catálogo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>SEGURIDAD INTELIGENTE</h1>
-            <p>Protección premium para hogares y oficinas en RD.</p>
-            <a href="#productos-seccion" class="btn-main">Ver Catálogo</a>
+    <section id="bienvenida">
+        <div class="intro-texto">
+            <h1>Seguridad del Futuro en RD</h1>
+            <p>Protección inteligente para Hogares, Airbnbs y Oficinas.</p>
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <div class="cuadros-dinamicos">
+            <div class="cuadro">
+                <h3>Misión</h3>
+                <p>Innovar la seguridad dominicana con tecnología de acceso inteligente.</p>
+            </div>
+            <div class="cuadro">
+                <h3>Visión</h3>
+                <p>Ser la primera opción en domótica y llavines digitales del Caribe.</p>
+            </div>
+            <div class="cuadro">
+                <h3>Garantía</h3>
+                <p>Soporte técnico 24/7 y 1 año de garantía en todas nuestras instalaciones.</p>
+            </div>
         </div>
     </section>
 
     <section id="productos-seccion">
-        <h2 class="titulo-seccion">Catálogo Lock and Go</h2>
-        <div id="grid-catalogo"></div>
+        <h2 class="titulo-seccion">Catálogo Especializado</h2>
+        <div class="filtros">
+            <button onclick="mostrarProductos('todos')">Todos</button>
+            <button onclick="mostrarProductos('airbnb')">Línea Airbnb</button>
+            <button onclick="mostrarProductos('hogar')">Hogar Inteligente</button>
+            <button onclick="mostrarProductos('oficina')">Oficinas y Negocios</button>
+        </div>
+        <div class="wrapper-catalogo">
+            <div id="grid-catalogo-completo" class="catalogo-desplegable"></div>
+        </div>
     </section>
 
     <section id="contacto">
         <div class="formulario-container">
-            <h2>Únete a nuestra lista VIP</h2>
-            <p>Déjanos tu correo para ofertas exclusivas.</p>
+            <h2>Solicitar Servicio</h2>
+            <p style="margin-bottom:20px; color:#00D1FF;">Escríbenos y te asesoramos de inmediato.</p>
             <form id="formCotizar">
-                <input type="text" id="nombre" placeholder="Nombre completo" required>
-                <input type="email" id="correo" placeholder="Tu correo electrónico" required>
+                <input type="text" id="nombre" placeholder="Tu Nombre" required>
+                <input type="email" id="correo" placeholder="Tu Correo" required>
                 <select id="servicio">
-                    <option value="Interés en Productos">Interés en Productos</option>
-                    <option value="Instalación">Solicitud de Instalación</option>
-                    <option value="Airbnb">Asesoría para Airbnb</option>
+                    <option value="Instalación Profesional">Instalación Profesional</option>
+                    <option value="Asesoría Airbnb">Asesoría para Airbnb</option>
+                    <option value="Proyecto Comercial">Proyecto para Negocios</option>
                 </select>
-                <button type="submit">Enviar y Contactar WhatsApp</button>
+                <textarea id="mensaje" placeholder="¿En qué podemos ayudarte?" rows="4"></textarea>
+                <button type="submit">Enviar Solicitud por WhatsApp</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Lock and go RD | Santo Domingo, RD.</p>
+        <p>&copy; 2026 Lock and go RD. Todos los derechos reservados.</p>
+        <div class="redes-sociales">
+            <a href="https://www.instagram.com/lockandgord/" target="_blank">Instagram</a>
+            <a href="https://wa.me/18292783114" target="_blank">WhatsApp Directo</a>
+        </div>
     </footer>
 
-    <script src="script.js?v=400"></script>
+    <script src="script.js"></script>
 </body>
 </html>
