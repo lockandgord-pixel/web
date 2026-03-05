@@ -1,232 +1,39 @@
-  
-    /* CONFIGURACIÓN GENERAL */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+body { background-color: #0b0f19; color: white; line-height: 1.6; }
 
-body {
-    background-color: #0b0f19; /* Fondo oscuro elegante */
-    color: white;
-    line-height: 1.6;
-}
+/* HEADER */
+header { background: #161d2f; padding: 15px; text-align: center; border-bottom: 2px solid #00D1FF; position: sticky; top: 0; z-index: 100; }
+#imgLogo { height: 70px; }
+nav ul { list-style: none; display: flex; justify-content: center; margin-top: 10px; }
+nav ul li { margin: 0 15px; }
+nav ul li a { color: white; text-decoration: none; font-weight: bold; }
 
-/* HEADER Y LOGO */
-header {
-    background: rgba(11, 15, 25, 0.9);
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #00D1FF;
-}
+/* BIENVENIDA */
+#bienvenida { height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80'); background-size: cover; }
+#bienvenida h1 { color: #00D1FF; font-size: 2.5rem; }
 
-#imgLogo {
-    height: 60px;
-}
+/* CATALOGO */
+.titulo-seccion { text-align: center; margin: 40px 0; color: #00D1FF; }
+.filtros { text-align: center; margin-bottom: 30px; }
+.filtros button { background: none; border: 1px solid #00D1FF; color: white; padding: 8px 15px; cursor: pointer; margin: 5px; border-radius: 5px; transition: 0.3s; }
+.filtros button:hover { background: #00D1FF; color: #0b0f19; }
 
-nav ul {
-    list-style: none;
-    display: flex;
-}
+#grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+.card { background: #161d2f; padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #1f2937; }
+.card img { width: 100%; height: 250px; object-fit: contain; margin-bottom: 15px; background: #0b0f19; border-radius: 10px; }
+.card h3 { color: #00D1FF; margin-bottom: 10px; }
+.precio-tag { color: #00FF88; font-size: 1.3rem; font-weight: bold; margin: 15px 0; }
+.btn-wa { background: #00D1FF; border: none; padding: 12px; cursor: pointer; width: 100%; border-radius: 8px; font-weight: bold; transition: 0.3s; }
+.btn-wa:hover { background: #008fb3; }
 
-nav ul li {
-    margin-left: 20px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-nav ul li a:hover {
-    color: #00D1FF;
-}
-
-/* SECCIÓN BIENVENIDA */
-#bienvenida {
-    height: 60vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.intro-texto h1 {
-    font-size: 3rem;
-    color: #00D1FF;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-}
-
-/* CUADROS DINÁMICOS (Misión/Visión) */
-.cuadros-dinamicos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 50px 20px;
-}
-
-.cuadro {
-    background: #161d2f;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    border: 1px solid #1f2937;
-    transition: 0.3s;
-}
-
-.cuadro:hover {
-    border-color: #00D1FF;
-    transform: translateY(-5px);
-}
-
-/* CATÁLOGO DE PRODUCTOS */
-#productos-seccion {
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.titulo-seccion {
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-}
-
-.filtros {
-    margin-bottom: 30px;
-}
-
-.filtros button {
-    background: transparent;
-    border: 1px solid #00D1FF;
-    color: white;
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.filtros button:hover {
-    background: #00D1FF;
-    color: #0b0f19;
-}
-
-.wrapper-catalogo {
-    display: flex;
-    justify-content: center;
-}
-
-#grid-catalogo {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    width: 100%;
-}
-
-.card {
-    background: #161d2f;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid #1f2937;
-}
-
-.card img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    background: #0b0f19;
-}
-
-.card h3 {
-    color: #00D1FF;
-    margin-bottom: 10px;
-}
-
-.card .precio {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin: 15px 0;
-    color: #00FF88;
-}
-
-.card button {
-    background: #00D1FF;
-    border: none;
-    color: #0b0f19;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-    transition: 0.3s;
-}
-
-.card button:hover {
-    background: #008fb3;
-}
-
-/* WHATSAPP FLOTANTE */
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25d366;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-.whatsapp-float img {
-    width: 35px;
-}
+/* WHATSAPP */
+.whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+.whatsapp-float img { width: 35px; }
 
 /* FORMULARIO */
-#contacto {
-    padding: 50px 20px;
-    background: #0b0f19;
-}
+.formulario-container { max-width: 500px; margin: 50px auto; background: #161d2f; padding: 30px; border-radius: 15px; border: 1px solid #1f2937; }
+input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #1f2937; background: #0b0f19; color: white; }
+button[type="submit"] { width: 100%; background: #00D1FF; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
 
-.formulario-container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #161d2f;
-    padding: 40px;
-    border-radius: 20px;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    background: #0b0f19;
-    border: 1px solid #1f2937;
-    color: white;
-    border-radius: 8px;
-}
-
-button[type="submit"] {
-    width: 100%;
-    background: #00D1FF;
-    color: #0b0f19;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
+footer { text-align: center; padding: 40px; border-top: 1px solid #1f2937; margin-top: 50px; }
