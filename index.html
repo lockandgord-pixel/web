@@ -7,7 +7,43 @@
     <link rel="icon" type="image/png" href="logo1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
-    
+    /* AJUSTE ESPECÍFICO PARA MÓVILES (SOLUCIÓN A LA IMAGEN) */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: row; /* Mantiene logo y menú en la misma línea */
+                align-items: flex-start;
+                padding: 10px 4%;
+            }
+
+            #imgLogo { 
+                height: 80px !important; /* Achica el logo para que no pise el texto */
+                margin-top: 10px;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                gap: 3px; /* Pega más las letras del menú */
+            }
+
+            nav ul li a {
+                font-size: 0.85rem; /* Letra del menú un poco más pequeña */
+            }
+
+            .hero {
+                height: 70vh; /* Baja un poco el contenido principal */
+                justify-content: flex-end; /* Empuja el texto hacia abajo para que no choque con el logo */
+                padding-bottom: 50px;
+            }
+
+            .hero h1 { 
+                font-size: 1.8rem; /* Tamaño de título perfecto para celular */
+                line-height: 1.1;
+            }
+
+            .hero p {
+                font-size: 1.1rem !important;
+            }
+        }
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
@@ -282,6 +318,7 @@ Lo que nos mueve en Lock and Go RD:
     </script>
 </body>
 </html>
+
 
 
 
