@@ -3,7 +3,7 @@
         nombre: "V80 PRO",
         categoria: "hogar", // Cambiado a minúscula
         precio: "Desde RD$18,699",
-        imagen: "llavin1.png", // Corregido: quité el doble .png
+        imagen: "llavin1.png.png", // Corregido: quité el doble .png
         descripcion: "Desbloqueo con reconocimiento facial, huella, palma, tarjeta, códigos y desbloqueo remoto desde cualquier parte del mundo."
     },
     {
@@ -61,6 +61,7 @@ document.getElementById('formCotizar').addEventListener('submit', function(e) {
 
 // Cargar todos los productos al iniciar
 window.onload = () => mostrarProductos('todos');
+
 
 
 
