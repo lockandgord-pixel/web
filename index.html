@@ -110,6 +110,13 @@
 
         /* --- ARREGLO ESPECÍFICO PARA CELULARES --- */
         @media (max-width: 480px) {
+            /* Evita que el fondo salte o se mueva al hacer scroll */
+            body::before {
+                background-attachment: scroll !important; /* Cambiamos a scroll para evitar saltos en móviles */
+                height: 100vh;
+                position: absolute;
+            }
+
             header {
                 flex-direction: row; 
                 align-items: flex-start;
@@ -118,13 +125,13 @@
             }
 
             #imgLogo { 
-                height: 110px !important; /* Logo más grande en celular como pediste */
+                height: 110px !important; 
                 width: auto;
                 margin-top: 5px;
             }
 
             nav ul {
-                margin-top: 15px; /* Alinea el menú con el nuevo tamaño del logo */
+                margin-top: 15px;
             }
 
             nav ul li a {
@@ -132,11 +139,12 @@
             }
 
             .hero {
-                /* Aumentamos el espacio superior para que el logo grande no pise las letras */
                 padding-top: 160px; 
                 justify-content: flex-start;
                 height: auto;
                 min-height: 80vh;
+                /* Añadimos un pequeño degradado oscuro detrás del texto para mejorar legibilidad */
+                background: linear-gradient(to bottom, rgba(5,8,10,0.4), transparent);
             }
 
             .hero h1 { 
@@ -266,5 +274,6 @@ Lo que nos mueve en Lock and Go RD:
     </script>
 </body>
 </html>
+
 
 
