@@ -110,11 +110,13 @@
 
         /* --- ARREGLO ESPECÍFICO PARA CELULARES --- */
         @media (max-width: 480px) {
-            /* Evita que el fondo salte o se mueva al hacer scroll */
+            /* Fix para que el fondo cubra TODA la página sin saltos */
             body::before {
-                background-attachment: scroll !important; /* Cambiamos a scroll para evitar saltos en móviles */
-                height: 100vh;
-                position: absolute;
+                background-attachment: scroll !important; 
+                height: 100%; /* Cubre todo el largo del contenido */
+                position: fixed; /* Mantiene la imagen fija mientras bajas */
+                background-size: cover;
+                -webkit-background-size: cover;
             }
 
             header {
@@ -142,9 +144,7 @@
                 padding-top: 160px; 
                 justify-content: flex-start;
                 height: auto;
-                min-height: 80vh;
-                /* Añadimos un pequeño degradado oscuro detrás del texto para mejorar legibilidad */
-                background: linear-gradient(to bottom, rgba(5,8,10,0.4), transparent);
+                min-height: 70vh;
             }
 
             .hero h1 { 
@@ -153,9 +153,16 @@
                 margin-bottom: 15px;
             }
 
-            .hero p {
-                font-size: 1.1rem !important;
-                padding: 0 15px;
+            /* Ajuste para que los textos sobre el fondo sean siempre legibles */
+            .info-box, .card, .formulario-container {
+                background: rgba(0, 0, 0, 0.7) !important; /* Un poco más oscuro para resaltar sobre el fondo */
+                backdrop-filter: blur(5px); /* Efecto de cristal esmerilado muy elegante */
+                border: 1px solid rgba(0, 209, 255, 0.3);
+            }
+
+            h2.titulo {
+                font-size: 2.2rem;
+                margin-top: 20px;
             }
         }
     </style>
@@ -274,6 +281,7 @@ Lo que nos mueve en Lock and Go RD:
     </script>
 </body>
 </html>
+
 
 
 
