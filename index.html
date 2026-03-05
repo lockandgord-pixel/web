@@ -82,6 +82,7 @@
 
         .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .info-box { background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; transition: 0.4s; }
+        .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
         .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
 
         #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
@@ -99,7 +100,6 @@
         .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-decoration: none; transition: 0.3s; }
         .whatsapp-bubble i { color: white; font-size: 45px; }
 
-        /* ESTILOS ICONOS REDES SOCIALES */
         .social-container {
             display: flex;
             justify-content: center;
@@ -124,7 +124,6 @@
 
         footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
 
-        /* ARREGLO MÓVILES */
         @media (max-width: 480px) {
             body::before { background-attachment: scroll !important; height: 100%; position: fixed; background-size: cover; }
             header { flex-direction: row; align-items: flex-start; padding: 15px 5%; z-index: 3000; }
@@ -142,7 +141,7 @@
 </head>
 <body>
 
-    <a href="https://wa.me/18292783114" class="whatsapp-bubble" target="_blank">
+    <a href="https://wa.me/18094572656" class="whatsapp-bubble" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -222,12 +221,12 @@ Lo que nos mueve en Lock and Go RD:
     <div class="social-container">
         <a href="https://wa.me/18094572656" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
         <a href="https://www.instagram.com/lockandgord/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@lockandgord? " target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.tiktok.com/@lockandgord?" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
         <a href="https://www.facebook.com/lockandgoRD/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
     </div>
 
     <footer>
-        <p>&copy; 2026 LOCK AND GO RD |Derechos revervados República Dominicana</p>
+        <p>&copy; 2026 LOCK AND GO RD | Derechos reservados República Dominicana</p>
     </footer>
 
     <script>
@@ -245,7 +244,7 @@ Lo que nos mueve en Lock and Go RD:
                     <h3>${p.nombre}</h3>
                     <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
                     <span class="precio-tag">${p.precio}</span>
-                    <button class="btn-wa" onclick="window.open('https://wa.me/18292783114?text=Me interesa el modelo: ${p.nombre}')">Solicitar cotización</button>
+                    <button class="btn-wa" onclick="window.open('https://wa.me/18094572656?text=Me interesa el modelo: ${p.nombre}')">Solicitar cotización</button>
                 </div>
             `).join('');
         }
@@ -254,13 +253,10 @@ Lo que nos mueve en Lock and Go RD:
             e.preventDefault();
             const n = document.getElementById('nombre').value;
             const s = document.getElementById('servicio').value;
-            window.open(`https://wa.me/18292783114?text=Hola! Soy ${n}. Me interesa información sobre: ${s}`);
+            window.open(`https://wa.me/18094572656?text=Hola! Soy ${n}. Me interesa información sobre: ${s}`);
         };
 
         window.onload = render;
     </script>
 </body>
 </html>
-
-
-
