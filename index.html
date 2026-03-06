@@ -137,6 +137,32 @@
             .social-container { gap: 25px; }
             .social-icon { font-size: 2rem; }
         }
+        /* NOTIFICACIONES DE VENTA */
+        #notification-box {
+            position: fixed;
+            bottom: 30px;
+            left: -400px; /* Escondido al inicio */
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00D1FF;
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 9999;
+            transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 209, 255, 0.2);
+        }
+        #notification-box.show { left: 30px; }
+        .noti-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #00D1FF; }
+        .noti-text { font-size: 0.85rem; color: white; line-height: 1.3; }
+        .noti-text b { color: #00D1FF; display: block; }
+        
+        @media (max-width: 480px) {
+            #notification-box { bottom: 110px; left: -400px; width: 85%; }
+            #notification-box.show { left: 7.5%; }
+        }
     </style>
 </head>
 <body>
@@ -258,3 +284,40 @@ Lo que nos mueve en Lock and Go RD:
 
         window.onload = render;
     </script>
+    <div id="notification-box">
+        <img src="logo1.png" class="noti-img">
+        <div class="noti-text" id="noti-content"></div>
+    </div>
+
+    <script>
+        const ventasFake = [
+            { ciudad: "Santo Domingo", prod: "AURUM X3 IA", t: "hace 4 min" },
+            { ciudad: "Santiago", prod: "V80 PRO", t: "hace 11 min" },
+            { ciudad: "Punta Cana", prod: "H18 PRO MAX", t: "hace 22 min" },
+            { ciudad: "La Romana", prod: "Cerradura Residencial", t: "hace 7 min" },
+            { ciudad: "Bávaro", prod: "Línea Airbnb", t: "hace 35 min" },
+            { ciudad: "Las Terrenas", prod: "AURUM X3 IA", t: "hace 15 min" }
+        ];
+
+        function lanzarNoti() {
+            const box = document.getElementById('notification-box');
+            const content = document.getElementById('noti-content');
+            const data = ventasFake[Math.floor(Math.random() * ventasFake.length)];
+
+            content.innerHTML = `<b>¡Alguien cotizó!</b> Desde ${data.ciudad} preguntaron por la ${data.prod} ${data.t}.`;
+            
+            box.classList.add('show');
+
+            setTimeout(() => {
+                box.classList.remove('show');
+            }, 6000); // Se muestra por 6 segundos
+        }
+
+        // Configuración de tiempos
+        setTimeout(() => {
+            lanzarNoti();
+            setInterval(lanzarNoti, 30000); // Una cada 30 segundos
+        }, 8000); // La primera sale a los 8 segundos de entrar
+    </script>
+</body> </html>
+
