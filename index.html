@@ -163,27 +163,44 @@
             #notification-box { bottom: 110px; left: -400px; width: 85%; }
             #notification-box.show { left: 7.5%; }
         }
-        /* ESTILOS DEL COMPARADOR ANTES/DESPUÉS */
+      /* --- ESTILOS OPTIMIZADOS (SIN ZOOM) --- */
         .comparison-slider {
             position: relative;
             width: 100%;
             max-width: 800px;
             margin: 50px auto;
-            height: 450px;
+            aspect-ratio: 16 / 9; /* Esto mantiene la forma de la foto */
             overflow: hidden;
             border-radius: 30px;
             border: 2px solid #00D1FF;
-            box-shadow: 0 0 30px rgba(0, 209, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 209, 255, 0.3);
+            background: #000;
         }
-        .comparison-slider img {
+        /* La imagen de fondo (Tradicional) */
+        .img-before-fix {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Muestra la foto completa */
             position: absolute;
             top: 0; left: 0;
         }
-        .comparison-slider .img-after { width: 0; }
-        .comparison-slider .slider-bar {
+        /* El contenedor que se desliza (Lock and Go) */
+        #after-box {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            z-index: 2;
+        }
+        /* La imagen de Lock and Go dentro del contenedor */
+        #img-lockandgo {
+            height: 100%;
+            object-fit: contain; /* ¡CLAVE! Evita el zoom */
+            position: absolute;
+            top: 0; left: 0;
+        }
+        .slider-bar {
             position: absolute;
             top: 0; bottom: 0; width: 4px;
             background: #00D1FF;
@@ -194,23 +211,22 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 50px; height: 50px;
+            width: 45px; height: 45px;
             background: #00D1FF;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: black; font-size: 20px;
-            box-shadow: 0 0 15px rgba(0,209,255,1);
+            color: black; box-shadow: 0 0 15px #00D1FF;
             z-index: 101; pointer-events: none;
         }
         .label-before, .label-after {
-            position: absolute; top: 20px;
-            padding: 8px 15px; background: rgba(0,0,0,0.7);
-            border-radius: 10px; font-size: 0.8rem; font-weight: 900;
+            position: absolute; top: 15px; z-index: 10;
+            padding: 6px 12px; background: rgba(0,0,0,0.8);
+            border-radius: 8px; font-size: 0.7rem; font-weight: 900;
         }
-        .label-before { left: 20px; color: #ff4444; }
-        .label-after { right: 20px; color: #00D1FF; }
+        .label-before { right: 15px; color: #ff4444; }
+        .label-after { left: 15px; color: #00D1FF; }
 
-        @media (max-width: 480px) { .comparison-slider { height: 300px; } }
+        @media (max-width: 480px) { .comparison-slider { aspect-ratio: 4/5; } }
     </style>
 </head>
 <body>
@@ -263,21 +279,21 @@
 
     </div>
     <section id="nosotros">
-        <section id="comparativa" style="text-align: center; padding: 60px 5%;">
+       <section id="comparativa" style="text-align: center; padding: 60px 5%;">
         <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 10px;">EL CAMBIO ES REAL</h2>
-        <p style="opacity: 0.8; margin-bottom: 30px;">Desliza para ver la diferencia entre lo convencional y lo inteligente.</p>
+        <p style="opacity: 0.8; margin-bottom: 30px;">Desliza para ver la potencia de Lock and Go RD</p>
         
         <div class="comparison-slider" id="slider">
-          <img src="despues.jpg.jpeg" alt="Después" class="img-before"> 
+            <img src="antes.jpg.jpeg" alt="Tradicional" class="img-before-fix"> 
 
-<div class="img-after" id="after-box" style="position: absolute; top: 0; left: 0; height: 100%; overflow: hidden; width: 50%;">
-    <img src="antes.jpg.jpeg" alt="Antes">
-</div>
+            <div id="after-box">
+                <img src="despues.jpg.jpeg" alt="Lock and Go" id="img-lockandgo">
+            </div>
 
-            <div class="label-before">TRADICIONAL</div>  
-            <div class="label-after">LOCK AND GO</div>  
+            <div class="label-before">TRADICIONAL</div>
+            <div class="label-after">LOCK AND GO</div>
             
-            <div class="slider-bar" id="bar">
+            <div id="bar" class="slider-bar">
                 <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
             </div>
         </div>
@@ -383,34 +399,33 @@ Lo que nos mueve en Lock and Go RD:
     </div>
 
     <script>
-        const ventasFake = [
-            { ciudad: "Santo Domingo", prod: "AURUM X3 IA", t: "hace 4 min" },
-            { ciudad: "Santiago", prod: "V80 PRO", t: "hace 11 min" },
-            { ciudad: "Punta Cana", prod: "H18 PRO MAX", t: "hace 22 min" },
-            { ciudad: "La Romana", prod: "Cerradura Residencial", t: "hace 7 min" },
-            { ciudad: "Bávaro", prod: "Línea Airbnb", t: "hace 35 min" },
-            { ciudad: "Las Terrenas", prod: "AURUM X3 IA", t: "hace 15 min" }
-        ];
+        const sliderComp = document.getElementById('slider');
+        const afterBoxComp = document.getElementById('after-box');
+        const barComp = document.getElementById('bar');
+        const imgLockComp = document.getElementById('img-lockandgo');
 
-        function lanzarNoti() {
-            const box = document.getElementById('notification-box');
-            const content = document.getElementById('noti-content');
-            const data = ventasFake[Math.floor(Math.random() * ventasFake.length)];
-
-            content.innerHTML = `<b>¡Alguien cotizó!</b> Desde ${data.ciudad} preguntaron por la ${data.prod} ${data.t}.`;
-            
-            box.classList.add('show');
-
-            setTimeout(() => {
-                box.classList.remove('show');
-            }, 6000); // Se muestra por 6 segundos
+        function sync() {
+            // Obliga a la imagen de Lock and Go a medir siempre lo mismo que el cuadro completo
+            imgLockComp.style.width = sliderComp.offsetWidth + "px";
         }
 
-        // Configuración de tiempos
-        setTimeout(() => {
-            lanzarNoti();
-            setInterval(lanzarNoti, 30000); // Una cada 30 segundos
-        }, 8000); // La primera sale a los 8 segundos de entrar
+        function mover(e) {
+            let x = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            let rect = sliderComp.getBoundingClientRect();
+            let pos = ((x - rect.left) / rect.width) * 100;
+
+            if (pos >= 0 && pos <= 100) {
+                afterBoxComp.style.width = pos + "%";
+                barComp.style.left = pos + "%";
+                // Esto evita el zoom: la imagen interna no cambia de tamaño aunque el div sí
+                imgLockComp.style.width = rect.width + "px";
+            }
+        }
+
+        sliderComp.addEventListener('mousemove', mover);
+        sliderComp.addEventListener('touchmove', mover);
+        window.addEventListener('resize', sync);
+        window.addEventListener('load', sync);
     </script>
     <script>
         const slider = document.getElementById('slider');
@@ -432,6 +447,7 @@ Lo que nos mueve en Lock and Go RD:
         slider.addEventListener('touchmove', moveSlider);
     </script>
 </body> </html>
+
 
 
 
