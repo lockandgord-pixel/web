@@ -268,22 +268,19 @@
         <p style="opacity: 0.8; margin-bottom: 30px;">Desliza para ver la diferencia entre lo convencional y lo inteligente.</p>
         
         <div class="comparison-slider" id="slider">
-    <img src="antes.jpg.jpeg" alt="Antes" class="img-before"> 
-    
-<div class="comparison-slider" id="slider" style="position: relative; overflow: hidden; cursor: ew-resize;">
-    <img src="antes.jpg" alt="Antes" id="img-antes" style="width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0;"> 
-    
-    <div id="after-box" style="position: absolute; top: 0; left: 0; height: 100%; overflow: hidden; width: 50%; border-right: 3px solid #00D1FF; z-index: 2;">
-        <img src="despues.jpg" alt="Después" id="img-lockandgo" style="height: 100%; object-fit: contain; position: absolute; top: 0; left: 0;">
-    </div>
+          <img src="antes.jpg.jpeg" alt="Después" class="img-before"> 
 
-    <div class="label-before" style="z-index: 3;">TRADICIONAL</div>
-    <div class="label-after" style="z-index: 3;">LOCK AND GO</div>
-    
-    <div id="bar" class="slider-bar" style="z-index: 4;">
-        <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
-    </div>
+<div class="img-after" id="after-box" style="position: absolute; top: 0; left: 0; height: 100%; overflow: hidden; width: 50%;">
+    <img src="despues.jpg.jpeg" alt="Antes">
 </div>
+
+            <div class="label-before">TRADICIONAL</div>
+            <div class="label-after">LOCK AND GO</div>
+            
+            <div class="slider-bar" id="bar">
+                <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
+            </div>
+        </div>
     </section>
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
         <div class="nosotros-grid">
@@ -385,47 +382,53 @@ Lo que nos mueve en Lock and Go RD:
         <div class="noti-text" id="noti-content"></div>
     </div>
 
-   <script>
-    const slider = document.getElementById('slider');
-    const afterBox = document.getElementById('after-box');
-    const bar = document.getElementById('bar');
-    const imgLock = document.getElementById('img-lockandgo');
-    const imgAntes = document.getElementById('img-antes');
+    <script>
+        const ventasFake = [
+            { ciudad: "Santo Domingo", prod: "AURUM X3 IA", t: "hace 4 min" },
+            { ciudad: "Santiago", prod: "V80 PRO", t: "hace 11 min" },
+            { ciudad: "Punta Cana", prod: "H18 PRO MAX", t: "hace 22 min" },
+            { ciudad: "La Romana", prod: "Cerradura Residencial", t: "hace 7 min" },
+            { ciudad: "Bávaro", prod: "Línea Airbnb", t: "hace 35 min" },
+            { ciudad: "Las Terrenas", prod: "AURUM X3 IA", t: "hace 15 min" }
+        ];
 
-    function ajustarImagenes() {
-        const anchoTotal = slider.offsetWidth;
-        // Ambas imágenes deben medir siempre el ancho total del contenedor
-        imgLock.style.width = anchoTotal + "px";
-        imgAntes.style.width = anchoTotal + "px";
-    }
+        function lanzarNoti() {
+            const box = document.getElementById('notification-box');
+            const content = document.getElementById('noti-content');
+            const data = ventasFake[Math.floor(Math.random() * ventasFake.length)];
 
-    function moverSlider(e) {
-        let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
-        let rect = slider.getBoundingClientRect();
-        let xRelativo = x - rect.left;
-        let porcentaje = (xRelativo / rect.width) * 100;
-
-        if (porcentaje >= 0 && porcentaje <= 100) {
-            // Movemos la barra y el recorte del cuadro azul
-            afterBox.style.width = porcentaje + "%";
-            bar.style.left = porcentaje + "%";
+            content.innerHTML = `<b>¡Alguien cotizó!</b> Desde ${data.ciudad} preguntaron por la ${data.prod} ${data.t}.`;
             
-            // Forzamos a que la imagen de Lock and Go NO se mueva de su sitio 
-            // mientras el cuadro se expande, dando el efecto de "revelado"
-            imgLock.style.width = rect.width + "px";
+            box.classList.add('show');
+
+            setTimeout(() => {
+                box.classList.remove('show');
+            }, 6000); // Se muestra por 6 segundos
         }
-    }
 
-    // Escuchar movimientos
-    slider.addEventListener('mousemove', moverSlider);
-    slider.addEventListener('touchmove', moverSlider);
-    
-    // Reajustar si cambias el tamaño de la ventana o al cargar
-    window.addEventListener('resize', ajustarImagenes);
-    window.addEventListener('load', ajustarImagenes);
-    ajustarImagenes();
-</script>
+        // Configuración de tiempos
+        setTimeout(() => {
+            lanzarNoti();
+            setInterval(lanzarNoti, 30000); // Una cada 30 segundos
+        }, 8000); // La primera sale a los 8 segundos de entrar
+    </script>
+    <script>
+        const slider = document.getElementById('slider');
+        const afterBox = document.getElementById('after-box');
+        const bar = document.getElementById('bar');
+
+        function moveSlider(e) {
+            let x = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            let rect = slider.getBoundingClientRect();
+            let position = ((x - rect.left) / rect.width) * 100;
+
+            if (position >= 0 && position <= 100) {
+                afterBox.style.width = position + "%";
+                bar.style.left = position + "%";
+            }
+        }
+
+        slider.addEventListener('mousemove', moveSlider);
+        slider.addEventListener('touchmove', moveSlider);
+    </script>
 </body> </html>
-
-
-
