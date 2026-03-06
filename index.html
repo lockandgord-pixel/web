@@ -1,3 +1,5 @@
+ 
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,59 +12,70 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        /* SOLUCIÓN FONDO MÓVIL ESTABLE */
+        html, body { height: 100%; scroll-behavior: smooth; }
         body { background-color: #05080a; color: white; overflow-x: hidden; }
 
-        body::before {
-            content: "";
+        .bg-fixed {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fondo1.jpeg');
-            background-size: cover; background-position: center; background-attachment: fixed; z-index: -1;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('fondo1.jpeg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transform: translateZ(0); 
         }
 
-        header { position: absolute; top: 0; width: 100%; background: transparent; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 2000; }
-        #imgLogo { height: 180px; width: auto; filter: drop-shadow(0 0 25px rgba(0, 209, 255, 0.7)); mix-blend-mode: lighten; }
+        header { position: absolute; top: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 2000; }
+        #imgLogo { height: 160px; width: auto; filter: drop-shadow(0 0 20px rgba(0, 209, 255, 0.6)); mix-blend-mode: lighten; }
 
         nav ul { list-style: none; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
         nav ul li a { color: #ffffff !important; text-decoration: none; font-weight: 800; font-size: 1rem; text-transform: uppercase; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
 
         section { padding: 100px 10%; position: relative; z-index: 10; }
         .hero { height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .hero h1 { font-size: 3.5rem; font-weight: 900; color: #ffffff; text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); }
+        .hero h1 { font-size: 3.5rem; font-weight: 900; text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); }
 
-        .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .info-box { background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; transition: 0.4s; }
+        /* NOSOTROS - TEXTOS ORIGINALES COMPLETO */
+        .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .info-box { background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; backdrop-filter: blur(10px); transition: 0.4s; }
+        .info-box:hover { border-color: #00D1FF; transform: translateY(-5px); }
         .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
 
+        /* ASISTENTE INTERACTIVO */
+        #asistente-container { background: rgba(0, 209, 255, 0.07); border-radius: 40px; margin: 40px 0; padding: 50px; text-align: center; border: 2px dashed #00D1FF; backdrop-filter: blur(15px); }
+
+        /* CATÁLOGO */
         #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
-        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; }
+        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; backdrop-filter: blur(10px); }
         .card img { width: 100%; height: 320px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); margin-bottom: 25px; }
 
-        .precio-tag { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
-        .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; text-decoration: none; display: inline-block; }
-
-        .formulario-container { max-width: 650px; margin: 0 auto; background: rgba(0, 0, 0, 0.5); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
-        input, select { width: 100%; padding: 18px; margin: 12px 0; border-radius: 12px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
+        .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; text-transform: uppercase; text-decoration: none; display: inline-block; width: 100%; transition: 0.3s; }
         .btn-form { background: #00D1FF; color: black; border: none; padding: 20px; border-radius: 12px; font-weight: 900; width: 100%; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
 
-        .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        /* CONTACTO */
+        .formulario-container { max-width: 650px; margin: 0 auto; background: rgba(0, 0, 0, 0.6); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; backdrop-filter: blur(10px); }
+        input, select { width: 100%; padding: 18px; margin: 12px 0; border-radius: 12px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
+
+        .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .whatsapp-bubble i { color: white; font-size: 45px; }
 
-        .social-container { display: flex; justify-content: center; align-items: center; gap: 35px; padding: 40px 0; }
+        .social-container { display: flex; justify-content: center; align-items: center; gap: 35px; padding: 60px 0; }
         .social-icon { color: white; font-size: 2.5rem; transition: 0.4s; }
         .social-icon:hover { color: #00D1FF; transform: scale(1.2); }
 
-        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
-
         @media (max-width: 480px) {
             #imgLogo { height: 110px !important; }
-            .hero h1 { font-size: 1.9rem; }
-            section { padding: 60px 5%; }
+            .hero h1 { font-size: 2.2rem; }
+            section { padding: 80px 6%; }
+            #asistente-container { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-fixed"></div>
     <a href="https://wa.me/18094572656" class="whatsapp-bubble" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <header>
@@ -79,40 +92,41 @@
 
     <section id="inicio" class="hero">
         <h1>MAS PROTECCION, MAS VIDA.</h1>
-        <p style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px;">Controla tu puerta desde cualquier lugar</p>
-    </section>
-
-    <section id="asistente-interactivo" style="background: rgba(0, 209, 255, 0.05); border: 2px dashed #00D1FF; border-radius: 40px; margin: 20px 10%; padding: 40px; text-align: center;">
-        <div id="contenedor-quiz">
-            <h2 style="color: #00D1FF; font-size: 2.2rem; margin-bottom: 15px;">¿NO SABES CUÁL ELEGIR?</h2>
-            <p style="margin-bottom: 25px;">Responde 3 preguntas y te diremos cuál es tu cerradura ideal.</p>
-            <button class="btn-form" onclick="iniciarConfigurador()" style="width: auto; padding: 15px 50px;">EMPEZAR TEST</button>
-        </div>
+        <p style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; margin-top: 15px;">Controla tu puerta desde cualquier lugar</p>
     </section>
 
     <section id="nosotros">
         <h2 style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
+        
+        <div id="asistente-container">
+            <div id="contenedor-quiz">
+                <h2 style="color: #00D1FF; font-size: 2rem; margin-bottom: 15px;">¿QUÉ CERRADURA NECESITAS?</h2>
+                <p style="margin-bottom: 25px;">Usa nuestro recomendador inteligente basado en tu tipo de puerta.</p>
+                <button class="btn-form" onclick="iniciarConfigurador()" style="width: auto; padding: 15px 50px;">INICIAR ASISTENTE</button>
+            </div>
+        </div>
+
         <div class="nosotros-grid">
             <div class="info-box">
                 <i class="fas fa-bullseye"></i>
                 <h3>Misión</h3>
-                <p>🌟 MISIÓN – Lo que hacemos hoy<br>Brindar soluciones de seguridad modernas, accesibles y confiables para hogares, negocios y Airbnb, mediante un servicio profesional, transparente y orientado a la satisfacción total del cliente. Nos comprometemos a ofrecer instalaciones precisas, asesoría clara y soporte continuo para garantizar tranquilidad y protección en cada espacio.</p>
+                <p style="text-align: justify; font-size: 0.95rem;">🌟 MISIÓN – Lo que hacemos hoy<br>Brindar soluciones de seguridad modernas, accesibles y confiables para hogares, negocios y Airbnb, mediante un servicio profesional, transparente y orientado a la satisfacción total del cliente. Nos comprometemos a ofrecer instalaciones precisas, asesoría clara y soporte continuo para garantizar tranquilidad y protección en cada espacio.</p>
             </div>
             <div class="info-box">
                 <i class="fas fa-eye"></i>
                 <h3>Visión</h3>
-                <p>🚀 VISIÓN – Hacia dónde vamos<br>Ser la empresa líder en soluciones de seguridad inteligente en la República Dominicana, reconocida por su formalidad, innovación, excelencia en el servicio y expansión sostenible a nivel nacional. Aspiramos a convertirnos en la marca de confianza que transforma la forma en que las personas protegen sus espacios.</p>
+                <p style="text-align: justify; font-size: 0.95rem;">🚀 VISIÓN – Hacia dónde vamos<br>Ser la empresa líder en soluciones de seguridad inteligente en la República Dominicana, reconocida por su formalidad, innovación, excelencia en el servicio y expansión sostenible a nivel nacional. Aspiramos a convertirnos en la marca de confianza que transforma la forma en que las personas protegen sus espacios.</p>
             </div>
             <div class="info-box">
                 <i class="fas fa-medal"></i>
                 <h3>Valores</h3>
-                <p>💙 VALORES<br>Lo que nos mueve en Lock and Go RD:<br>
-                🔹 Transparencia: hablamos claro y actuamos con honestidad.<br>
+                <p style="text-align: left; font-size: 0.95rem;">💙 VALORES<br>
+                🔹 Transparencia: hablamos claro.<br>
                 🔹 Innovación: tecnología que facilita tu vida.<br>
-                🔹 Responsabilidad: cumplimos, respondemos y damos garantía real.<br>
-                🔹 Servicio humano: atención cercana, cálida y profesional.<br>
-                🔹 Excelencia técnica: cada instalación, un trabajo bien hecho.<br>
-                🔹 Compromiso: estamos cuando nos necesitas.</p>
+                🔹 Responsabilidad: garantía real.<br>
+                🔹 Servicio humano: atención cálida.<br>
+                🔹 Excelencia técnica: trabajo bien hecho.<br>
+                🔹 Compromiso: siempre presentes.</p>
             </div>
         </div>
     </section>
@@ -124,7 +138,7 @@
 
     <section id="contacto">
         <div class="formulario-container">
-            <h2>HABLEMOS DE TU SEGURIDAD</h2>
+            <h2 style="margin-bottom: 20px; font-weight: 900;">HABLEMOS DE TU SEGURIDAD</h2>
             <form id="formCotizar">
                 <input type="text" id="nombre" placeholder="Nombre completo" required>
                 <input type="email" id="correo" placeholder="Correo electrónico" required>
@@ -133,7 +147,7 @@
                     <option value="Línea Airbnb">Proyectos Airbnb</option>
                     <option value="Instalación">Servicio Técnico / Instalación</option>
                 </select>
-                <button type="submit" class="btn-form">ENVIAR SOLICITUD</button>
+                <button type="submit" class="btn-form">ENVIAR SOLICITUD POR WHATSAPP</button>
             </form>
         </div>
     </section>
@@ -145,88 +159,72 @@
         <a href="https://www.facebook.com/lockandgoRD/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
     </div>
 
-    <footer>
+    <footer style="text-align: center; padding: 40px; opacity: 0.6;">
         <p>&copy; 2026 LOCK AND GO RD | República Dominicana</p>
     </footer>
 
     <script>
-        // DATOS DE PRODUCTOS
+        // PRODUCTOS COMPLETOS
         const productos = [
             { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, códigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
-            { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, códigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-            { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, visión nocturna, códigos, tarjeta, timbre inteligente y desbloqueo remoto desde cualquier parte del mundo." }
+            { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, inteligencia artificial y desbloqueo remoto." },
+            { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, visión nocturna, códigos, tarjeta, timbre inteligente y desbloqueo remoto." }
         ];
 
-        // RENDERIZAR CATÁLOGO
         function render() {
-            const container = document.getElementById('grid-catalogo');
-            container.innerHTML = productos.map(p => `
+            document.getElementById('grid-catalogo').innerHTML = productos.map(p => `
                 <div class="card">
-                    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
+                    <img src="${p.imagen}" onerror="this.src='logo1.png'">
                     <h3>${p.nombre}</h3>
-                    <p style="opacity: 0.8; margin-bottom: 10px; font-size: 0.9rem;">${p.desc}</p>
-                    <span class="precio-tag">${p.precio}</span>
-                    <button class="btn-wa" onclick="window.open('https://wa.me/18094572656?text=Me interesa el modelo: ${p.nombre}')">Solicitar cotización</button>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin: 15px 0;">${p.desc}</p>
+                    <span style="display:block; margin-bottom:20px; font-size:1.4rem; font-weight:700; color:#00D1FF;">${p.precio}</span>
+                    <button class="btn-wa" onclick="window.open('https://wa.me/18094572656?text=Me interesa el modelo: ${p.nombre}')">Cotizar ahora</button>
                 </div>
             `).join('');
         }
 
-        // LÓGICA DEL CONFIGURADOR
+        // LÓGICA DEL ASISTENTE CON PREGUNTA DE MATERIAL
         function iniciarConfigurador() {
             const contenedor = document.getElementById('contenedor-quiz');
             contenedor.innerHTML = `
-                <h3 style="margin-bottom:20px;">1. ¿Dónde la vas a instalar?</h3>
-                <button class="btn-form" onclick="paso2('Airbnb')">🏢 Proyecto Airbnb</button>
-                <button class="btn-form" onclick="paso2('Residencial')">🏠 Mi Hogar</button>
+                <h3 style="margin-bottom:20px;">1. ¿De qué material es tu puerta?</h3>
+                <button class="btn-form" onclick="pregUso('Madera')">🪵 Madera</button>
+                <button class="btn-form" onclick="pregUso('Metal')">🛡️ Metal / Multilock</button>
             `;
         }
 
-        function paso2(uso) {
+        function pregUso(material) {
             const contenedor = document.getElementById('contenedor-quiz');
             contenedor.innerHTML = `
-                <h3 style="margin-bottom:20px;">2. ¿Qué tecnología te emociona más?</h3>
-                <button class="btn-form" onclick="paso3('${uso}', 'Facial')">👤 Reconocimiento Facial</button>
-                <button class="btn-form" onclick="paso3('${uso}', 'Remoto')">📱 Abrir desde el Celular</button>
+                <h3 style="margin-bottom:20px;">2. ¿Cuál es el uso principal?</h3>
+                <button class="btn-form" onclick="pregTech('${material}', 'Airbnb')">🏢 Airbnb (Renta Corta)</button>
+                <button class="btn-form" onclick="pregTech('${material}', 'Hogar')">🏠 Uso Familiar</button>
             `;
         }
 
-        function paso3(uso, tech) {
+        function pregTech(material, uso) {
             const contenedor = document.getElementById('contenedor-quiz');
             contenedor.innerHTML = `
-                <h3 style="margin-bottom:20px;">3. ¿Es importante para ti ver quién toca el timbre en vivo?</h3>
-                <button class="btn-form" onclick="mostrarResultado('${uso}', '${tech}', true)">¡Sí, lo quiero!</button>
-                <button class="btn-form" onclick="mostrarResultado('${uso}', '${tech}', false)">No es necesario</button>
+                <h3 style="margin-bottom:20px;">3. ¿Qué tecnología prefieres?</h3>
+                <button class="btn-form" onclick="resultadoFinal('${material}', '${uso}', 'Facial')">👤 Reconocimiento Facial</button>
+                <button class="btn-form" onclick="resultadoFinal('${material}', '${uso}', 'Celular')">📱 App y Códigos</button>
             `;
         }
 
-        function mostrarResultado(uso, tech, timbre) {
-            let recomendado = "";
-            let linkImagen = "";
-            if (tech === 'Facial' || timbre === true) {
-                recomendado = "AURUM X3 IA";
-                linkImagen = "aurumx3ia.png";
-            } else if (uso === 'Airbnb') {
-                recomendado = "V80 PRO";
-                linkImagen = "llavin1.png.png";
-            } else {
-                recomendado = "H18 PRO MAX";
-                linkImagen = "H18PROMAX.png";
-            }
-
+        function resultadoFinal(mat, uso, tech) {
+            let res = (tech === 'Facial') ? "AURUM X3 IA" : (uso === 'Airbnb' ? "V80 PRO" : "H18 PRO MAX");
             const contenedor = document.getElementById('contenedor-quiz');
             contenedor.innerHTML = `
-                <h2 style="color: #00D1FF;">¡TENEMOS TU MATCH!</h2>
-                <p>La mejor opción para tu proyecto ${uso} es:</p>
+                <h2 style="color: #00D1FF;">RECOMENDACIÓN TÉCNICA:</h2>
                 <div style="margin: 20px 0;">
-                    <img src="${linkImagen}" style="height: 180px; mix-blend-mode: lighten;" onerror="this.src='logo1.png'">
-                    <h3 style="font-size: 1.8rem;">${recomendado}</h3>
+                    <h3 style="font-size: 2.2rem;">${res}</h3>
+                    <p>Perfecta para tu puerta de ${mat} y uso en ${uso}.</p>
                 </div>
-                <button class="btn-wa" onclick="window.open('https://wa.me/18094572656?text=El asistente me recomendó la ${recomendado}')">PEDIR POR WHATSAPP</button>
-                <p style="margin-top:15px; font-size:0.8rem; cursor:pointer; text-decoration:underline;" onclick="iniciarConfigurador()">Reiniciar test</p>
+                <button class="btn-wa" onclick="window.open('https://wa.me/18094572656?text=El asistente me recomendó la ${res} para mi puerta de ${mat}')">OBTENER PRECIO FINAL</button>
+                <p style="margin-top:15px; font-size:0.8rem; cursor:pointer; text-decoration:underline;" onclick="iniciarConfigurador()">Repetir test</p>
             `;
         }
 
-        // FORMULARIO CONTACTO
         document.getElementById('formCotizar').onsubmit = (e) => {
             e.preventDefault();
             const n = document.getElementById('nombre').value;
