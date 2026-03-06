@@ -168,8 +168,8 @@
         .comparison-slider {
             position: relative;
             width: 100%;
-            max-width: 600px; /* Reducido de 800px a 600px para que sea más elegante */
-            margin: 30px auto;
+            max-width: 400px; /* Lo bajamos de 600px a 400px */
+            margin: 20px auto; /* Menos espacio arriba y abajo */
             overflow: hidden;
             background: transparent; 
             cursor: ew-resize;
@@ -241,10 +241,14 @@
         .label-before { left: 20px; color: #ff4444; }
         .label-after { right: 20px; color: #00D1FF; }
 
-        @media (max-width: 480px) { 
-            .comparison-slider { max-width: 90%; } 
-            .label-before, .label-after { top: 10px; font-size: 0.55rem; }
-        }
+       @media (max-width: 480px) { 
+    .comparison-slider { 
+        max-width: 95%; /* Esto hace que en el celular se vea grande y cómodo */
+        margin: 10px auto; 
+    } 
+    .label-before, .label-after { top: 10px; font-size: 0.55rem; }
+    /* ... mantén lo demás que tengas aquí adentro ... */
+}
     </style>
 </head>
 <body>
@@ -464,6 +468,7 @@ Lo que nos mueve en Lock and Go RD:
         slider.addEventListener('touchmove', moveSlider);
     </script>
 </body> </html>
+
 
 
 
