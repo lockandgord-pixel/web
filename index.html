@@ -164,18 +164,82 @@
             #notification-box.show { left: 7.5%; }
         }
       /* --- ESTILOS OPTIMIZADOS (SIN ZOOM) --- */
+        /* --- ESTILOS FLOTANTES TRANSPARENTES --- */
         .comparison-slider {
             position: relative;
             width: 100%;
             max-width: 800px;
             margin: 50px auto;
-            aspect-ratio: 16 / 9; /* Esto mantiene la forma de la foto */
             overflow: hidden;
-            border-radius: 30px;
-            border: 2px solid #00D1FF;
-            box-shadow: 0 0 30px rgba(0, 209, 255, 0.3);
-            background: #000;
+            background: transparent; 
+            cursor: ew-resize;
+            border: none;
+            box-shadow: none;
         }
+
+        .img-before-fix {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            position: relative; 
+            z-index: 1;
+        }
+
+        #after-box {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        #img-lockandgo {
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        .slider-bar {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 3px;
+            background: #00D1FF;
+            left: 50%;
+            cursor: ew-resize;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.8);
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px; height: 40px;
+            background: #00D1FF;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: black; font-size: 16px;
+            box-shadow: 0 0 20px rgba(0, 209, 255, 1);
+            z-index: 101; pointer-events: none;
+        }
+
+        .label-before, .label-after {
+            position: absolute;
+            bottom: 20px;
+            z-index: 10;
+            padding: 5px 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            font-size: 0.7rem; font-weight: 800;
+            backdrop-filter: blur(4px);
+        }
+        .label-before { left: 20px; color: #ff4444; }
+        .label-after { right: 20px; color: #00D1FF; }
+
+        @media (max-width: 480px) { .comparison-slider { margin: 20px auto; } }
         /* La imagen de fondo (Tradicional) */
         .img-before-fix {
             width: 100%;
@@ -447,6 +511,7 @@ Lo que nos mueve en Lock and Go RD:
         slider.addEventListener('touchmove', moveSlider);
     </script>
 </body> </html>
+
 
 
 
