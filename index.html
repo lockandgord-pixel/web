@@ -164,12 +164,12 @@
             #notification-box.show { left: 7.5%; }
         }
       /* --- ESTILOS OPTIMIZADOS (SIN ZOOM) --- */
-        /* --- ESTILOS FLOTANTES TRANSPARENTES --- */
+       /* --- ESTILOS FINALES AJUSTADOS --- */
         .comparison-slider {
             position: relative;
             width: 100%;
-            max-width: 800px;
-            margin: 50px auto;
+            max-width: 600px; /* Reducido de 800px a 600px para que sea más elegante */
+            margin: 30px auto;
             overflow: hidden;
             background: transparent; 
             cursor: ew-resize;
@@ -215,27 +215,36 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 40px; height: 40px;
+            width: 35px; /* Botón un poco más pequeño */
+            height: 35px;
             background: #00D1FF;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: black; font-size: 16px;
-            box-shadow: 0 0 20px rgba(0, 209, 255, 1);
+            color: black; font-size: 14px;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 1);
             z-index: 101; pointer-events: none;
         }
 
+        /* AJUSTE DE ETIQUETAS: DE VUELTA ARRIBA */
         .label-before, .label-after {
             position: absolute;
-            bottom: 20px;
+            top: 20px; /* Cambiado de 'bottom' a 'top' */
             z-index: 10;
             padding: 5px 12px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             border-radius: 5px;
-            font-size: 0.7rem; font-weight: 800;
+            font-size: 0.65rem; /* Letra un poco más discreta */
+            font-weight: 800;
             backdrop-filter: blur(4px);
+            text-transform: uppercase;
         }
         .label-before { left: 20px; color: #ff4444; }
         .label-after { right: 20px; color: #00D1FF; }
+
+        @media (max-width: 480px) { 
+            .comparison-slider { max-width: 90%; } 
+            .label-before, .label-after { top: 10px; font-size: 0.55rem; }
+        }
     </style>
 </head>
 <body>
@@ -455,6 +464,7 @@ Lo que nos mueve en Lock and Go RD:
         slider.addEventListener('touchmove', moveSlider);
     </script>
 </body> </html>
+
 
 
 
