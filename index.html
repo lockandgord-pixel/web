@@ -270,14 +270,17 @@
         <div class="comparison-slider" id="slider">
     <img src="antes.jpg.jpeg" alt="Antes" class="img-before"> 
     
-    <div id="after-box" style="position: absolute; top: 0; left: 0; height: 100%; overflow: hidden; width: 50%; border-right: 2px solid #00D1FF;">
-        <img src="despues.jpg,jpeg" alt="Después" id="img-lockandgo" style="position: absolute; top: 0; left: 0; height: 100%; object-fit: contain; width: 800px;">
+<div class="comparison-slider" id="slider" style="position: relative; overflow: hidden; cursor: ew-resize;">
+    <img src="antes.jpg" alt="Antes" id="img-antes" style="width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0;"> 
+    
+    <div id="after-box" style="position: absolute; top: 0; left: 0; height: 100%; overflow: hidden; width: 50%; border-right: 3px solid #00D1FF; z-index: 2;">
+        <img src="despues.jpg" alt="Después" id="img-lockandgo" style="height: 100%; object-fit: contain; position: absolute; top: 0; left: 0;">
     </div>
 
-    <div class="label-before">TRADICIONAL</div>
-    <div class="label-after">LOCK AND GO</div>
+    <div class="label-before" style="z-index: 3;">TRADICIONAL</div>
+    <div class="label-after" style="z-index: 3;">LOCK AND GO</div>
     
-    <div id="bar" class="slider-bar">
+    <div id="bar" class="slider-bar" style="z-index: 4;">
         <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
     </div>
 </div>
@@ -387,30 +390,42 @@ Lo que nos mueve en Lock and Go RD:
     const afterBox = document.getElementById('after-box');
     const bar = document.getElementById('bar');
     const imgLock = document.getElementById('img-lockandgo');
+    const imgAntes = document.getElementById('img-antes');
 
-    function sincronizarAncho() {
-        // Esto hace que la imagen de Lock and Go mida SIEMPRE lo mismo que el cuadro gris
-        imgLock.style.width = slider.offsetWidth + "px";
+    function ajustarImagenes() {
+        const anchoTotal = slider.offsetWidth;
+        // Ambas imágenes deben medir siempre el ancho total del contenedor
+        imgLock.style.width = anchoTotal + "px";
+        imgAntes.style.width = anchoTotal + "px";
     }
 
-    function mover(e) {
+    function moverSlider(e) {
         let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
         let rect = slider.getBoundingClientRect();
-        let pos = ((x - rect.left) / rect.width) * 100;
+        let xRelativo = x - rect.left;
+        let porcentaje = (xRelativo / rect.width) * 100;
 
-        if (pos >= 0 && pos <= 100) {
-            afterBox.style.width = pos + "%";
-            bar.style.left = pos + "%";
-            // Forzamos a que la imagen no se encoja al mover la barra
+        if (porcentaje >= 0 && porcentaje <= 100) {
+            // Movemos la barra y el recorte del cuadro azul
+            afterBox.style.width = porcentaje + "%";
+            bar.style.left = porcentaje + "%";
+            
+            // Forzamos a que la imagen de Lock and Go NO se mueva de su sitio 
+            // mientras el cuadro se expande, dando el efecto de "revelado"
             imgLock.style.width = rect.width + "px";
         }
     }
 
-    slider.addEventListener('mousemove', mover);
-    slider.addEventListener('touchmove', mover);
-    window.addEventListener('resize', sincronizarAncho);
-    window.addEventListener('load', sincronizarAncho);
+    // Escuchar movimientos
+    slider.addEventListener('mousemove', moverSlider);
+    slider.addEventListener('touchmove', moverSlider);
+    
+    // Reajustar si cambias el tamaño de la ventana o al cargar
+    window.addEventListener('resize', ajustarImagenes);
+    window.addEventListener('load', ajustarImagenes);
+    ajustarImagenes();
 </script>
 </body> </html>
+
 
 
