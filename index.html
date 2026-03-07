@@ -475,24 +475,29 @@ Lo que nos mueve en Lock and Go RD:
         <div id="grid-catalogo"></div>
     </section>
 
-   <section id="contacto">
-        <div class="formulario-container">
-            <h2>SE PARTE DE NUESTRO SISTEMA EXCLUSIVO DE CLIENTES</h2>
-            <form id="formCotizar">
-                <input type="text" id="nombre" placeholder="Nombre completo" required>
-                
-                <input type="email" id="correo" placeholder="Correo electrónico" required>
-                
-                <select id="servicio" style="background: #05080a; color: white; cursor: pointer;">
-                    <option value="" disabled selected style="background: #05080a;">Selecciona el servicio que deseas</option>
-                    <option value="Cerraduras Residenciales" style="background: #05080a;">Cerraduras Residenciales</option>
-                    <option value="Línea Airbnb" style="background: #05080a;">Proyectos Airbnb</option>
-                    <option value="Instalación" style="background: #05080a;">Servicio Técnico / Instalación</option>
-                </select>
-                
-                <button type="submit" class="btn-form">ENVIAR SOLICITUD</button>
-            </form>
-        </div>
+  <section id="contacto" style="padding: 100px 5%; background: rgba(0,0,0,0.3);">
+       <div class="formulario-container">
+    <h2 style="font-size: 1.8rem; font-weight: 900; color: #00D1FF; margin-bottom: 15px; text-transform: uppercase;">
+        ¿PROYECTO ESPECIAL O SOPORTE TÉCNICO?
+    </h2>
+    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 25px; line-height: 1.5;">
+        Déjanos tus datos y un experto corporativo de Lock and Go RD te contactará para brindarte asesoría de alto nivel.
+    </p>
+    <form id="formCotizar">
+        <input type="text" id="nombre" placeholder="Nombre completo / Empresa" required>
+        <input type="email" id="correo" placeholder="Correo electrónico corporativo" required>
+        
+        <select id="servicio" style="background: #05080a; color: white; width: 100%; padding: 18px; border-radius: 12px; margin: 12px 0; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
+            <option value="" disabled selected style="background: #05080a;">Selecciona el tipo de solicitud</option>
+            <option value="Proyecto Airbnb/Condominio" style="background: #05080a;">Proyectos Airbnb o Condominios</option>
+            <option value="Constructoras" style="background: #05080a;">Cotización para Constructoras</option>
+            <option value="Soporte Tecnico" style="background: #05080a;">Soporte Técnico o Instalación</option>
+            <option value="Otro" style="background: #05080a;">Otras consultas profesionales</option>
+        </select>
+        
+        <button type="submit" class="btn-form" style="margin-top: 10px;">ENVIAR SOLICITUD PROFESIONAL</button>
+    </form>
+</div>
     </section>
     <div class="social-container">
         <a href="https://wa.me/18094572656" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
@@ -1027,6 +1032,7 @@ function procesarVentaExpress() {
 </script>
 </body>
 </html>
+
 
 
 
