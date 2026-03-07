@@ -291,7 +291,7 @@
         <div class="noti-text" id="noti-content"></div>
     </div>
 
-    <script>
+   <script>
     // 1. TU URL DE GOOGLE
     const scriptURL = 'https://script.google.com/macros/s/AKfycby0sutlv1GoApDGjkEJLge2go-gTOPYTj6SznbzQ_rWc2VVMpnY7dEs8iZAdPMmGJabng/exec';
 
@@ -316,15 +316,17 @@
 
     function renderCatalogo() {
         const container = document.getElementById('grid-catalogo');
-        container.innerHTML = productos.map(p => `
-            <div class="card">
-                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
-                <h3>${p.nombre}</h3>
-                <p>${p.desc}</p>
-                <span class="precio-tag">${p.precio}</span>
-                <button class="btn-wa" onclick="window.open('https://wa.me/18094572656')">Solicitar</button>
-            </div>
-        `).join('');
+        if(container) {
+            container.innerHTML = productos.map(p => `
+                <div class="card">
+                    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
+                    <h3>${p.nombre}</h3>
+                    <p>${p.desc}</p>
+                    <span class="precio-tag">${p.precio}</span>
+                    <button class="btn-wa" onclick="window.open('https://wa.me/18094572656')">Solicitar</button>
+                </div>
+            `).join('');
+        }
     }
 
     function initSlider() {
@@ -332,13 +334,16 @@
         const afterBox = document.getElementById('after-box');
         const bar = document.getElementById('bar');
         const imgL = document.getElementById('img-lockandgo');
-        if (!slider) return;
+        if (!slider || !imgL) return;
         const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
         const mover = (e) => {
             let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
             let r = slider.getBoundingClientRect();
             let p = ((x - r.left) / r.width) * 100;
-            if (p >= 0 && p <= 100) { afterBox.style.width = p + "%"; bar.style.left = p + "%"; }
+            if (p >= 0 && p <= 100) { 
+                afterBox.style.width = p + "%"; 
+                bar.style.left = p + "%"; 
+            }
         };
         slider.addEventListener('mousemove', mover);
         slider.addEventListener('touchmove', mover);
@@ -348,30 +353,26 @@
 
     // ENVÍO AL FORMULARIO
     const formCotizar = document.getElementById('formCotizar');
-    formCotizar.onsubmit = function(e) {
-        e.preventDefault();
-        const btn = formCotizar.querySelector('button');
-        btn.innerText = "ENVIANDO...";
-        btn.disabled = true;
+    if(formCotizar) {
+        formCotizar.onsubmit = function(e) {
+            e.preventDefault();
+            const btn = formCotizar.querySelector('button');
+            btn.innerText = "ENVIANDO...";
+            btn.disabled = true;
 
-        const nombre = document.getElementById('nombre').value;
-        const email = document.getElementById('correo').value;
-        const servicio = document.getElementById('servicio').value;
-        const comentario = document.getElementById('comentario').value;
-        const puerta = "Puerta: " + puertaSeleccionada;
+            const urlFinal = `${scriptURL}?nombre=${encodeURIComponent(document.getElementById('nombre').value)}&email=${encodeURIComponent(document.getElementById('correo').value)}&servicio=${encodeURIComponent(document.getElementById('servicio').value)}&mensaje=${encodeURIComponent("Puerta: " + puertaSeleccionada)}&comentario=${encodeURIComponent(document.getElementById('comentario').value)}`;
 
-        const urlFinal = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=${encodeURIComponent(servicio)}&mensaje=${encodeURIComponent(puerta)}&comentario=${encodeURIComponent(comentario)}`;
+            fetch(urlFinal, { method: 'GET', mode: 'no-cors' })
+            .then(() => {
+                alert("¡RECIBIDO! Nos pondremos en contacto pronto.");
+                formCotizar.reset();
+            })
+            .catch(() => alert("Error de conexión."))
+            .finally(() => { btn.innerText = "ENVIAR SOLICITUD"; btn.disabled = false; });
+        };
+    }
 
-        fetch(urlFinal, { method: 'GET', mode: 'no-cors' })
-        .then(() => {
-            alert("¡RECIBIDO! Nos pondremos en contacto pronto.");
-            formCotizar.reset();
-        })
-        .catch(() => alert("Error de conexión."))
-        .finally(() => { btn.innerText = "ENVIAR SOLICITUD"; btn.disabled = false; });
-    };
-
-    // MOTOR DE NOTIFICACIONES (SISTEMA DE PRUEBA SOCIAL)
+    // --- MOTOR DE NOTIFICACIONES REFORZADO ---
     const ventas = [
     { nombre: "Carlos Martínez", ciudad: "Santo Domingo", modelo: "V80 PRO" },
     { nombre: "Laura Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
@@ -699,23 +700,34 @@
     { nombre: "Eros Tejeda", ciudad: "Santiago", modelo: "H18 PRO MAX" }
 ];
 
-    function mostrarNoti() {
+    function dispararNotificacion() {
         const box = document.getElementById('notification-box');
         const content = document.getElementById('noti-content');
-        const v = ventasRecientes[Math.floor(Math.random() * ventasRecientes.length)];
-        
+        if(!box || !content) return;
+
+        const v = listaVentas[Math.floor(Math.random() * listaVentas.length)];
         content.innerHTML = `<b>${v.n} de ${v.c}</b> acaba de solicitar un presupuesto para su <b>${v.p}</b>`;
         
+        console.log("Mostrando notificación de: " + v.n); // Esto es para que veas en la consola que funciona
         box.classList.add('show');
-        setTimeout(() => box.classList.remove('show'), 5000); // Se muestra 6 seg
+        
+        setTimeout(() => {
+            box.classList.remove('show');
+        }, 5000); 
     }
 
-    window.addEventListener('DOMContentLoaded', () => { 
-        renderCatalogo(); 
-        initSlider(); 
-        setTimeout(mostrarNoti, 15000); // Sale a los 15 segundos de entrar
-        setInterval(mostrarNoti, 100000); // Se repite cada 100 segundos
-    });
+    // INICIO DE TODO AL CARGAR
+    window.onload = function() {
+        renderCatalogo();
+        initSlider();
+        
+        // Primera notificación a los 3 segundos exactos
+        setTimeout(dispararNotificacion, 3000);
+        
+        // Repetir cada 15 segundos
+        setInterval(dispararNotificacion, 15000);
+    };
     </script>
 </body>
 </html>
+
