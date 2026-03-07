@@ -412,6 +412,12 @@ Lo que nos mueve en Lock and Go RD:
         <p>&copy; 2026 LOCK AND GO RD | Derechos reservados República Dominicana</p>
     </footer>
 
+    <div id="notification-box">
+        <img src="logo1.png" class="noti-img" alt="Venta">
+        <div class="noti-text" id="noti-content">
+            </div>
+    </div>
+
     <script>
         // 1. PRODUCTOS
         const productos = [
@@ -479,7 +485,7 @@ Lo que nos mueve en Lock and Go RD:
             window.open(`https://wa.me/18094572656?text=Hola! Soy ${n}. Me interesa: ${s}. Mi puerta es: ${puertaSeleccionada}`);
         };
 
-        // --- MOTOR DE NOTIFICACIONES CORREGIDO ---
+        // --- MOTOR DE NOTIFICACIONES ---
         const ventas = [
             { nombre: "Carlos Martínez", ciudad: "Santo Domingo", modelo: "V80 PRO" },
             { nombre: "Laura Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
@@ -497,27 +503,27 @@ Lo que nos mueve en Lock and Go RD:
                 const v = ventas[Math.floor(Math.random() * ventas.length)];
                 notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}`;
                 
-                // Forzamos la clase 'show'
                 notiBox.classList.add('show');
 
-                // Se oculta después de 5 segundos
                 setTimeout(() => {
                     notiBox.classList.remove('show');
                 }, 5000);
             }
         }
 
-        // INICIALIZACIÓN DE TODO AL CARGAR LA PÁGINA
         window.addEventListener('DOMContentLoaded', () => {
             renderCatalogo();
             initSlider();
             
-            // Primera notificación exacta a los 10 segundos (10000ms)
+            // Primera notificación a los 10 segundos
             setTimeout(mostrarNotificacion, 10000);
             
-            // Repetición cada 100 segundos (100000ms)
+            // Repetición cada 100 segundos
             setInterval(mostrarNotificacion, 100000);
         });
     </script>
 </body>
 </html>
+</body>
+</html>
+
