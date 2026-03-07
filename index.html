@@ -123,7 +123,34 @@
         }
 
         footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+/* --- NUEVO: ANIMACIÓN DE ECOSISTEMAS --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
 
+        .ecosistema-icon {
+            text-align: center;
+            width: 90px;
+            transition: all 0.3s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Desfase para que se muevan de forma asíncrona */
+        .ecosistema-icon:nth-child(even) { animation-delay: 1s; }
+        .ecosistema-icon:nth-child(3) { animation-delay: 2s; }
+
+        .ecosistema-icon i, .ecosistema-icon img {
+            font-size: 2.2rem;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+            margin-bottom: 10px;
+        }
+
+        .ecosistema-icon:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.6));
+        }
         @media (max-width: 480px) {
             body::before { background-attachment: scroll !important; height: 100%; position: fixed; background-size: cover; }
             header { flex-direction: row; align-items: flex-start; padding: 15px 5%; z-index: 3000; }
@@ -353,33 +380,39 @@ Lo que nos mueve en Lock and Go RD:
             </div>
         </div>
     </section>
-<div style="padding: 60px 5%; text-align: center; background: rgba(0, 209, 255, 0.02); position: relative; z-index: 20;">
-    <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; color: #00D1FF;">¿QUÉ TIPO DE PUERTA TIENES?</h2>
-    <p style="opacity: 0.7; margin-bottom: 40px; font-size: 0.9rem;">Selecciona tu puerta para una cotización exacta:</p>
-
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 1100px; margin: 0 auto;">
+<div style="padding: 60px 5% 20px 5%; text-align: center; background: rgba(0, 209, 255, 0.01); position: relative; z-index: 20;">
+        <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; color: #00D1FF; margin-bottom: 40px; font-weight: 700;">Integración Total con tu Smart Home</p>
         
-        <div onclick="seleccionarPuerta('Madera o Melamina', this)" style="flex: 1; min-width: 150px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s;" class="opcion-puerta">
-            <i class="fas fa-door-open" style="font-size: 2rem; color: #00D1FF; margin-bottom: 15px;"></i>
-            <h4 style="font-size: 0.8rem; text-transform: uppercase;">Madera / Melamina</h4>
-        </div>
+        <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto;">
+            
+            <div class="ecosistema-icon">
+                <img src="https://img.icons8.com/color/96/tuya.png" style="width: 45px; margin: 0 auto 10px;">
+                <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">TUYA SMART</p>
+            </div>
 
-        <div onclick="seleccionarPuerta('Polimetal', this)" style="flex: 1; min-width: 150px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s;" class="opcion-puerta">
-            <i class="fas fa-border-all" style="font-size: 2rem; color: #00D1FF; margin-bottom: 15px;"></i>
-            <h4 style="font-size: 0.8rem; text-transform: uppercase;">Polimetal</h4>
-        </div>
+            <div class="ecosistema-icon">
+                <i class="fas fa-unlock-alt" style="color: #ffffff;"></i>
+                <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">TTLOCK</p>
+            </div>
 
-        <div onclick="seleccionarPuerta('Metal o Hierro', this)" style="flex: 1; min-width: 150px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s;" class="opcion-puerta">
-            <i class="fas fa-hammer" style="font-size: 2rem; color: #00D1FF; margin-bottom: 15px;"></i>
-            <h4 style="font-size: 0.8rem; text-transform: uppercase;">Metal / Hierro</h4>
-        </div>
+            <div class="ecosistema-icon">
+                <i class="fab fa-amazon" style="color: #ffffff;"></i>
+                <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">ALEXA</p>
+            </div>
 
-        <div onclick="seleccionarPuerta('Multilock', this)" style="flex: 1; min-width: 150px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s;" class="opcion-puerta">
-            <i class="fas fa-shield-alt" style="font-size: 2rem; color: #00D1FF; margin-bottom: 15px;"></i>
-            <h4 style="font-size: 0.8rem; text-transform: uppercase;">Seguridad</h4>
+            <div class="ecosistema-icon">
+                <i class="fab fa-google" style="color: #ffffff;"></i>
+                <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">GOOGLE HOME</p>
+            </div>
+
+            <div class="ecosistema-icon">
+                <i class="fas fa-video" style="color: #ffffff;"></i>
+                <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">ICSEE HOME</p>
+            </div>
+
         </div>
     </div>
-</div>
+    
     <section id="catalogo">
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Selección Lock And Go</h2>
         <div id="grid-catalogo"></div>
@@ -439,7 +472,6 @@ Lo que nos mueve en Lock and Go RD:
         });
         elemento.style.borderColor = '#00D1FF';
         elemento.style.background = 'rgba(0, 209, 255, 0.1)';
-        
     }
 
     // WhatsApp para el catálogo (Venta rápida)
@@ -871,6 +903,7 @@ Lo que nos mueve en Lock and Go RD:
 </script>
 </body>
 </html>
+
 
 
 
