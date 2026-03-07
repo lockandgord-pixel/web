@@ -522,24 +522,26 @@ Lo que nos mueve en Lock and Go RD:
         const notiBox = document.getElementById('notification-box');
         const notiContent = document.getElementById('noti-content');
 
-        function mostrarNotificacion() {
+       function mostrarNotificacion() {
             const venta = ventas[Math.floor(Math.random() * ventas.length)];
             notiContent.innerHTML = `<b>${venta.nombre} de ${venta.ciudad}</b> acaba de cotizar un modelo ${venta.modelo}`;
+            
             notiBox.classList.add('show');
-            setTimeout(() => { notiBox.classList.remove('show'); }, 5000);
+
+            // Se oculta después de 5 segundos
+            setTimeout(() => {
+                notiBox.classList.remove('show');
+            }, 5000);
         }
 
-        // INICIO DE TODO
-        window.onload = () => {
-            renderCatalogo();
-            initSlider();
-            // Tiempos solicitados:
-            setTimeout(mostrarNotificacion, 10000); // 10 seg al entrar
-            setInterval(mostrarNotificacion, 100000); // Repite cada 100 seg
-        };
+        // Inicia el ciclo: se muestra cada 100 segundos
+        setInterval(mostrarNotificacion, 100000);
+        
+        // Primera notificación a los 10 segundos de entrar
+        setTimeout(mostrarNotificacion, 10000);
     </script>
-</body>
-</html>
+</body> </html>
+
 
 
 
