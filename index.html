@@ -413,7 +413,7 @@ Lo que nos mueve en Lock and Go RD:
     </footer>
 
     <script>
-        // 1. CONFIGURACIÓN DE PRODUCTOS
+        // 1. PRODUCTOS
         const productos = [
             { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
             { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
@@ -422,7 +422,6 @@ Lo que nos mueve en Lock and Go RD:
 
         let puertaSeleccionada = "No especificada";
 
-        // 2. LÓGICA DEL SELECTOR DE PUERTAS
         function seleccionarPuerta(tipo, elemento) {
             puertaSeleccionada = tipo;
             document.querySelectorAll('.opcion-puerta').forEach(opt => {
@@ -434,14 +433,12 @@ Lo que nos mueve en Lock and Go RD:
             document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'});
         }
 
-        // 3. ENVÍO A WHATSAPP
         function enviarCotizacion(modelo) {
             const tel = "18094572656";
             const texto = `Hola Lock and Go RD! 👋 Me interesa el modelo *${modelo}*. Mi puerta es de *${puertaSeleccionada}*. ¿Me podrían dar más información?`;
             window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
         }
 
-        // 4. RENDERIZAR CATÁLOGO
         function renderCatalogo() {
             const container = document.getElementById('grid-catalogo');
             if(!container) return;
@@ -456,94 +453,71 @@ Lo que nos mueve en Lock and Go RD:
             `).join('');
         }
 
-        // 5. LÓGICA DEL SLIDER
         function initSlider() {
             const slider = document.getElementById('slider');
             const afterBox = document.getElementById('after-box');
             const bar = document.getElementById('bar');
             const imgL = document.getElementById('img-lockandgo');
             if (!slider || !imgL) return;
-            function syncSize() { imgL.style.width = slider.offsetWidth + "px"; }
-            function mover(e) {
+            const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
+            const mover = (e) => {
                 let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
                 let r = slider.getBoundingClientRect();
                 let p = ((x - r.left) / r.width) * 100;
                 if (p >= 0 && p <= 100) { afterBox.style.width = p + "%"; bar.style.left = p + "%"; }
-            }
+            };
             slider.addEventListener('mousemove', mover);
             slider.addEventListener('touchmove', mover);
-            window.addEventListener('resize', syncSize);
-            syncSize();
+            window.addEventListener('resize', sync);
+            sync();
         }
 
-        // 6. FORMULARIO CONTACTO
         document.getElementById('formCotizar').onsubmit = (e) => {
             e.preventDefault();
             const n = document.getElementById('nombre').value;
             const s = document.getElementById('servicio').value;
-            const texto = `Hola! Soy ${n}. Me interesa: ${s}. Mi puerta es de: ${puertaSeleccionada}`;
-            window.open(`https://wa.me/18094572656?text=${encodeURIComponent(texto)}`);
+            window.open(`https://wa.me/18094572656?text=Hola! Soy ${n}. Me interesa: ${s}. Mi puerta es: ${puertaSeleccionada}`);
         };
 
-        // 7. MOTOR DE NOTIFICACIONES (TUS TIEMPOS EXACTOS)
+        // --- MOTOR DE NOTIFICACIONES CORREGIDO ---
         const ventas = [
             { nombre: "Carlos Martínez", ciudad: "Santo Domingo", modelo: "V80 PRO" },
             { nombre: "Laura Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
-            { nombre: "JUAN RODRIGUEZ", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
-            { nombre: "Constructora Global S.A.", ciudad: "La Romana", modelo: "V80 PRO" },
-            { nombre: "miguel de los santos", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
-            { nombre: "Ana k. Méndez", ciudad: "Bavaro", modelo: "H18 PRO MAX" },
-            { nombre: "Roberto Figueroa", ciudad: "Puerto Plata", modelo: "V80 PRO" },
-            { nombre: "Elena Guzman P.", ciudad: "San Francisco", modelo: "AURUM X3 IA" },
-            { nombre: "Inversiones R&M, SRL", ciudad: "Santo Domingo", modelo: "H18 PRO MAX" },
-            { nombre: "pedro sanchez", ciudad: "Bani", modelo: "V80 PRO" },
-            { nombre: "Lucia Hernandez", ciudad: "Moca", modelo: "AURUM X3 IA" },
-            { nombre: "Marcos Tejada", ciudad: "La Vega", modelo: "H18 PRO MAX" },
-            { nombre: "Sonia Vargas", ciudad: "Bonao", modelo: "V80 PRO" },
-            { nombre: "DISTRIBUIDORA NACIONAL", ciudad: "Santiago", modelo: "AURUM X3 IA" },
-            { nombre: "Andres Lora", ciudad: "Higüey", modelo: "H18 PRO MAX" },
-            { nombre: "Carla de Beras", ciudad: "Santo Domingo", modelo: "V80 PRO" },
-            { nombre: "Jose Nunez", ciudad: "San Cristobal", modelo: "AURUM X3 IA" },
-            { nombre: "Marta Quezada", ciudad: "Azua", modelo: "H18 PRO MAX" },
-            { nombre: "Raul Williams", ciudad: "Barahona", modelo: "V80 PRO" },
-            { nombre: "Sofia Ximenez", ciudad: "Nagua", modelo: "AURUM X3 IA" },
-            { nombre: "Luis Javier", ciudad: "Samaná", modelo: "H18 PRO MAX" },
-            { nombre: "Tech Solutions SRL", ciudad: "Santo Domingo", modelo: "V80 PRO" },
-            { nombre: "Gabriel Castillo", ciudad: "Santiago", modelo: "AURUM X3 IA" },
-            { nombre: "Patricia Mejia R.", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
-            { nombre: "Fernando Alcantara", ciudad: "Santo Domingo", modelo: "V80 PRO" },
-            { nombre: "Rosa Isela", ciudad: "La Romana", modelo: "AURUM X3 IA" },
-            { nombre: "Jorge Espinal", ciudad: "Bavaro", modelo: "H18 PRO MAX" },
-            { nombre: "daniela ortega", ciudad: "San Pedro", modelo: "V80 PRO" },
-            { nombre: "Manuel Yepez", ciudad: "Puerto Plata", modelo: "AURUM X3 IA" },
-            { nombre: "Beatriz Ureña", ciudad: "Santo Domingo Este", modelo: "H18 PRO MAX" }
+            { nombre: "Juan Rodriguez", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
+            { nombre: "Ana Méndez", ciudad: "Bavaro", modelo: "H18 PRO MAX" },
+            { nombre: "Miguel Santos", ciudad: "Santo Domingo Este", modelo: "V80 PRO" },
+            { nombre: "Elena Guzman", ciudad: "San Francisco", modelo: "AURUM X3 IA" }
         ];
 
-        const notiBox = document.getElementById('notification-box');
-        const notiContent = document.getElementById('noti-content');
-
-       function mostrarNotificacion() {
-            const venta = ventas[Math.floor(Math.random() * ventas.length)];
-            notiContent.innerHTML = `<b>${venta.nombre} de ${venta.ciudad}</b> acaba de cotizar un modelo ${venta.modelo}`;
+        function mostrarNotificacion() {
+            const notiBox = document.getElementById('notification-box');
+            const notiContent = document.getElementById('noti-content');
             
-            notiBox.classList.add('show');
+            if (notiBox && notiContent) {
+                const v = ventas[Math.floor(Math.random() * ventas.length)];
+                notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}`;
+                
+                // Forzamos la clase 'show'
+                notiBox.classList.add('show');
 
-            // Se oculta después de 5 segundos
-            setTimeout(() => {
-                notiBox.classList.remove('show');
-            }, 5000);
+                // Se oculta después de 5 segundos
+                setTimeout(() => {
+                    notiBox.classList.remove('show');
+                }, 5000);
+            }
         }
 
-        // Inicia el ciclo: se muestra cada 100 segundos
-        setInterval(mostrarNotificacion, 100000);
-        
-        // Primera notificación a los 10 segundos de entrar
-        setTimeout(mostrarNotificacion, 10000);
+        // INICIALIZACIÓN DE TODO AL CARGAR LA PÁGINA
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCatalogo();
+            initSlider();
+            
+            // Primera notificación exacta a los 10 segundos (10000ms)
+            setTimeout(mostrarNotificacion, 10000);
+            
+            // Repetición cada 100 segundos (100000ms)
+            setInterval(mostrarNotificacion, 100000);
+        });
     </script>
-</body> </html>
-
-
-
-
-
-
+</body>
+</html>
