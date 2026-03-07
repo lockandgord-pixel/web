@@ -857,7 +857,7 @@ Lo que nos mueve en Lock and Go RD:
             const v = ventas[Math.floor(Math.random() * ventas.length)];
             notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}`;
             notiBox.classList.add('show');
-            setTimeout(() => { notiBox.classList.remove('show'); }, 100000);
+            setTimeout(() => { notiBox.classList.remove('show'); }, 5000);
         }
     }
 
@@ -866,11 +866,12 @@ Lo que nos mueve en Lock and Go RD:
         renderCatalogo();
         initSlider();
         setTimeout(mostrarNotificacion, 10000);
-        setInterval(mostrarNotificacion, 10000);
+        setInterval(mostrarNotificacion, 100000);
     });
 </script>
 </body>
 </html>
+
 
 
 
