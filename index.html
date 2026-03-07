@@ -94,7 +94,29 @@
         .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
 
         .formulario-container { max-width: 650px; margin: 0 auto; background: rgba(0, 0, 0, 0.5); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
-        input, select { width: 100%; padding: 18px; margin: 12px 0; border-radius: 12px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
+        input, select { 
+            width: 100%; 
+            padding: 18px; 
+            margin: 12px 0; 
+            border-radius: 12px; 
+            background: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+            color: white; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            outline: none;
+            appearance: none; /* Quita el estilo por defecto del sistema */
+        }
+
+        /* Esto corrige el color de las opciones dentro de la lista */
+        select option {
+            background-color: #0a0a0a; /* Fondo oscuro para que se vea el texto blanco */
+            color: white;
+            padding: 10px;
+        }
+
+        input:focus, select:focus {
+            border-color: #00D1FF;
+            background: rgba(0, 209, 255, 0.05);
+        }
         .btn-form { background: #00D1FF; color: black; border: none; padding: 20px; border-radius: 12px; font-weight: 900; width: 100%; cursor: pointer; text-transform: uppercase; }
 
         .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-decoration: none; transition: 0.3s; }
@@ -458,16 +480,12 @@ Lo que nos mueve en Lock and Go RD:
             <h2>SE PARTE DE NUESTRO SISTEMA EXCLUSIVO DE CLIENTES</h2>
             <form id="formCotizar">
                 <input type="text" id="nombre" placeholder="Nombre completo" required>
-                <input type="email" id="correo" placeholder="Correo electrónico" required>
-                <select id="servicio">
-                    <option value="Cerraduras Residenciales">Cerraduras Residenciales</option>
-                    <option value="Línea Airbnb">Proyectos Airbnb</option>
-                    <option value="Instalación">Servicio Técnico / Instalación</option>
-                </select>
-                <button type="submit" class="btn-form">ENVIAR SOLICITUD</button>
-            </form>
-        </div>
-    </section>
+                <select id="servicio" style="background: #05080a; color: white; cursor: pointer;">
+    <option value="" disabled selected style="background: #05080a;">Selecciona el servicio que deseas</option>
+    <option value="Cerraduras Residenciales" style="background: #05080a;">Cerraduras Residenciales</option>
+    <option value="Línea Airbnb" style="background: #05080a;">Proyectos Airbnb</option>
+    <option value="Instalación" style="background: #05080a;">Servicio Técnico / Instalación</option>
+</select>
 
     <div class="social-container">
         <a href="https://wa.me/18094572656" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
@@ -938,6 +956,7 @@ Lo que nos mueve en Lock and Go RD:
 </script>
 </body>
 </html>
+
 
 
 
