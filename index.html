@@ -466,8 +466,39 @@ Lo que nos mueve en Lock and Go RD:
 
         slider.addEventListener('mousemove', moveSlider);
         slider.addEventListener('touchmove', moveSlider);
+        // --- MOTOR DE NOTIFICACIONES INTERACTIVAS ---
+        const notiBox = document.getElementById('notification-box');
+        const notiContent = document.getElementById('noti-content');
+
+        const ventas = [
+            { nombre: "Carlos M.", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+            { nombre: "Laura P.", ciudad: "Santiago", modelo: "AURUM X3 IA" },
+            { nombre: "Juan R.", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
+            { nombre: "Empresa S.A.", ciudad: "La Romana", modelo: "V80 PRO" },
+            { nombre: "Miguel D.", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+            { nombre: "Ana K.", ciudad: "Bavaro", modelo: "H18 PRO MAX" }
+        ];
+
+        function mostrarNotificacion() {
+            const venta = ventas[Math.floor(Math.random() * ventas.length)];
+            notiContent.innerHTML = `<b>${venta.nombre} de ${venta.ciudad}</b> acaba de cotizar un modelo ${venta.modelo}`;
+            
+            notiBox.classList.add('show');
+
+            // Se oculta después de 5 segundos
+            setTimeout(() => {
+                notiBox.classList.remove('show');
+            }, 5000);
+        }
+
+        // Inicia el ciclo: se muestra cada 12 segundos
+        setInterval(mostrarNotificacion, 12000);
+        
+        // Primera notificación a los 3 segundos de entrar
+        setTimeout(mostrarNotificacion, 3000);
     </script>
 </body> </html>
+
 
 
 
