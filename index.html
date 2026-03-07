@@ -300,6 +300,29 @@
         </div>
 
     </div>
+    <div id="seccion-stats" style="padding: 60px 5%; background: rgba(0, 209, 255, 0.02); border-bottom: 1px solid rgba(0, 209, 255, 0.1); position: relative; z-index: 20;">
+    <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-around; gap: 30px; flex-wrap: wrap; text-align: center;">
+        
+        <div style="flex: 1; min-width: 200px;">
+            <i class="fas fa-house-user" style="color: #00D1FF; font-size: 2rem; margin-bottom: 15px; opacity: 0.8;"></i>
+            <h2 class="counter" data-target="1250" style="font-size: 3.5rem; font-weight: 900; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.4); line-height: 1;">0</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-top: 10px; font-weight: 700;">Familias Protegidas</p>
+        </div>
+
+        <div style="flex: 1; min-width: 200px;">
+            <i class="fas fa-key" style="color: #00D1FF; font-size: 2rem; margin-bottom: 15px; opacity: 0.8;"></i>
+            <h2 class="counter" data-target="480" style="font-size: 3.5rem; font-weight: 900; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.4); line-height: 1;">0</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-top: 10px; font-weight: 700;">Proyectos Airbnb</p>
+        </div>
+
+        <div style="flex: 1; min-width: 200px;">
+            <i class="fas fa-star" style="color: #00D1FF; font-size: 2rem; margin-bottom: 15px; opacity: 0.8;"></i>
+            <h2 class="counter" data-target="99" style="font-size: 3.5rem; font-weight: 900; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.4); line-height: 1;">0</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-top: 10px; font-weight: 700;">% Satisfacción</p>
+        </div>
+
+    </div>
+</div>
     <section id="nosotros">
       <section id="comparativa" style="text-align: center; padding: 40px 5%; background: transparent;">
         <h2 style="font-size: 2.5rem; font-weight: 900; color: #ffffff;">EL CAMBIO ES REAL</h2>
@@ -497,7 +520,44 @@ Lo que nos mueve en Lock and Go RD:
         // Primera notificación a los 20 segundos de entrar
         setTimeout(mostrarNotificacion, 30000);
     </script>
+    <script>
+    // --- LÓGICA DE CONTADORES ANIMADOS ---
+    const counters = document.querySelectorAll('.counter');
+    const speed = 100; // A menor número, más rápido sube
+
+    const startCounters = () => {
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target + (counter.getAttribute('data-target') == "99" ? "%" : "+");
+                }
+            };
+            updateCount();
+        });
+    };
+
+    // Detectar scroll para activar solo cuando sea visible
+    const observerOptions = { threshold: 0.5 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                startCounters();
+                observer.unobserve(entry.target); // Para que solo anime una vez
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(document.getElementById('seccion-stats'));
+</script>
 </body> </html>
+
 
 
 
