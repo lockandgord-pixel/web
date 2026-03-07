@@ -3,85 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lock and Go RD | Seguridad Inteligente</title>
+    <title>LOCK AND GO RD | Seguridad Inteligente</title>
     <link rel="icon" type="image/png" href="logo1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #05080a; color: white; overflow-x: hidden; }
+
+        body {
+            background-color: #05080a;
+            color: white;
+            overflow-x: hidden;
+        }
 
         body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fondo1.jpeg');
-            background-size: cover; background-position: center; background-attachment: fixed; z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
         }
 
-        header { position: absolute; top: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 2000; }
-        #imgLogo { height: 180px; filter: drop-shadow(0 0 25px rgba(0, 209, 255, 0.7)); mix-blend-mode: lighten; }
+        header {
+            position: absolute;
+            top: 0; width: 100%;
+            background: transparent;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2000;
+        }
 
-        nav ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-        nav ul li a { color: white; text-decoration: none; font-weight: 800; text-transform: uppercase; text-shadow: 2px 2px 8px black; }
+        #imgLogo { 
+            height: 180px;
+            width: auto;
+            filter: drop-shadow(0 0 25px rgba(0, 209, 255, 0.7)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+            mix-blend-mode: lighten;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+        
+        nav ul li a { 
+            color: #ffffff !important; 
+            text-decoration: none; 
+            font-weight: 800; 
+            font-size: 1rem; 
+            text-transform: uppercase; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            display: block; 
+            white-space: nowrap;
+        }
 
         section { padding: 100px 10%; position: relative; z-index: 10; }
-        .hero { height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .hero h1 { font-size: 3.5rem; font-weight: 900; text-shadow: 0 0 20px black; }
 
-        /* CATALOGO */
-        #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 30px; text-align: center; transition: 0.4s; }
-        .card:hover { transform: translateY(-15px); border-color: #00D1FF; }
-        .card img { width: 100%; height: 250px; object-fit: contain; filter: drop-shadow(0 10px 20px black); }
-        .precio-tag { color: #00D1FF; font-size: 1.4rem; font-weight: 700; margin: 15px 0; display: block; }
-        .btn-wa { background: #00D1FF; color: black; border: none; padding: 15px; border-radius: 50px; font-weight: 900; width: 100%; cursor: pointer; }
+        .hero { 
+            height: 90vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+        }
 
-        /* SLIDER */
-        .comparison-slider { position: relative; width: 100%; max-width: 450px; margin: 20px auto; overflow: hidden; cursor: ew-resize; border-radius: 15px; }
-        .img-before-fix { width: 100%; display: block; }
+        .hero h1 { font-size: 3.5rem; font-weight: 900; color: #ffffff; text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); }
+
+        .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .info-box { background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; transition: 0.4s; }
+        .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
+        .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
+
+        #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
+        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; }
+        .card:hover { transform: translateY(-20px); border-color: #00D1FF; }
+        .card img { width: 100%; height: 320px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); margin-bottom: 25px; }
+
+        .precio-tag { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
+        .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
+
+        .formulario-container { max-width: 650px; margin: 0 auto; background: rgba(0, 0, 0, 0.5); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        input, select, textarea { width: 100%; padding: 18px; margin: 12px 0; border-radius: 12px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
+        .btn-form { background: #00D1FF; color: black; border: none; padding: 20px; border-radius: 12px; font-weight: 900; width: 100%; cursor: pointer; text-transform: uppercase; }
+
+        .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-decoration: none; transition: 0.3s; }
+        .whatsapp-bubble i { color: white; font-size: 45px; }
+
+        .social-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            color: white;
+            font-size: 2.5rem;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+        }
+
+        .social-icon:hover {
+            color: #00D1FF;
+            transform: scale(1.2) translateY(-5px);
+            filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.6));
+        }
+
+        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* SLIDER COMPONENT */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            background: transparent; 
+            cursor: ew-resize;
+        }
+
+        .img-before-fix { width: 100%; height: auto; object-fit: contain; display: block; position: relative; z-index: 1; }
         #after-box { position: absolute; top: 0; left: 0; height: 100%; width: 50%; overflow: hidden; z-index: 2; }
-        #img-lockandgo { height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
-        .slider-bar { position: absolute; top: 0; bottom: 0; width: 3px; background: #00D1FF; left: 50%; z-index: 100; box-shadow: 0 0 15px #00D1FF; }
-        .slider-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: #00D1FF; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: black; z-index: 101; }
-        .label-before, .label-after { position: absolute; top: 15px; z-index: 10; padding: 5px 10px; background: rgba(0,0,0,0.7); font-size: 0.7rem; font-weight: 800; border-radius: 5px; }
-        .label-before { left: 15px; color: #ff4444; }
-        .label-after { right: 15px; color: #00D1FF; }
+        #img-lockandgo { height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; }
+        .slider-bar { position: absolute; top: 0; bottom: 0; width: 3px; background: #00D1FF; left: 50%; z-index: 100; box-shadow: 0 0 15px rgba(0, 209, 255, 0.8); }
+        .slider-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 35px; height: 35px; background: #00D1FF; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: black; font-size: 14px; box-shadow: 0 0 15px rgba(0, 209, 255, 1); z-index: 101; }
+        .label-before, .label-after { position: absolute; top: 20px; z-index: 10; padding: 5px 12px; background: rgba(0, 0, 0, 0.6); border-radius: 5px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; }
+        .label-before { left: 20px; color: #ff4444; }
+        .label-after { right: 20px; color: #00D1FF; }
 
-        /* FORMULARIO */
-        .formulario-container { max-width: 600px; margin: 0 auto; background: rgba(0, 0, 0, 0.6); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
-        input, select, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
-        .btn-form { background: #00D1FF; color: black; border: none; padding: 18px; border-radius: 10px; font-weight: 900; width: 100%; cursor: pointer; margin-top: 10px; }
-
-        /* NOTIFICACIONES (LO QUE SE HABIA BORRADO) */
+        /* NOTIFICACIONES */
         #notification-box {
-            position: fixed; bottom: 30px; left: -450px; 
-            background: rgba(0, 0, 0, 0.9); border: 1px solid #00D1FF;
-            padding: 15px 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px;
-            z-index: 9999; transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(10px);
+            position: fixed;
+            bottom: 30px;
+            left: -400px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00D1FF;
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 9999;
+            transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
         }
         #notification-box.show { left: 30px; }
-        .noti-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #00D1FF; }
-        .noti-text { font-size: 0.8rem; color: white; }
-        .noti-text b { color: #00D1FF; display: block; }
-
-        .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; color: white; font-size: 35px; text-decoration: none; }
+        .noti-img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #00D1FF; }
 
         @media (max-width: 480px) {
-            #imgLogo { height: 100px; }
-            .hero h1 { font-size: 2rem; }
-            #notification-box { width: 90%; bottom: 110px; }
+            header { padding: 15px 5%; }
+            #imgLogo { height: 110px !important; }
+            .hero h1 { font-size: 1.9rem; }
+            .comparison-slider { max-width: 95%; }
+            #notification-box { bottom: 110px; width: 85%; }
+            #notification-box.show { left: 7.5%; }
         }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/18094572656" class="whatsapp-bubble" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/18094572656" class="whatsapp-bubble" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <header>
         <img src="logo1.png" alt="Lock and Go" id="imgLogo">
         <nav>
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -90,31 +192,69 @@
 
     <section id="inicio" class="hero">
         <h1>MÁS PROTECCIÓN, MÁS VIDA.</h1>
-        <p>Controla tu puerta desde cualquier lugar</p>
+        <p style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px;">Controla tu puerta desde cualquier lugar</p>
     </section>
 
-    <section id="comparativa" style="text-align: center;">
-        <h2>EL CAMBIO ES REAL</h2>
+    <div style="background: rgba(0, 209, 255, 0.03); border-top: 1px solid rgba(0, 209, 255, 0.2); border-bottom: 1px solid rgba(0, 209, 255, 0.2); padding: 30px 5%; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; backdrop-filter: blur(10px); position: relative; z-index: 20;">
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-shield-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Garantía Real</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">2 Año de respaldo total</p>
+        </div>
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-tools" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Instalación Certificada</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Técnicos certificados.Cuidamos cada detalle de tu puerta</p>
+        </div>
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-mobile-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Control total</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Gestiona tu propiedad desde cualquier parte del mundo</p>
+        </div>
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-headset" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Soporte 24/7</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Estamos a un WhatsApp de distancia siempre</p>
+        </div>
+
+    </div>
+
+    <section id="comparativa" style="text-align: center; padding: 40px 5%;">
+        <h2 style="font-size: 2.5rem; font-weight: 900;">EL CAMBIO ES REAL</h2>
+        <p style="opacity: 0.8; margin-bottom: 30px;">Desliza para ver la potencia de Lock and Go RD</p>
         <div class="comparison-slider" id="slider">
-            <img src="antes.jpg.jpeg" class="img-before-fix"> 
-            <div id="after-box"><img src="despues.jpg.jpeg" id="img-lockandgo"></div>
+            <img src="antes.jpg.jpeg" alt="Tradicional" class="img-before-fix"> 
+            <div id="after-box">
+                <img src="despues.jpg.jpeg" alt="Lock and Go" id="img-lockandgo">
+            </div>
             <div class="label-before">TRADICIONAL</div>
             <div class="label-after">LOCK AND GO</div>
-            <div id="bar" class="slider-bar"><div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div></div>
+            <div id="bar" class="slider-bar">
+                <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
+            </div>
         </div>
     </section>
 
-    <div style="text-align: center; padding: 40px 0;">
-        <h3>¿QUÉ TIPO DE PUERTA TIENES?</h3>
-        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
-            <div onclick="seleccionarPuerta('Madera', this)" class="opcion-puerta" style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 15px; cursor: pointer; min-width: 100px;">MADERA</div>
-            <div onclick="seleccionarPuerta('Polimetal', this)" class="opcion-puerta" style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 15px; cursor: pointer; min-width: 100px;">POLIMETAL</div>
-            <div onclick="seleccionarPuerta('Hierro', this)" class="opcion-puerta" style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 15px; cursor: pointer; min-width: 100px;">HIERRO</div>
+    <div style="padding: 60px 5%; text-align: center; background: rgba(0, 209, 255, 0.02);">
+        <h2 style="font-size: 1.8rem; font-weight: 900; color: #00D1FF;">¿QUÉ TIPO DE PUERTA TIENES?</h2>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px;">
+            <div onclick="seleccionarPuerta('Madera o Melamina', this)" style="flex: 1; min-width: 140px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; cursor: pointer;" class="opcion-puerta">
+                <i class="fas fa-door-open" style="font-size: 2rem; color: #00D1FF;"></i>
+                <h4 style="font-size: 0.8rem; margin-top: 10px;">MADERA</h4>
+            </div>
+            <div onclick="seleccionarPuerta('Polimetal', this)" style="flex: 1; min-width: 140px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; cursor: pointer;" class="opcion-puerta">
+                <i class="fas fa-border-all" style="font-size: 2rem; color: #00D1FF;"></i>
+                <h4 style="font-size: 0.8rem; margin-top: 10px;">POLIMETAL</h4>
+            </div>
+            <div onclick="seleccionarPuerta('Metal o Hierro', this)" style="flex: 1; min-width: 140px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; cursor: pointer;" class="opcion-puerta">
+                <i class="fas fa-hammer" style="font-size: 2rem; color: #00D1FF;"></i>
+                <h4 style="font-size: 0.8rem; margin-top: 10px;">HIERRO</h4>
+            </div>
         </div>
     </div>
 
     <section id="catalogo">
-        <h2 style="text-align: center;">NUESTRA COLECCIÓN</h2>
+        <h2 style="text-align: center; font-size: 3rem; font-weight: 900; margin-bottom: 30px;">Colección Lock And Go</h2>
         <div id="grid-catalogo"></div>
     </section>
 
@@ -125,25 +265,33 @@
                 <input type="text" id="nombre" placeholder="Nombre completo" required>
                 <input type="email" id="correo" placeholder="Correo electrónico" required>
                 <select id="servicio">
-                    <option value="Residencial">Cerraduras Residenciales</option>
-                    <option value="Airbnb">Línea Airbnb</option>
-                    <option value="Soporte">Soporte Técnico</option>
+                    <option value="Cerraduras Residenciales">Cerraduras Residenciales</option>
+                    <option value="Línea Airbnb">Proyectos Airbnb</option>
+                    <option value="Instalación">Servicio Técnico / Instalación</option>
                 </select>
-                <textarea id="comentario" placeholder="¿Tienes alguna duda o detalle sobre tu puerta?" rows="3"></textarea>
+                <textarea id="comentario" placeholder="¿Alguna duda o detalle adicional? (Opcional)" rows="3"></textarea>
+                
                 <button type="submit" class="btn-form">ENVIAR SOLICITUD</button>
             </form>
         </div>
     </section>
 
+    <div class="social-container">
+        <a href="https://wa.me/18094572656" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/lockandgord/" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@lockandgord?" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/lockandgoRD/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+    </div>
+
+    <footer><p>&copy; 2026 LOCK AND GO RD, DERECHOS RESERVADOS</p></footer>
+
     <div id="notification-box">
-        <img src="logo1.png" class="noti-img">
+        <img src="logo1.png" class="noti-img" alt="Venta">
         <div class="noti-text" id="noti-content"></div>
     </div>
 
-    <footer><p style="text-align: center; padding: 40px; opacity: 0.5;">&copy; 2026 LOCK AND GO RD</p></footer>
-
     <script>
-    // 1. CONFIGURACIÓN (REEMPLAZA POR TU URL DE GOOGLE)
+    // 1. TU URL DE GOOGLE (Asegúrate de que sea la última generada)
     const scriptURL = 'https://script.google.com/macros/s/AKfycby0sutlv1GoApDGjkEJLge2go-gTOPYTj6SznbzQ_rWc2VVMpnY7dEs8iZAdPMmGJabng/exec';
 
     const productos = [
@@ -152,23 +300,28 @@
         { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." }
     ];
 
-
     let puertaSeleccionada = "No especificada";
 
     function seleccionarPuerta(tipo, elemento) {
         puertaSeleccionada = tipo;
-        document.querySelectorAll('.opcion-puerta').forEach(opt => opt.style.border = "none");
-        elemento.style.border = "2px solid #00D1FF";
+        document.querySelectorAll('.opcion-puerta').forEach(opt => {
+            opt.style.borderColor = 'transparent';
+            opt.style.background = 'rgba(255, 255, 255, 0.05)';
+        });
+        elemento.style.borderColor = '#00D1FF';
+        elemento.style.borderStyle = 'solid';
+        elemento.style.borderWidth = '1px';
     }
 
     function renderCatalogo() {
         const container = document.getElementById('grid-catalogo');
         container.innerHTML = productos.map(p => `
             <div class="card">
-                <img src="${p.imagen}" onerror="this.src='logo1.png'">
+                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
                 <h3>${p.nombre}</h3>
+                <p>${p.desc}</p>
                 <span class="precio-tag">${p.precio}</span>
-                <button class="btn-wa" onclick="window.open('https://wa.me/18094572656')">Solicitar Info</button>
+                <button class="btn-wa" onclick="window.open('https://wa.me/18094572656')">Solicitar</button>
             </div>
         `).join('');
     }
@@ -178,13 +331,13 @@
         const afterBox = document.getElementById('after-box');
         const bar = document.getElementById('bar');
         const imgL = document.getElementById('img-lockandgo');
-        if(!slider) return;
+        if (!slider) return;
         const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
         const mover = (e) => {
             let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
             let r = slider.getBoundingClientRect();
             let p = ((x - r.left) / r.width) * 100;
-            if(p >= 0 && p <= 100) { afterBox.style.width = p + "%"; bar.style.left = p + "%"; }
+            if (p >= 0 && p <= 100) { afterBox.style.width = p + "%"; bar.style.left = p + "%"; }
         };
         slider.addEventListener('mousemove', mover);
         slider.addEventListener('touchmove', mover);
@@ -192,7 +345,7 @@
         sync();
     }
 
-    // ENVÍO AL EXCEL
+    // ENVÍO AL FORMULARIO CON COMENTARIOS
     const formCotizar = document.getElementById('formCotizar');
     formCotizar.onsubmit = function(e) {
         e.preventDefault();
@@ -200,38 +353,26 @@
         btn.innerText = "ENVIANDO...";
         btn.disabled = true;
 
-        const urlFinal = `${scriptURL}?nombre=${encodeURIComponent(document.getElementById('nombre').value)}&email=${encodeURIComponent(document.getElementById('correo').value)}&servicio=${encodeURIComponent(document.getElementById('servicio').value)}&mensaje=${encodeURIComponent(puertaSeleccionada)}&comentario=${encodeURIComponent(document.getElementById('comentario').value)}`;
+        const nombre = document.getElementById('nombre').value;
+        const email = document.getElementById('correo').value;
+        const servicio = document.getElementById('servicio').value;
+        const comentario = document.getElementById('comentario').value; // <--- CAPTURADO
+        const puerta = "Puerta: " + puertaSeleccionada;
+
+        const urlFinal = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=${encodeURIComponent(servicio)}&mensaje=${encodeURIComponent(puerta)}&comentario=${encodeURIComponent(comentario)}`;
 
         fetch(urlFinal, { method: 'GET', mode: 'no-cors' })
         .then(() => {
-            alert("¡ÉXITO! Recibimos tu solicitud.");
+            alert("¡RECIBIDO! Nos pondremos en contacto pronto.");
             formCotizar.reset();
         })
+        .catch(() => alert("Error de conexión."))
         .finally(() => { btn.innerText = "ENVIAR SOLICITUD"; btn.disabled = false; });
     };
 
-    // NOTIFICACIONES DINÁMICAS
-    const ventas = [
-        { nombre: "Pedro", ciudad: "Santo Domingo", modelo: "V80 PRO" },
-        { nombre: "María", ciudad: "Santiago", modelo: "AURUM X3 IA" },
-        { nombre: "José", ciudad: "La Romana", modelo: "H18 PRO MAX" }
-    ];
-
-    function mostrarNotificacion() {
-        const notiBox = document.getElementById('notification-box');
-        const content = document.getElementById('noti-content');
-        const v = ventas[Math.floor(Math.random() * ventas.length)];
-        content.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un ${v.modelo}`;
-        notiBox.classList.add('show');
-        setTimeout(() => notiBox.classList.remove('show'), 5000);
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        renderCatalogo();
-        initSlider();
-        setTimeout(mostrarNotificacion, 5000); // Primera a los 5 seg
-        setInterval(mostrarNotificacion, 15000); // Luego cada 15 seg
-    });
+    window.addEventListener('DOMContentLoaded', () => { renderCatalogo(); initSlider(); });
     </script>
 </body>
 </html>
+
+
