@@ -413,61 +413,90 @@ Lo que nos mueve en Lock and Go RD:
     </footer>
 
     <script>
+        // 1. CONFIGURACIÓN DE PRODUCTOS
+        const productos = [
+            { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
+            { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+            { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." }
+        ];
+
         let puertaSeleccionada = "No especificada";
 
-    function seleccionarPuerta(tipo, elemento) {
-        puertaSeleccionada = tipo;
-        // Quitamos el brillo de todos y se lo ponemos al seleccionado
-        document.querySelectorAll('.opcion-puerta').forEach(opt => {
-            opt.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-            opt.style.background = 'rgba(255, 255, 255, 0.05)';
-        });
-        elemento.style.borderColor = '#00D1FF';
-        elemento.style.background = 'rgba(0, 209, 255, 0.1)';
-        
-        // Bajamos al catálogo suavemente
-        document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'});
-    }
+        // 2. LÓGICA DEL SELECTOR DE PUERTAS
+        function seleccionarPuerta(tipo, elemento) {
+            puertaSeleccionada = tipo;
+            document.querySelectorAll('.opcion-puerta').forEach(opt => {
+                opt.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                opt.style.background = 'rgba(255, 255, 255, 0.05)';
+            });
+            elemento.style.borderColor = '#00D1FF';
+            elemento.style.background = 'rgba(0, 209, 255, 0.1)';
+            document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'});
+        }
 
-    function enviarCotizacion(modelo) {
-        const tel = "18094572656";
-        const texto = `Hola Lock and Go RD! 👋 Me interesa el modelo *${modelo}*. Mi puerta es de *${puertaSeleccionada}*. ¿Me podrían dar más información?`;
-        window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
-    }
+        // 3. ENVÍO A WHATSAPP
+        function enviarCotizacion(modelo) {
+            const tel = "18094572656";
+            const texto = `Hola Lock and Go RD! 👋 Me interesa el modelo *${modelo}*. Mi puerta es de *${puertaSeleccionada}*. ¿Me podrían dar más información?`;
+            window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
+        }
 
-    function render() {
-        const container = document.getElementById('grid-catalogo');
-        // Usamos los productos que ya tienes definidos arriba
-        container.innerHTML = productos.map(p => `
-            <div class="card">
-                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
-                <h3>${p.nombre}</h3>
-                <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
-                <span class="precio-tag">${p.precio}</span>
-                <button class="btn-wa" onclick="enviarCotizacion('${p.nombre}')">Solicitar cotización</button>
-            </div>
-        `).join('');
-    }
+        // 4. RENDERIZAR CATÁLOGO
+        function renderCatalogo() {
+            const container = document.getElementById('grid-catalogo');
+            if(!container) return;
+            container.innerHTML = productos.map(p => `
+                <div class="card">
+                    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
+                    <h3>${p.nombre}</h3>
+                    <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
+                    <span class="precio-tag">${p.precio}</span>
+                    <button class="btn-wa" onclick="enviarCotizacion('${p.nombre}')">Solicitar cotización</button>
+                </div>
+            `).join('');
+        }
 
-    // Actualizamos también el formulario de contacto para que incluya la puerta
-    document.getElementById('formCotizar').onsubmit = (e) => {
-        e.preventDefault();
-        const n = document.getElementById('nombre').value;
-        const s = document.getElementById('servicio').value;
-        const textoFull = `Hola! Soy ${n}. Me interesa: ${s}. Mi puerta es de: ${puertaSeleccionada}`;
-        window.open(`https://wa.me/18094572656?text=${encodeURIComponent(textoFull)}`);
-    };
+        // 5. LÓGICA DEL SLIDER (COMPARATIVA)
+        function initSlider() {
+            const slider = document.getElementById('slider');
+            const afterBox = document.getElementById('after-box');
+            const bar = document.getElementById('bar');
+            const imgL = document.getElementById('img-lockandgo');
 
-    // Esto asegura que todo cargue al abrir la página
-    window.onload = () => {
-        render();
-        if (typeof fix === 'function') fix(); 
-    };
-        // --- MOTOR DE NOTIFICACIONES INTERACTIVAS ---
-        const notiBox = document.getElementById('notification-box');
-        const notiContent = document.getElementById('noti-content');
+            if (!slider || !imgL) return;
 
-       const ventas = [
+            function syncSize() {
+                imgL.style.width = slider.offsetWidth + "px";
+            }
+
+            function mover(e) {
+                let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
+                let r = slider.getBoundingClientRect();
+                let p = ((x - r.left) / r.width) * 100;
+
+                if (p >= 0 && p <= 100) {
+                    afterBox.style.width = p + "%";
+                    bar.style.left = p + "%";
+                }
+            }
+
+            slider.addEventListener('mousemove', mover);
+            slider.addEventListener('touchmove', mover);
+            window.addEventListener('resize', syncSize);
+            syncSize();
+        }
+
+        // 6. FORMULARIO DE CONTACTO
+        document.getElementById('formCotizar').onsubmit = (e) => {
+            e.preventDefault();
+            const n = document.getElementById('nombre').value;
+            const s = document.getElementById('servicio').value;
+            const texto = `Hola! Soy ${n}. Me interesa: ${s}. Mi puerta es de: ${puertaSeleccionada}`;
+            window.open(`https://wa.me/18094572656?text=${encodeURIComponent(texto)}`);
+        };
+
+        // 7. MOTOR DE NOTIFICACIONES
+        const ventas = [
     { nombre: "Carlos Martínez", ciudad: "Santo Domingo", modelo: "V80 PRO" },
     { nombre: "Laura Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
     { nombre: "JUAN RODRIGUEZ", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
@@ -794,29 +823,27 @@ Lo que nos mueve en Lock and Go RD:
     { nombre: "Eros Tejeda", ciudad: "Santiago", modelo: "H18 PRO MAX" }
 ];
 
-        function mostrarNotificacion() {
-            const venta = ventas[Math.floor(Math.random() * ventas.length)];
-            notiContent.innerHTML = `<b>${venta.nombre} de ${venta.ciudad}</b> acaba de cotizar un modelo ${venta.modelo}`;
+        function showNextNotification() {
+            const notiBox = document.getElementById('notification-box');
+            const notiContent = document.getElementById('noti-content');
+            if(!notiBox) return;
+
+            const v = ventas[Math.floor(Math.random() * ventas.length)];
+            notiContent.innerHTML = `<b>${v.nombre}</b> de ${v.ciudad} acaba de cotizar una <b>${v.modelo}</b>`;
             
             notiBox.classList.add('show');
-
-            // Se oculta después de 5 segundos
-            setTimeout(() => {
-                notiBox.classList.remove('show');
-            }, 5000);
+            setTimeout(() => { notiBox.classList.remove('show'); }, 5000);
         }
 
-        // Inicia el ciclo: se muestra cada 100 segundos
-        setInterval(mostrarNotificacion, 100000);
-        
-        // Primera notificación a los 10 segundos de entrar
-        setTimeout(mostrarNotificacion, 10000);
+        // INICIALIZACIÓN TOTAL
+        window.onload = () => {
+            renderCatalogo();
+            initSlider();
+            setInterval(showNextNotification, 12000);
+        };
     </script>
-</body> </html>
-
-
-
-
+</body>
+</html>
 
 
 
