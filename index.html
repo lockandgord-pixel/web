@@ -500,7 +500,25 @@ Lo que nos mueve en Lock and Go RD:
         <a href="https://www.tiktok.com/@lockandgord?" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
         <a href="https://www.facebook.com/lockandgoRD/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
     </div>
-
+    <div id="modalCotizar" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10000; justify-content:center; align-items:center; backdrop-filter:blur(15px); padding: 20px;">
+    <div style="background:#0a0a0a; border:1px solid #00D1FF; padding:40px 30px; border-radius:35px; width:100%; max-width:420px; text-align:center; box-shadow: 0 0 50px rgba(0, 209, 255, 0.2);">
+        
+        <img src="logo1.png" alt="Lock and Go" style="height: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(0, 209, 255, 0.5));">
+        
+        <h3 id="modalTitulo" style="color:#ffffff; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-size: 1.4rem;">COTIZAR MODELO</h3>
+        <p style="font-size:0.85rem; opacity:0.7; margin-bottom:25px; line-height: 1.4;">Para brindarte asesoría personalizada y registrar tu interés, por favor indícanos:</p>
+        
+        <input type="text" id="modalNombre" placeholder="Tu nombre completo" style="width:100%; padding:15px; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; outline:none;">
+        
+        <input type="email" id="modalCorreo" placeholder="Tu correo electrónico" style="width:100%; padding:15px; margin-bottom:25px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; outline:none;">
+        
+        <button onclick="procesarVentaExpress()" style="background:#00D1FF; color:black; border:none; padding:18px; border-radius:50px; width:100%; font-weight:900; cursor:pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;">
+            HABLAR CON UN EXPERTO <i class="fab fa-whatsapp" style="margin-left: 8px;"></i>
+        </button>
+        
+        <p onclick="document.getElementById('modalCotizar').style.display='none'" style="margin-top:20px; font-size:0.75rem; opacity:0.4; cursor:pointer; text-decoration: underline;">Cerrar ventana</p>
+    </div>
+</div>
     <footer>
         <p>&copy; 2026 LOCK AND GO RD | Derechos reservados República Dominicana</p>
     </footer>
@@ -535,11 +553,57 @@ Lo que nos mueve en Lock and Go RD:
     }
 
     // WhatsApp para el catálogo (Venta rápida)
-    function enviarCotizacion(modelo) {
-        const tel = "18094572656";
-        const texto = `Hola Lock and Go RD! 👋 Me interesa el modelo *${modelo}*. Mi puerta es de *${puertaSeleccionada}*. ¿Me podrían dar más información?`;
-        window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
+    let productoTemporal = "";
+
+// Esta función abre el modal cuando dan clic en el catálogo
+function enviarCotizacion(modelo) {
+    productoTemporal = modelo; 
+    document.getElementById('modalTitulo').innerText = "COTIZAR " + modelo;
+    document.getElementById('modalCotizar').style.display = 'flex';
+}
+
+// Esta función procesa los datos y abre WhatsApp
+function procesarVentaExpress() {
+    const nombre = document.getElementById('modalNombre').value;
+    const email = document.getElementById('modalCorreo').value;
+    const btn = event.target.closest('button');
+
+    if(nombre.trim() === "" || email.trim() === "") {
+        alert("Por favor, completa tus datos para recibir la asesoría.");
+        return;
     }
+
+    // Cambiamos el botón para dar feedback al usuario
+    const originalText = btn.innerHTML;
+    btn.innerText = "REGISTRANDO...";
+    btn.disabled = true;
+
+    // 1. Envío silencioso a Google Sheets
+    const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
+    const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}`;
+    
+    fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+    .then(() => {
+        // 2. Abrir WhatsApp después del registro exitoso
+        const tel = "18094572656";
+        const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
+        window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
+        
+        // Limpiar y cerrar
+        document.getElementById('modalCotizar').style.display = 'none';
+        document.getElementById('modalNombre').value = "";
+        document.getElementById('modalCorreo').value = "";
+    })
+    .catch(err => {
+        console.error("Error al registrar:", err);
+        // Si falla el registro, igual abrimos WhatsApp para no perder la venta
+        window.open(`https://wa.me/18094572656?text=Error en registro, pero me interesa ${productoTemporal}`, '_blank');
+    })
+    .finally(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    });
+}
 
     function renderCatalogo() {
         const container = document.getElementById('grid-catalogo');
@@ -963,6 +1027,7 @@ Lo que nos mueve en Lock and Go RD:
 </script>
 </body>
 </html>
+
 
 
 
