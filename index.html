@@ -419,96 +419,128 @@ Lo que nos mueve en Lock and Go RD:
     </div>
 
     <script>
-    // 1. PEGA AQUÍ TU NUEVA URL DE GOOGLE (La que copiaste en el paso anterior)
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxOtSpGMIpuGlLnmv4HfZXsDbUA-vbPVWFjwJC4Yv6H8WEE6jQwJrvRmbIoKP4trr4-JQ/exec';
+    // 1. TU CONFIGURACIÓN (REEMPLAZA ESTA URL POR LA TUYA DE GOOGLE)
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxOtSpGMIpuGlLnmv4HfZXsDbUA-vbPVWFjwJC4Yv6H8WEE6jQwJrvRmbIoKP4trr4-JQ/exec';
 
-const formCotizar = document.getElementById('formCotizar');
+    // 2. PRODUCTOS (ESTO RECONSTRUYE TU CATÁLOGO)
+    const productos = [
+        { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
+        { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+        { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." }
+    ];
 
-formCotizar.onsubmit = (e) => {
-    e.preventDefault();
+    let puertaSeleccionada = "No especificada";
+
+    function seleccionarPuerta(tipo, elemento) {
+        puertaSeleccionada = tipo;
+        document.querySelectorAll('.opcion-puerta').forEach(opt => {
+            opt.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            opt.style.background = 'rgba(255, 255, 255, 0.05)';
+        });
+        elemento.style.borderColor = '#00D1FF';
+        elemento.style.background = 'rgba(0, 209, 255, 0.1)';
+        document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'});
+    }
+
+    // WhatsApp para el catálogo (Venta rápida)
+    function enviarCotizacion(modelo) {
+        const tel = "18094572656";
+        const texto = `Hola Lock and Go RD! 👋 Me interesa el modelo *${modelo}*. Mi puerta es de *${puertaSeleccionada}*. ¿Me podrían dar más información?`;
+        window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
+    }
+
+    function renderCatalogo() {
+        const container = document.getElementById('grid-catalogo');
+        if(!container) return;
+        container.innerHTML = productos.map(p => `
+            <div class="card">
+                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
+                <h3>${p.nombre}</h3>
+                <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
+                <span class="precio-tag">${p.precio}</span>
+                <button class="btn-wa" onclick="enviarCotizacion('${p.nombre}')">Solicitar cotización</button>
+            </div>
+        `).join('');
+    }
+
+    // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
+    function initSlider() {
+        const slider = document.getElementById('slider');
+        const afterBox = document.getElementById('after-box');
+        const bar = document.getElementById('bar');
+        const imgL = document.getElementById('img-lockandgo');
+        if (!slider || !imgL) return;
+        
+        const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
+        
+        const mover = (e) => {
+            let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
+            let r = slider.getBoundingClientRect();
+            let p = ((x - r.left) / r.width) * 100;
+            if (p >= 0 && p <= 100) { 
+                afterBox.style.width = p + "%"; 
+                bar.style.left = p + "%"; 
+            }
+        };
+
+        slider.addEventListener('mousemove', mover);
+        slider.addEventListener('touchmove', mover);
+        window.addEventListener('resize', sync);
+        sync();
+    }
+
+    // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
+    const formCotizar = document.getElementById('formCotizar');
     
-    const btn = formCotizar.querySelector('button');
-    btn.innerText = "ENVIANDO...";
-    btn.disabled = true;
+    formCotizar.onsubmit = function(e) {
+        e.preventDefault();
+        
+        const btn = formCotizar.querySelector('button');
+        btn.innerText = "ENVIANDO SOLICITUD...";
+        btn.disabled = true;
 
-    // Recogemos los datos
-    const nombre = document.getElementById('nombre').value;
-    const email = document.getElementById('correo').value;
-    const servicio = document.getElementById('servicio').value;
-    const mensaje = "Puerta: " + puertaSeleccionada;
+        const nombre = document.getElementById('nombre').value;
+        const email = document.getElementById('correo').value;
+        const servicio = document.getElementById('servicio').value;
+        const mensajeFinal = "Puerta: " + puertaSeleccionada;
 
-    // Creamos la "ruta" con los datos
-    const urlFinal = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=${encodeURIComponent(servicio)}&mensaje=${encodeURIComponent(mensaje)}`;
+        // Construimos la URL para el envío
+        const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=${encodeURIComponent(servicio)}&mensaje=${encodeURIComponent(mensajeFinal)}`;
 
-    // Enviamos a Google
-    fetch(urlFinal, { method: 'GET' }) // Usamos GET que es más sencillo para Google
-    .then(res => {
-        alert("¡REGISTRO EXITOSO! Ya eres parte de nuestro sistema exclusivo.");
-        formCotizar.reset();
-    })
-    .catch(err => {
-        alert("Error de conexión. Verifica que publicaste el script para 'Cualquier persona'.");
-    })
-    .finally(() => {
-        btn.innerText = "ENVIAR SOLICITUD";
-        btn.disabled = false;
-    });
-};
-
-        // Preparamos los datos para Google Sheets
-        // Importante: Los nombres coinciden con tu Apps Script
-        const formData = new FormData();
-        formData.append('nombre', document.getElementById('nombre').value);
-        formData.append('email', document.getElementById('correo').value); // 'email' en el script
-        formData.append('servicio', document.getElementById('servicio').value);
-        formData.append('telefono', 'Ver en WhatsApp/Email'); // Opcional
-        formData.append('mensaje', 'Puerta seleccionada: ' + puertaSeleccionada);
-
-        fetch(scriptURL, { 
-            method: 'POST', 
-            body: new URLSearchParams(formData) 
-        })
-        .then(res => {
-            alert("¡Bienvenido al sistema! Tus datos han sido guardados en nuestra base de datos. Pronto recibirás noticias nuestras.");
+        fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+        .then(() => {
+            alert("¡SOLICITUD REGISTRADA! Ya eres parte de nuestra base de datos exclusiva.");
             formCotizar.reset();
         })
-        .catch(err => {
-            console.error(err);
-            alert("Hubo un error al conectar con la base de datos. Por favor, intenta de nuevo.");
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Hubo un detalle técnico. Pero no te preocupes, intenta de nuevo.");
         })
         .finally(() => {
+            btn.innerText = "ENVIAR SOLICITUD";
             btn.disabled = false;
-            btn.innerText = originalText;
-            btn.style.background = "#00D1FF";
         });
     };
 
-    // --- MOTOR DE NOTIFICACIONES ---
+    // 5. MOTOR DE NOTIFICACIONES
     const ventas = [
         { nombre: "Carlos Martínez", ciudad: "Santo Domingo", modelo: "V80 PRO" },
         { nombre: "Laura Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
-        { nombre: "Juan Rodriguez", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
-        { nombre: "Ana Méndez", ciudad: "Bavaro", modelo: "H18 PRO MAX" },
-        { nombre: "Miguel Santos", ciudad: "Santo Domingo Este", modelo: "V80 PRO" },
-        { nombre: "Elena Guzman", ciudad: "San Francisco", modelo: "AURUM X3 IA" }
+        { nombre: "Juan Rodriguez", ciudad: "Punta Cana", modelo: "H18 PRO MAX" }
     ];
 
     function mostrarNotificacion() {
         const notiBox = document.getElementById('notification-box');
         const notiContent = document.getElementById('noti-content');
-        
         if (notiBox && notiContent) {
             const v = ventas[Math.floor(Math.random() * ventas.length)];
             notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}`;
-            
             notiBox.classList.add('show');
-
-            setTimeout(() => {
-                notiBox.classList.remove('show');
-            }, 5000);
+            setTimeout(() => { notiBox.classList.remove('show'); }, 5000);
         }
     }
 
+    // INICIO DE TODO AL CARGAR LA PÁGINA
     window.addEventListener('DOMContentLoaded', () => {
         renderCatalogo();
         initSlider();
@@ -516,6 +548,9 @@ formCotizar.onsubmit = (e) => {
         setInterval(mostrarNotificacion, 100000);
     });
 </script>
+</body>
+</html>
+
 
 
 
