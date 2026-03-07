@@ -275,31 +275,29 @@
     </section>
 <div style="background: rgba(0, 209, 255, 0.03); border-top: 1px solid rgba(0, 209, 255, 0.2); border-bottom: 1px solid rgba(0, 209, 255, 0.2); padding: 30px 5%; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; backdrop-filter: blur(10px); position: relative; z-index: 20;">
         
-        <div style="text-align: center; min-width: 150px; flex: 1;">
-            <i class="fas fa-shield-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
-            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Garantía Real</h4>
-            <p style="font-size: 0.75rem; opacity: 0.7;">2 Año de respaldo total</p>
+        <div id="seccion-stats" style="padding: 60px 5%; background: rgba(0, 209, 255, 0.02); border-bottom: 1px solid rgba(0, 209, 255, 0.1); position: relative; z-index: 20;">
+    <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-around; gap: 30px; flex-wrap: wrap; text-align: center;">
+        
+        <div style="flex: 1; min-width: 200px;">
+            <i class="fas fa-house-user" style="color: #00D1FF; font-size: 2rem; margin-bottom: 15px; opacity: 0.8;"></i>
+            <h2 class="counter" data-target="1250" style="font-size: 3.5rem; font-weight: 900; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.4); line-height: 1;">0</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-top: 10px; font-weight: 700;">Familias Protegidas</p>
         </div>
 
-        <div style="text-align: center; min-width: 150px; flex: 1;">
-            <i class="fas fa-tools" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
-            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Instalación Certificada</h4>
-            <p style="font-size: 0.75rem; opacity: 0.7;">Técnicos certificados. Cuidamos cada detalle de tu puerta</p>
+        <div style="flex: 1; min-width: 200px;">
+            <i class="fas fa-key" style="color: #00D1FF; font-size: 2rem; margin-bottom: 15px; opacity: 0.8;"></i>
+            <h2 class="counter" data-target="480" style="font-size: 3.5rem; font-weight: 900; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.4); line-height: 1;">0</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-top: 10px; font-weight: 700;">Proyectos Airbnb</p>
         </div>
 
-        <div style="text-align: center; min-width: 150px; flex: 1;">
-            <i class="fas fa-mobile-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
-            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Control total</h4>
-            <p style="font-size: 0.75rem; opacity: 0.7;">Gestiona tu propiedad desde cualquier parte del mundo</p>
-        </div>
-
-        <div style="text-align: center; min-width: 150px; flex: 1;">
-            <i class="fas fa-headset" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
-            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Soporte 24/7</h4>
-            <p style="font-size: 0.75rem; opacity: 0.7;">Estamos a un WhatsApp de distancia siempre</p>
+        <div style="flex: 1; min-width: 200px;">
+            <i class="fas fa-star" style="color: #00D1FF; font-size: 2rem; margin-bottom: 15px; opacity: 0.8;"></i>
+            <h2 class="counter" data-target="99" style="font-size: 3.5rem; font-weight: 900; color: #00D1FF; text-shadow: 0 0 20px rgba(0, 209, 255, 0.4); line-height: 1;">0</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-top: 10px; font-weight: 700;">% Satisfacción</p>
         </div>
 
     </div>
+</div>
     <section id="nosotros">
       <section id="comparativa" style="text-align: center; padding: 40px 5%; background: transparent;">
         <h2 style="font-size: 2.5rem; font-weight: 900; color: #ffffff;">EL CAMBIO ES REAL</h2>
@@ -466,5 +464,72 @@ Lo que nos mueve en Lock and Go RD:
 
         slider.addEventListener('mousemove', moveSlider);
         slider.addEventListener('touchmove', moveSlider);
+        // --- MOTOR DE NOTIFICACIONES INTERACTIVAS ---
+        const notiBox = document.getElementById('notification-box');
+        const notiContent = document.getElementById('noti-content');
+
+        const ventas = [
+            { nombre: "Carlos M.", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+            { nombre: "Laura P.", ciudad: "Santiago", modelo: "AURUM X3 IA" },
+            { nombre: "Juan R.", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
+            { nombre: "Empresa S.A.", ciudad: "La Romana", modelo: "V80 PRO" },
+            { nombre: "Miguel D.", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+            { nombre: "Ana K.", ciudad: "Bavaro", modelo: "H18 PRO MAX" }
+        ];
+
+        function mostrarNotificacion() {
+            const venta = ventas[Math.floor(Math.random() * ventas.length)];
+            notiContent.innerHTML = `<b>${venta.nombre} de ${venta.ciudad}</b> acaba de cotizar un modelo ${venta.modelo}`;
+            
+            notiBox.classList.add('show');
+
+            // Se oculta después de 5 segundos
+            setTimeout(() => {
+                notiBox.classList.remove('show');
+            }, 5000);
+        }
+
+        // Inicia el ciclo: se muestra cada 12 segundos
+        setInterval(mostrarNotificacion, 12000);
+        
+        // Primera notificación a los 3 segundos de entrar
+        setTimeout(mostrarNotificacion, 3000);
     </script>
+    <script>
+    // --- LÓGICA DE CONTADORES ANIMADOS ---
+    const counters = document.querySelectorAll('.counter');
+    const speed = 100; // A menor número, más rápido sube
+
+    const startCounters = () => {
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target + (counter.getAttribute('data-target') == "99" ? "%" : "+");
+                }
+            };
+            updateCount();
+        });
+    };
+
+    // Detectar scroll para activar solo cuando sea visible
+    const observerOptions = { threshold: 0.5 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                startCounters();
+                observer.unobserve(entry.target); // Para que solo anime una vez
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(document.getElementById('seccion-stats'));
+</script>
 </body> </html>
+
