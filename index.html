@@ -496,40 +496,7 @@ Lo que nos mueve en Lock and Go RD:
         setTimeout(mostrarNotificacion, 3000);
     </script>
     <script>
-    // --- LÓGICA DE CONTADORES ANIMADOS ---
-    const counters = document.querySelectorAll('.counter');
-    const speed = 100; // A menor número, más rápido sube
-
-    const startCounters = () => {
-        counters.forEach(counter => {
-            const updateCount = () => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const inc = target / speed;
-
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(updateCount, 20);
-                } else {
-                    counter.innerText = target + (counter.getAttribute('data-target') == "99" ? "%" : "+");
-                }
-            };
-            updateCount();
-        });
-    };
-
-    // Detectar scroll para activar solo cuando sea visible
-    const observerOptions = { threshold: 0.5 };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                startCounters();
-                observer.unobserve(entry.target); // Para que solo anime una vez
-            }
-        });
-    }, observerOptions);
-
-    observer.observe(document.getElementById('seccion-stats'));
-</script>
+    
 </body> </html>
+
 
