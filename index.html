@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="logo1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
-
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
@@ -60,7 +60,7 @@
             align-items: flex-start;
             gap: 5px;
         }
-
+        
         nav ul li a { 
             color: #ffffff !important; 
             text-decoration: none; 
@@ -212,7 +212,7 @@
         .noti-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #00D1FF; }
         .noti-text { font-size: 0.85rem; color: white; line-height: 1.3; }
         .noti-text b { color: #00D1FF; display: block; }
-
+        
         @media (max-width: 480px) {
             #notification-box { bottom: 110px; left: -400px; width: 85%; }
             #notification-box.show { left: 7.5%; }
@@ -328,8 +328,8 @@
         <p style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px;">Controla tu puerta desde cualquier lugar</p>
     </section>
 <div style="background: rgba(0, 209, 255, 0.03); border-top: 1px solid rgba(0, 209, 255, 0.2); border-bottom: 1px solid rgba(0, 209, 255, 0.2); padding: 30px 5%; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; backdrop-filter: blur(10px); position: relative; z-index: 20;">
-
-
+  
+        
         <div style="text-align: center; min-width: 150px; flex: 1;">
             <i class="fas fa-shield-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
             <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Garantía Real</h4>
@@ -361,7 +361,7 @@
         DE LO TRADICIONAL A LO <span style="color: #00D1FF; display: inline-block;">EXTRAORDINARIO</span>
     </h2>
     <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
-
+        
         <div class="comparison-slider" id="slider">
             <img src="antes.jpg.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
 
@@ -371,7 +371,7 @@
 
             <div class="label-before">TRADICIONAL</div>
             <div class="label-after">LOCK AND GO</div>
-
+            
             <div id="bar" class="slider-bar">
                 <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
             </div>
@@ -412,9 +412,9 @@ Lo que nos mueve en Lock and Go RD:
     </section>
 <div style="padding: 60px 5% 20px 5%; text-align: center; background: rgba(0, 209, 255, 0.01); position: relative; z-index: 20;">
     <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; color: #00D1FF; margin-bottom: 40px; font-weight: 700;">Integración Total con tu Smart Lock</p>
-
+    
     <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto;">
-
+        
         <div class="ecosistema-icon">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto 10px; display: block;">
                 <path d="M11 19V9H7V7H17V9H13V19H11Z" fill="#ffffff"/>
@@ -446,13 +446,13 @@ Lo que nos mueve en Lock and Go RD:
         </div>
     </div>
 </div>
-
+    
 <div style="padding: 60px 5%; text-align: center; background: rgba(0, 209, 255, 0.02); position: relative; z-index: 20;">
     <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; color: #00D1FF;">¿QUÉ TIPO DE PUERTA TIENES?</h2>
     <p style="opacity: 0.7; margin-bottom: 40px; font-size: 0.9rem;">Selecciona tu puerta para una cotización exacta:</p>
 
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 1100px; margin: 0 auto;">
-
+        
         <div onclick="seleccionarPuerta('Madera o Melamina', this)" style="flex: 1; min-width: 150px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s;" class="opcion-puerta">
             <i class="fas fa-door-open" style="font-size: 2rem; color: #00D1FF; margin-bottom: 15px;"></i>
             <h4 style="font-size: 0.8rem; text-transform: uppercase;">Madera / Melamina</h4>
@@ -474,7 +474,7 @@ Lo que nos mueve en Lock and Go RD:
         </div>
     </div>
 </div>
-
+    
     <section id="catalogo">
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Selección Lock And Go</h2>
         <div id="grid-catalogo"></div>
@@ -491,7 +491,7 @@ Lo que nos mueve en Lock and Go RD:
     <form id="formCotizar">
         <input type="text" id="nombre" placeholder="Nombre completo / Empresa" required>
         <input type="email" id="correo" placeholder="Correo electrónico corporativo" required>
-
+        
         <select id="servicio" style="background: #05080a; color: white; width: 100%; padding: 18px; border-radius: 12px; margin: 12px 0; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
             <option value="" disabled selected style="background: #05080a;">Selecciona el tipo de solicitud</option>
             <option value="Proyecto Airbnb/Condominio" style="background: #05080a;">Proyectos Airbnb o Condominios</option>
@@ -499,7 +499,7 @@ Lo que nos mueve en Lock and Go RD:
             <option value="Soporte Tecnico" style="background: #05080a;">Soporte Técnico o Instalación</option>
             <option value="Otro" style="background: #05080a;">Otras consultas profesionales</option>
         </select>
-
+        
         <button type="submit" class="btn-form" style="margin-top: 10px;">ENVIAR SOLICITUD PROFESIONAL</button>
     </form>
 </div>
@@ -512,20 +512,20 @@ Lo que nos mueve en Lock and Go RD:
     </div>
     <div id="modalCotizar" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10000; justify-content:center; align-items:center; backdrop-filter:blur(15px); padding: 20px;">
     <div style="background:#0a0a0a; border:1px solid #00D1FF; padding:40px 30px; border-radius:35px; width:100%; max-width:420px; text-align:center; box-shadow: 0 0 50px rgba(0, 209, 255, 0.2);">
-
+        
         <img src="logo1.png" alt="Lock and Go" style="height: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(0, 209, 255, 0.5));">
-
+        
         <h3 id="modalTitulo" style="color:#ffffff; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-size: 1.4rem;">COTIZAR MODELO</h3>
         <p style="font-size:0.85rem; opacity:0.7; margin-bottom:25px; line-height: 1.4;">Para brindarte asesoría personalizada y registrar tu interés, por favor indícanos:</p>
-
+        
         <input type="text" id="modalNombre" placeholder="Tu nombre completo" style="width:100%; padding:15px; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; outline:none;">
-
+        
         <input type="email" id="modalCorreo" placeholder="Tu correo electrónico" style="width:100%; padding:15px; margin-bottom:25px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; outline:none;">
-
+        
         <button onclick="procesarVentaExpress()" style="background:#00D1FF; color:black; border:none; padding:18px; border-radius:50px; width:100%; font-weight:900; cursor:pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;">
             HABLAR CON UN EXPERTO <i class="fab fa-whatsapp" style="margin-left: 8px;"></i>
         </button>
-
+        
         <p onclick="document.getElementById('modalCotizar').style.display='none'" style="margin-top:20px; font-size:0.75rem; opacity:0.4; cursor:pointer; text-decoration: underline;">Cerrar ventana</p>
     </div>
 </div>
@@ -591,14 +591,14 @@ function procesarVentaExpress() {
     // 1. Envío silencioso a Google Sheets
     const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
     const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}`;
-
+    
     fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
     .then(() => {
         // 2. Abrir WhatsApp después del registro exitoso
         const tel = "18094572656";
         const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
         window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
-
+        
         // Limpiar y cerrar
         document.getElementById('modalCotizar').style.display = 'none';
         document.getElementById('modalNombre').value = "";
@@ -636,9 +636,9 @@ function procesarVentaExpress() {
         const bar = document.getElementById('bar');
         const imgL = document.getElementById('img-lockandgo');
         if (!slider || !imgL) return;
-
+        
         const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
-
+        
         const mover = (e) => {
             let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
             let r = slider.getBoundingClientRect();
@@ -657,7 +657,7 @@ function procesarVentaExpress() {
 
     // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
     const formCotizar = document.getElementById('formCotizar');
-
+    
 formCotizar.onsubmit = function(e) {
         e.preventDefault();
         const btn = formCotizar.querySelector('button');
@@ -668,9 +668,7 @@ formCotizar.onsubmit = function(e) {
         grecaptcha.ready(function() {
             // REEMPLAZA 'TU_CLAVE_DE_SITIO_AQUI' con tu código real de Google
             grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
-           // Busca esta línea dentro de tu código de envío y pégala tal cual:
-grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
-
+                
                 const clean = (str) => str.replace(/[<>]/g, "").trim(); 
                 const nombreLimpio = clean(document.getElementById('nombre').value);
                 const correoLimpio = clean(document.getElementById('correo').value);
@@ -679,7 +677,7 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
 
                 // Construimos la URL con el Token de Google incluido
                 const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombreLimpio)}&email=${encodeURIComponent(correoLimpio)}&servicio=${encodeURIComponent(servicioLimpio)}&mensaje=${encodeURIComponent(mensajeFinal)}&token=${token}`;
-
+                
                 fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
                 .then(() => {
                     alert("¡SOLICITUD REGISTRADA! Ya eres parte de nuestra base de datos exclusiva.");
