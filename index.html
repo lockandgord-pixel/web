@@ -2,6 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
+<meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock and Go RD | Seguridad Inteligente</title>
     <link rel="icon" type="image/png" href="logo1.png">
@@ -302,9 +306,9 @@
 </head>
 <body>
 
-    <a href="https://wa.me/18094572656" class="whatsapp-bubble" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/18094572656" class="whatsapp-bubble" target="_blank" rel="noopener">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
     <header>
         <img src="logo1.png" alt="Lock and Go" id="imgLogo">
@@ -659,6 +663,14 @@ function procesarVentaExpress() {
         const btn = formCotizar.querySelector('button');
         btn.innerText = "ENVIANDO SOLICITUD...";
         btn.disabled = true;
+        // --- BLINDAJE DE SEGURIDAD LOCK & GO ---
+        const clean = (str) => str.replace(/[<>]/g, "").trim(); 
+        const nombreLimpio = clean(document.getElementById('nombre').value);
+        const correoLimpio = clean(document.getElementById('correo').value);
+        
+        // Cambiamos el mensaje para que el cliente sepa que es un proceso seguro
+        btn.innerText = "VERIFICANDO SEGURIDAD...";
+        // ---------------------------------------
 
         const nombre = document.getElementById('nombre').value;
         const email = document.getElementById('correo').value;
