@@ -581,36 +581,45 @@ function procesarVentaExpress() {
         return;
     }
 
-    // Cambiamos el botón para dar feedback al usuario
+    // --- INICIO DEL BLINDAJE ---
     const originalText = btn.innerHTML;
-    btn.innerText = "REGISTRANDO...";
+    btn.innerText = "VERIFICANDO SEGURIDAD...";
     btn.disabled = true;
 
-    // 1. Envío silencioso a Google Sheets
-    const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
-    const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}`;
-    
-    fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
-    .then(() => {
-        // 2. Abrir WhatsApp después del registro exitoso
-        const tel = "18094572656";
-        const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
-        window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
-        
-        // Limpiar y cerrar
-        document.getElementById('modalCotizar').style.display = 'none';
-        document.getElementById('modalNombre').value = "";
-        document.getElementById('modalCorreo').value = "";
-    })
-    .catch(err => {
-        console.error("Error al registrar:", err);
-        // Si falla el registro, igual abrimos WhatsApp para no perder la venta
-        window.open(`https://wa.me/18094572656?text=Error en registro, pero me interesa ${productoTemporal}`, '_blank');
-    })
-    .finally(() => {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
+    // Pedimos permiso al sensor de Google
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+            
+            // Si Google dice que es humano, seguimos con el registro
+            btn.innerText = "REGISTRANDO...";
+
+            // 1. Envío silencioso a Google Sheets (Agregamos el token al final)
+            const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
+            const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}&token=${token}`;
+            
+            fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+            .then(() => {
+                // 2. Abrir WhatsApp después del registro exitoso
+                const tel = "18094572656";
+                const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
+                window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
+                
+                // Limpiar y cerrar
+                document.getElementById('modalCotizar').style.display = 'none';
+                document.getElementById('modalNombre').value = "";
+                document.getElementById('modalCorreo').value = "";
+            })
+            .catch(err => {
+                console.error("Error al registrar:", err);
+                window.open(`https://wa.me/18094572656?text=Me interesa ${productoTemporal}`, '_blank');
+            })
+            .finally(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        });
     });
+    // --- FIN DEL BLINDAJE ---
 }
 
     function renderCatalogo() {
