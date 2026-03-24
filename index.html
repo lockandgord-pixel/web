@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
+<meta name="referrer" content="no-referrer-when-downgrade">
     <script src="https://www.google.com/recaptcha/api.js?render=6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock and Go RD | Seguridad Inteligente</title>
@@ -92,38 +94,6 @@
         .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; }
         .card:hover { transform: translateY(-20px); border-color: #00D1FF; }
         .card img { width: 100%; height: 320px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); margin-bottom: 25px; }
-        /* Diseño de la Cuadrícula */
-        #grid-catalogo { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-            margin-top: 50px; 
-        }
-
-        /* Diseño de la Tarjeta (Card) */
-        .card { 
-            background: rgba(255, 255, 255, 0.03); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 35px; 
-            padding: 30px; 
-            text-align: center; 
-            transition: 0.4s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .card:hover { 
-            transform: translateY(-15px); 
-            border-color: #00D1FF; 
-            box-shadow: 0 15px 30px rgba(0, 209, 255, 0.1);
-        }
-
-        .card img { 
-            width: 100%; 
-            height: 250px; 
-            object-fit: contain; 
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-        }
 
         .precio-tag { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
         .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
@@ -357,14 +327,6 @@
         <h1>MÁS PROTECCIÓN, MÁS VIDA.</h1>
         <p style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px;">Controla tu puerta desde cualquier lugar</p>
     </section>
-    <h1 style="line-height: 1.2;">TU HOGAR MERECE UNA <br><span style="color: #00D1FF;">ENTRADA INTELIGENTE</span></h1>
-    <p style="font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; max-width: 800px; margin-top: 15px;">
-        Olvida las llaves para siempre. Controla, autoriza y vigila tu puerta desde cualquier lugar del mundo con Lock and Go RD.
-    </p>
-    <a href="#catalogo" class="btn-wa" style="text-decoration: none; width: auto; margin-top: 30px; padding: 20px 40px; display: inline-block;">
-        VER MODELOS DISPONIBLES <i class="fas fa-arrow-right"></i>
-    </a>
-</section>
 <div style="background: rgba(0, 209, 255, 0.03); border-top: 1px solid rgba(0, 209, 255, 0.2); border-bottom: 1px solid rgba(0, 209, 255, 0.2); padding: 30px 5%; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; backdrop-filter: blur(10px); position: relative; z-index: 20;">
 
 
@@ -621,55 +583,41 @@ function procesarVentaExpress() {
         return;
     }
 
-    // --- INICIO DEL BLINDAJE ---
+    // Cambiamos el botón para dar feedback al usuario
     const originalText = btn.innerHTML;
-    btn.innerText = "VERIFICANDO SEGURIDAD...";
+    btn.innerText = "REGISTRANDO...";
     btn.disabled = true;
 
-    // Pedimos permiso al sensor de Google
-    grecaptcha.ready(function() {
-        grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+    // 1. Envío silencioso a Google Sheets
+    const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
+    const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}`;
 
-            // Si Google dice que es humano, seguimos con el registro
-            btn.innerText = "REGISTRANDO...";
-
-            // 1. Envío silencioso a Google Sheets (Agregamos el token al final)
-            const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
-            const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}&token=${token}`;
-
-           fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+    fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
     .then(() => {
-        // 1. Preparamos el mensaje
+        // 2. Abrir WhatsApp después del registro exitoso
         const tel = "18094572656";
         const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
+        window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
 
-        // 2. RECONDUCIR (Esto es lo que Safari NO bloquea)
-        window.location.href = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
-
-        // 3. Limpiar y cerrar el modal (Opcional, ya que la página se moverá a WhatsApp)
+        // Limpiar y cerrar
         document.getElementById('modalCotizar').style.display = 'none';
         document.getElementById('modalNombre').value = "";
         document.getElementById('modalCorreo').value = "";
     })
-            .catch(err => {
-                console.error("Error al registrar:", err);
-                window.open(`https://wa.me/18094572656?text=Me interesa ${productoTemporal}`, '_blank');
-            })
-            .finally(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            });
-        });
+    .catch(err => {
+        console.error("Error al registrar:", err);
+        // Si falla el registro, igual abrimos WhatsApp para no perder la venta
+        window.open(`https://wa.me/18094572656?text=Error en registro, pero me interesa ${productoTemporal}`, '_blank');
+    })
+    .finally(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
     });
-    // --- FIN DEL BLINDAJE ---
 }
 
     function renderCatalogo() {
-   function renderCatalogo() {
         const container = document.getElementById('grid-catalogo');
         if(!container) return;
-        
-        // Generamos el HTML para cada producto
         container.innerHTML = productos.map(p => `
             <div class="card">
                 <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
@@ -677,22 +625,9 @@ function procesarVentaExpress() {
                 <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
                 <span class="precio-tag">${p.precio}</span>
                 <button class="btn-wa" onclick="enviarCotizacion('${p.nombre}')">Solicitar cotización</button>
-                <div class="card-body">
-                    <h3>${p.nombre}</h3>
-                    <p style="opacity: 0.8; margin-bottom: 15px; font-size: 0.85rem; min-height: 50px;">
-                        ${p.desc}
-                    </p>
-                    <span class="precio-tag">${p.precio}</span>
-                    <button class="btn-wa" onclick="enviarCotizacion('${p.nombre}')">
-                        <i class="fas fa-shopping-cart"></i> SOLICITAR COTIZACIÓN
-                    </button>
-                </div>
             </div>
         `).join('');
     }
-
-    // MUY IMPORTANTE: Ejecutar la función para que los productos aparezcan
-    renderCatalogo();
 
     // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
     function initSlider() {
@@ -731,6 +666,8 @@ formCotizar.onsubmit = function(e) {
 
         // --- EL CERROJO FINAL DE GOOGLE ---
         grecaptcha.ready(function() {
+            // REEMPLAZA 'TU_CLAVE_DE_SITIO_AQUI' con tu código real de Google
+            grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
            // Busca esta línea dentro de tu código de envío y pégala tal cual:
 grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
 
@@ -1086,11 +1023,6 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
     { nombre: "Ciro Silvestre", ciudad: "San Pedro", modelo: "V80 PRO" },
     { nombre: "Dido de la Rosa", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
     { nombre: "Eros Tejeda", ciudad: "Santiago", modelo: "H18 PRO MAX" }
-    const notificaciones = [
-    { nombre: "🇩🇴 Juan M.", ciudad: "Piantini", producto: "V80 PRO" },
-    { nombre: "🇩🇴 María P.", ciudad: "Santiago", producto: "AURUM X3 IA" },
-    { nombre: "🇩🇴 Carlos R.", ciudad: "Bella Vista", producto: "H18 PRO MAX" },
-    { nombre: "🇩🇴 Airbnb Host", ciudad: "Punta Cana", producto: "V80 PRO" }
 ];
 
     function mostrarNotificacion() {
@@ -1111,36 +1043,6 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
         setTimeout(mostrarNotificacion, 10000);
         setInterval(mostrarNotificacion, 100000);
     });
-function mostrarNotificacion() {
-    const box = document.getElementById('notification-box');
-    const content = document.getElementById('noti-content');
-    const random = notificaciones[Math.floor(Math.random() * notificaciones.length)];
-    
-    content.innerHTML = `<b>¡Nueva instalación!</b> ${random.nombre} en ${random.ciudad} acaba de adquirir su ${random.producto}`;
-    
-    box.classList.add('show');
-    setTimeout(() => { box.classList.remove('show'); }, 5000);
-}
-// Mostrar la primera a los 4 segundos
-setTimeout(mostrarNotificacion, 4000);
-setInterval(mostrarNotificacion, 15000); // Cada 15 segundos
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
