@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -597,18 +597,20 @@ function procesarVentaExpress() {
             const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
             const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}&token=${token}`;
             
-            fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
-            .then(() => {
-                // 2. Abrir WhatsApp después del registro exitoso
-                const tel = "18094572656";
-                const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
-                window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
-                
-                // Limpiar y cerrar
-                document.getElementById('modalCotizar').style.display = 'none';
-                document.getElementById('modalNombre').value = "";
-                document.getElementById('modalCorreo').value = "";
-            })
+           fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+    .then(() => {
+        // 1. Preparamos el mensaje
+        const tel = "18094572656";
+        const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
+        
+        // 2. RECONDUCIR (Esto es lo que Safari NO bloquea)
+        window.location.href = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
+        
+        // 3. Limpiar y cerrar el modal (Opcional, ya que la página se moverá a WhatsApp)
+        document.getElementById('modalCotizar').style.display = 'none';
+        document.getElementById('modalNombre').value = "";
+        document.getElementById('modalCorreo').value = "";
+    })
             .catch(err => {
                 console.error("Error al registrar:", err);
                 window.open(`https://wa.me/18094572656?text=Me interesa ${productoTemporal}`, '_blank');
