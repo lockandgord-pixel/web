@@ -667,7 +667,7 @@ formCotizar.onsubmit = function(e) {
         // --- EL CERROJO FINAL DE GOOGLE ---
         grecaptcha.ready(function() {
             // REEMPLAZA 'TU_CLAVE_DE_SITIO_AQUI' con tu código real de Google
-            grecaptcha.execute('TU_CLAVE_DE_SITIO_AQUI', {action: 'submit'}).then(function(token) {
+            grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
                 
                 const clean = (str) => str.replace(/[<>]/g, "").trim(); 
                 const nombreLimpio = clean(document.getElementById('nombre').value);
