@@ -215,81 +215,92 @@
             #notification-box { bottom: 110px; left: -400px; width: 85%; }
             #notification-box.show { left: 7.5%; }
         }
-      /* --- SECCIÓN DE 4 COMPARATIVAS OPTIMIZADA --- */
-        .grid-comparativas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Crea las 4 columnas automáticamente */
-            gap: 25px;
-            padding: 40px 0;
-        }
-
+      /* --- ESTILOS OPTIMIZADOS (SIN ZOOM) --- */
+       /* --- ESTILOS FINALES AJUSTADOS --- */
         .comparison-slider {
             position: relative;
             width: 100%;
-            height: 450px; /* Altura uniforme para los 4 cuadros */
+            max-width: 400px; /* Lo bajamos de 600px a 400px */
+            margin: 20px auto; /* Menos espacio arriba y abajo */
             overflow: hidden;
-            background: #000; 
-            border-radius: 20px;
-            border: 1px solid rgba(0, 209, 255, 0.3);
+            background: transparent; 
             cursor: ew-resize;
-            touch-action: none; /* Crucial para que funcione bien en móviles */
         }
 
         .img-before-fix {
             width: 100%;
-            height: 100%;
-            object-fit: cover; /* Asegura que la foto llene el cuadro sin deformarse */
+            height: auto;
+            object-fit: contain;
             display: block;
+            position: relative; 
+            z-index: 1;
         }
 
-        .after-box {
+        #after-box {
             position: absolute;
             top: 0; left: 0;
             height: 100%;
-            width: 50%; /* Inicio en el medio */
+            width: 50%;
             overflow: hidden;
             z-index: 2;
-            border-right: 3px solid #00D1FF;
-            box-shadow: 5px 0 15px rgba(0, 209, 255, 0.5);
         }
 
-        .img-after-fix {
+        #img-lockandgo {
+            height: 100%;
+            object-fit: contain;
             position: absolute;
             top: 0; left: 0;
-            height: 100%;
-            /* El ancho se ajusta automáticamente por JS para que no se encoja */
-            object-fit: cover; 
+        }
+
+        .slider-bar {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 3px;
+            background: #00D1FF;
+            left: 50%;
+            cursor: ew-resize;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.8);
         }
 
         .slider-button {
             position: absolute;
-            top: 50%; right: -17px;
-            transform: translateY(-50%);
-            width: 35px; height: 35px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35px; /* Botón un poco más pequeño */
+            height: 35px;
             background: #00D1FF;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             color: black; font-size: 14px;
-            box-shadow: 0 0 15px #00D1FF;
-            z-index: 10;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 1);
+            z-index: 101; pointer-events: none;
         }
 
+        /* AJUSTE DE ETIQUETAS: DE VUELTA ARRIBA */
         .label-before, .label-after {
             position: absolute;
-            top: 15px; z-index: 5;
-            padding: 5px 10px;
-            background: rgba(0, 0, 0, 0.7);
+            top: 20px; /* Cambiado de 'bottom' a 'top' */
+            z-index: 10;
+            padding: 5px 12px;
+            background: rgba(0, 0, 0, 0.6);
             border-radius: 5px;
-            font-size: 0.6rem;
+            font-size: 0.65rem; /* Letra un poco más discreta */
             font-weight: 800;
+            backdrop-filter: blur(4px);
             text-transform: uppercase;
         }
-        .label-before { left: 15px; color: #ff4444; }
-        .label-after { right: 15px; color: #00D1FF; }
+        .label-before { left: 20px; color: #ff4444; }
+        .label-after { right: 20px; color: #00D1FF; }
 
-        @media (max-width: 480px) {
-            .comparison-slider { height: 380px; } /* Un poco más bajos en celular */
-        }
+       @media (max-width: 480px) { 
+    .comparison-slider { 
+        max-width: 95%; /* Esto hace que en el celular se vea grande y cómodo */
+        margin: 10px auto; 
+    } 
+    .label-before, .label-after { top: 10px; font-size: 0.55rem; }
+    /* ... mantén lo demás que tengas aquí adentro ... */
+}
     </style>
 </head>
 <body>
@@ -343,86 +354,60 @@
 
     </div>
     <section id="nosotros">
-    <section id="comparativa" style="text-align: center; padding: 40px 5%; background: transparent; overflow: hidden;">
-        <h2 style="font-size: clamp(1.8rem, 8vw, 2.5rem); font-weight: 900; color: #ffffff; width: 100%; margin: 0 auto; line-height: 1.2; word-wrap: break-word; padding: 0 10px;">
-            DE LO TRADICIONAL A LO <span style="color: #00D1FF; display: inline-block;">EXTRAORDINARIO</span>
-        </h2>
-        <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">
-            Desliza para ver la potencia de Lock and Go RD en diferentes instalaciones
-        </p>
+      <section id="comparativa" style="text-align: center; padding: 40px 5%; background: transparent; overflow: hidden;">
+    <h2 style="font-size: clamp(1.8rem, 8vw, 2.5rem); font-weight: 900; color: #ffffff; width: 100%; margin: 0 auto; line-height: 1.2; word-wrap: break-word; padding: 0 10px;">
+        DE LO TRADICIONAL A LO <span style="color: #00D1FF; display: inline-block;">EXTRAORDINARIO</span>
+    </h2>
+    <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
         
-        <div class="grid-comparativas">
+        <div class="comparison-slider" id="slider">
+            <img src="antes.jpg.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
+
+            <div id="after-box">
+                <img src="despues.jpg.jpeg" alt="Lock and Go" id="img-lockandgo">
+            </div>
+
+            <div class="label-before">TRADICIONAL</div>
+            <div class="label-after">LOCK AND GO</div>
             
-            <div class="comparison-slider" data-comp>
-                <img src="antes.jpg.jpeg" class="img-before-fix"> 
-                <div class="after-box">
-                    <img src="despues.jpg.jpeg" class="img-after-fix">
-                </div>
-                <div class="label-before">TRADICIONAL</div>
-                <div class="label-after">LOCK AND GO</div>
-                <div class="slider-bar-new">
-                    <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
-                </div>
+            <div id="bar" class="slider-bar">
+                <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
             </div>
-
-            <div class="comparison-slider" data-comp>
-                <img src="antes2.jpg" class="img-before-fix" onerror="this.src='antes.jpg.jpeg'"> 
-                <div class="after-box">
-                    <img src="despues2.jpg" class="img-after-fix" onerror="this.src='despues.jpg.jpeg'">
-                </div>
-                <div class="label-before">TRADICIONAL</div>
-                <div class="label-after">LOCK AND GO</div>
-                <div class="slider-bar-new">
-                    <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
-                </div>
-            </div>
-
-            <div class="comparison-slider" data-comp>
-                <img src="antes3.jpg" class="img-before-fix" onerror="this.src='antes.jpg.jpeg'"> 
-                <div class="after-box">
-                    <img src="despues3.jpg" class="img-after-fix" onerror="this.src='despues.jpg.jpeg'">
-                </div>
-                <div class="label-before">TRADICIONAL</div>
-                <div class="label-after">LOCK AND GO</div>
-                <div class="slider-bar-new">
-                    <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
-                </div>
-            </div>
-
-            <div class="comparison-slider" data-comp>
-                <img src="antes4.jpg" class="img-before-fix" onerror="this.src='antes.jpg.jpeg'"> 
-                <div class="after-box">
-                    <img src="despues4.jpg" class="img-after-fix" onerror="this.src='despues.jpg.jpeg'">
-                </div>
-                <div class="label-before">TRADICIONAL</div>
-                <div class="label-after">LOCK AND GO</div>
-                <div class="slider-bar-new">
-                    <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
-                </div>
-            </div>
-
         </div>
     </section>
-
-    <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
-    <div class="nosotros-grid">
-        <div class="info-box">
-            <i class="fas fa-bullseye"></i>
-            <h3>Misión</h3>
-            <p>Brindar soluciones de seguridad modernas, accesibles y confiables para hogares, negocios y Airbnb...</p>
+        <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
+        <div class="nosotros-grid">
+            <div class="info-box">
+                <i class="fas fa-bullseye"></i>
+                <h3>Misión</h3>
+                <p>🌟 MISIÓN – Lo que hacemos hoy
+Brindar soluciones de seguridad modernas, accesibles y confiables para hogares, negocios y Airbnb, mediante un servicio profesional, transparente y orientado a la satisfacción total del cliente.
+Nos comprometemos a ofrecer instalaciones precisas, asesoría clara y soporte continuo para garantizar tranquilidad y protección en cada espacio.
+</p>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-eye"></i>
+                <h3>Visión</h3>
+                <p>🚀 VISIÓN – Hacia dónde vamos
+Ser la empresa líder en soluciones de seguridad inteligente en la República Dominicana, reconocida por su formalidad, innovación, excelencia en el servicio y expansión sostenible a nivel nacional.
+Aspiramos a convertirnos en la marca de confianza que transforma la forma en que las personas protegen sus espacios.
+</p>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-medal"></i>
+                <h3>Valores</h3>
+                <p>💙 VALORES
+Lo que nos mueve en Lock and Go RD:
+🔹 Transparencia: hablamos claro y actuamos con honestidad.
+🔹 Innovación: tecnología que facilita tu vida.
+🔹 Responsabilidad: cumplimos, respondemos y damos garantía real.
+🔹 Servicio humano: atención cercana, cálida y profesional.
+🔹 Excelencia técnica: cada instalación, un trabajo bien hecho.
+🔹 Compromiso: estamos cuando nos necesitas.
+</p>
+            </div>
         </div>
-        <div class="info-box">
-            <i class="fas fa-eye"></i>
-            <h3>Visión</h3>
-            <p>Ser la empresa líder en soluciones de seguridad inteligente en la República Dominicana...</p>
-        </div>
-        <div class="info-box">
-            <i class="fas fa-medal"></i>
-            <h3>Valores</h3>
-            <p>🔹 Transparencia 🔹 Innovación 🔹 Responsabilidad 🔹 Servicio humano 🔹 Excelencia técnica 🔹 Compromiso</p>
-        </div>
-    </div>
-</section>
+    </section>
 <div style="padding: 60px 5% 20px 5%; text-align: center; background: rgba(0, 209, 255, 0.01); position: relative; z-index: 20;">
     <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; color: #00D1FF; margin-bottom: 40px; font-weight: 700;">Integración Total con tu Smart Lock</p>
     
@@ -553,10 +538,10 @@
     </div>
 
     <script>
-    // 1. CONFIGURACIÓN
+    // 1. TU CONFIGURACIÓN (REEMPLAZA ESTA URL POR LA TUYA DE GOOGLE)
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxOtSpGMIpuGlLnmv4HfZXsDbUA-vbPVWFjwJC4Yv6H8WEE6jQwJrvRmbIoKP4trr4-JQ/exec';
 
-    // 2. PRODUCTOS
+    // 2. PRODUCTOS (ESTO RECONSTRUYE TU CATÁLOGO)
     const productos = [
         { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
         { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
@@ -564,7 +549,6 @@
     ];
 
     let puertaSeleccionada = "No especificada";
-    let productoTemporal = "";
 
     function seleccionarPuerta(tipo, elemento) {
         puertaSeleccionada = tipo;
@@ -576,44 +560,69 @@
         elemento.style.background = 'rgba(0, 209, 255, 0.1)';
     }
 
-    function enviarCotizacion(modelo) {
-        productoTemporal = modelo; 
-        document.getElementById('modalTitulo').innerText = "COTIZAR " + modelo;
-        document.getElementById('modalCotizar').style.display = 'flex';
+    // WhatsApp para el catálogo (Venta rápida)
+    let productoTemporal = "";
+
+// Esta función abre el modal cuando dan clic en el catálogo
+function enviarCotizacion(modelo) {
+    productoTemporal = modelo; 
+    document.getElementById('modalTitulo').innerText = "COTIZAR " + modelo;
+    document.getElementById('modalCotizar').style.display = 'flex';
+}
+
+// Esta función procesa los datos y abre WhatsApp
+function procesarVentaExpress() {
+    const nombre = document.getElementById('modalNombre').value;
+    const email = document.getElementById('modalCorreo').value;
+    const btn = event.target.closest('button');
+
+    if(nombre.trim() === "" || email.trim() === "") {
+        alert("Por favor, completa tus datos para recibir la asesoría.");
+        return;
     }
 
-    function procesarVentaExpress() {
-        const nombre = document.getElementById('modalNombre').value;
-        const email = document.getElementById('modalCorreo').value;
-        const btn = event.target.closest('button');
+    // --- INICIO DEL BLINDAJE ---
+    const originalText = btn.innerHTML;
+    btn.innerText = "VERIFICANDO SEGURIDAD...";
+    btn.disabled = true;
 
-        if(nombre.trim() === "" || email.trim() === "") {
-            alert("Por favor, completa tus datos.");
-            return;
-        }
+    // Pedimos permiso al sensor de Google
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+            
+            // Si Google dice que es humano, seguimos con el registro
+            btn.innerText = "REGISTRANDO...";
 
-        const originalText = btn.innerHTML;
-        btn.innerText = "VERIFICANDO...";
-        btn.disabled = true;
-
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
-                const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
-                const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}&token=${token}`;
-                
-                fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
-                .then(() => {
-                    const tel = "18094572656";
-                    const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
-                    window.location.href = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
-                })
-                .finally(() => {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                });
+            // 1. Envío silencioso a Google Sheets (Agregamos el token al final)
+            const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
+            const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}&token=${token}`;
+            
+           fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+    .then(() => {
+        // 1. Preparamos el mensaje
+        const tel = "18094572656";
+        const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
+        
+        // 2. RECONDUCIR (Esto es lo que Safari NO bloquea)
+        window.location.href = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
+        
+        // 3. Limpiar y cerrar el modal (Opcional, ya que la página se moverá a WhatsApp)
+        document.getElementById('modalCotizar').style.display = 'none';
+        document.getElementById('modalNombre').value = "";
+        document.getElementById('modalCorreo').value = "";
+    })
+            .catch(err => {
+                console.error("Error al registrar:", err);
+                window.open(`https://wa.me/18094572656?text=Me interesa ${productoTemporal}`, '_blank');
+            })
+            .finally(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             });
         });
-    }
+    });
+    // --- FIN DEL BLINDAJE ---
+}
 
     function renderCatalogo() {
         const container = document.getElementById('grid-catalogo');
@@ -629,35 +638,73 @@
         `).join('');
     }
 
-    // 3. DINÁMICA MULTI-SLIDER (Para las 4 imágenes)
-    function initMultiSliders() {
-        const sliders = document.querySelectorAll('[data-comp]');
-        sliders.forEach(slider => {
-            const afterBox = slider.querySelector('.after-box');
-            const imgAfter = slider.querySelector('.img-after-fix');
-            const bar = slider.querySelector('.slider-bar-new');
+    // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
+    function initSlider() {
+        const slider = document.getElementById('slider');
+        const afterBox = document.getElementById('after-box');
+        const bar = document.getElementById('bar');
+        const imgL = document.getElementById('img-lockandgo');
+        if (!slider || !imgL) return;
+        
+        const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
+        
+        const mover = (e) => {
+            let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
+            let r = slider.getBoundingClientRect();
+            let p = ((x - r.left) / r.width) * 100;
+            if (p >= 0 && p <= 100) { 
+                afterBox.style.width = p + "%"; 
+                bar.style.left = p + "%"; 
+            }
+        };
 
-            const sync = () => { if(imgAfter) imgAfter.style.width = slider.offsetWidth + "px"; };
-            
-            const mover = (e) => {
-                let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
-                let r = slider.getBoundingClientRect();
-                let p = ((x - r.left) / r.width) * 100;
-                if (p >= 0 && p <= 100) { 
-                    if(afterBox) afterBox.style.width = p + "%"; 
-                    if(bar) bar.style.left = p + "%"; 
-                }
-            };
-
-            slider.addEventListener('mousemove', (e) => { if(e.buttons === 1) mover(e); });
-            slider.addEventListener('touchstart', mover);
-            slider.addEventListener('touchmove', mover);
-            window.addEventListener('resize', sync);
-            sync();
-        });
+        slider.addEventListener('mousemove', mover);
+        slider.addEventListener('touchmove', mover);
+        window.addEventListener('resize', sync);
+        sync();
     }
 
-     // 5. MOTOR DE NOTIFICACIONES
+    // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
+    const formCotizar = document.getElementById('formCotizar');
+    
+formCotizar.onsubmit = function(e) {
+        e.preventDefault();
+        const btn = formCotizar.querySelector('button');
+        btn.disabled = true;
+        btn.innerText = "VERIFICANDO SEGURIDAD...";
+
+        // --- EL CERROJO FINAL DE GOOGLE ---
+        grecaptcha.ready(function() {
+           // Busca esta línea dentro de tu código de envío y pégala tal cual:
+grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+                
+                const clean = (str) => str.replace(/[<>]/g, "").trim(); 
+                const nombreLimpio = clean(document.getElementById('nombre').value);
+                const correoLimpio = clean(document.getElementById('correo').value);
+                const servicioLimpio = document.getElementById('servicio').value;
+                const mensajeFinal = "Puerta: " + puertaSeleccionada;
+
+                // Construimos la URL con el Token de Google incluido
+                const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombreLimpio)}&email=${encodeURIComponent(correoLimpio)}&servicio=${encodeURIComponent(servicioLimpio)}&mensaje=${encodeURIComponent(mensajeFinal)}&token=${token}`;
+                
+                fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+                .then(() => {
+                    alert("¡SOLICITUD REGISTRADA! Ya eres parte de nuestra base de datos exclusiva.");
+                    formCotizar.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Hubo un detalle técnico. Intenta de nuevo.");
+                })
+                .finally(() => {
+                    btn.innerText = "ENVIAR SOLICITUD";
+                    btn.disabled = false;
+                });
+            });
+        });
+    };
+
+    // 5. MOTOR DE NOTIFICACIONES
     const ventas = [
     { nombre: "Carlos Martínez", ciudad: "Santo Domingo", modelo: "V80 PRO" },
     { nombre: "Laura Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
@@ -987,53 +1034,22 @@
 
     function mostrarNotificacion() {
         const notiBox = document.getElementById('notification-box');
-        // Usamos el ID exacto que tienes en tu HTML actual o lo creamos
-        if (notiBox) {
+        const notiContent = document.getElementById('noti-content');
+        if (notiBox && notiContent) {
             const v = ventas[Math.floor(Math.random() * ventas.length)];
-            // Aseguramos que el contenido se inyecte correctamente
-            notiBox.innerHTML = `<div id="noti-content" style="color:white; font-size:0.85rem; padding:10px;">
-                <b style="color:#00D1FF;">${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}
-            </div>`;
-            
+            notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}`;
             notiBox.classList.add('show');
-            setTimeout(() => { notiBox.classList.remove('show'); }, 6000);
+            setTimeout(() => { notiBox.classList.remove('show'); }, 5000);
         }
     }
 
-    // 5. INICIO DE TODO
+    // INICIO DE TODO AL CARGAR LA PÁGINA
     window.addEventListener('DOMContentLoaded', () => {
         renderCatalogo();
-        initMultiSliders(); // Activa las comparativas
-        
-        // Primera notificación a los 5 segundos
-        setTimeout(mostrarNotificacion, 5000);
-        // Repetir cada 15 segundos (15000ms)
-        setInterval(mostrarNotificacion, 15000);
+        initSlider();
+        setTimeout(mostrarNotificacion, 10000);
+        setInterval(mostrarNotificacion, 100000);
     });
-
-    // Formulario principal
-    const formCotizar = document.getElementById('formCotizar');
-    if(formCotizar) {
-        formCotizar.onsubmit = function(e) {
-            e.preventDefault();
-            const btn = formCotizar.querySelector('button');
-            btn.disabled = true;
-            btn.innerText = "REGISTRANDO...";
-
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
-                    const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(document.getElementById('nombre').value)}&email=${encodeURIComponent(document.getElementById('correo').value)}&servicio=${encodeURIComponent(document.getElementById('servicio').value)}&mensaje=${encodeURIComponent("Puerta: " + puertaSeleccionada)}&token=${token}`;
-                    fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
-                    .then(() => {
-                        alert("¡SOLICITUD REGISTRADA!");
-                        formCotizar.reset();
-                    })
-                    .finally(() => {
-                        btn.innerText = "ENVIAR SOLICITUD";
-                        btn.disabled = false;
-                    });
-                });
-            });
-        };
-    }
 </script>
+</body>
+</html>
