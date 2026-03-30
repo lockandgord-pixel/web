@@ -311,8 +311,10 @@
     margin-left: -50vw;
     margin-right: -50vw;
     overflow: hidden; 
-    background: #f9f9f9; /* Color de fondo suave */
-    padding: 50px 0; 
+    background: transparent; /* AHORA ES TRANSPARENTE */
+    padding: 20px 0; /* Menos espacio arriba y abajo */
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 /* 2. LA FILA DE FOTOS */
@@ -330,7 +332,9 @@
     border-radius: 15px;
     overflow: hidden;
     flex-shrink: 0;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    /* Sombra más oscura para efecto de flotación */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
+    background: #000; /* Fondo interno negro por si la foto tarda */
 }
 
 /* 4. LA FOTO DE ANTES (FONDO) */
@@ -423,8 +427,8 @@
     </h2>
     <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
         
-      <section id="contenedor-desfile">
-    <h2 style="text-align: center; margin-bottom: 30px;">DE LO TRADICIONAL A LO EXTRAORDINARIO</h2>
+     <section id="contenedor-desfile">
+    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">DE LO TRADICIONAL A LO EXTRAORDINARIO</h2>
     <div id="carrusel-puertas">
         </div>
 </section>
