@@ -217,6 +217,7 @@
         }
       /* --- ESTILOS OPTIMIZADOS (SIN ZOOM) --- */
       /* NUEVO: CARRUSEL PANORÁMICO DE COMPARACIONES */
+/* CONTENEDOR QUE OCUPA TODO EL ANCHO DE PANTALLA */
 .carousel-container {
     width: 100vw;
     position: relative;
@@ -225,90 +226,66 @@
     margin-left: -50vw;
     margin-right: -50vw;
     overflow: hidden;
-    background: rgba(0, 209, 255, 0.02);
     padding: 40px 0;
+    background: black;
 }
 
+/* LA CINTA QUE SE MUEVE DE EXTREMO A EXTREMO */
 .carousel-track {
     display: flex;
     gap: 30px;
     width: max-content;
-    animation: scrollInfinito 60s linear infinite; /* Más lento para apreciar el escaneo */
+    animation: scrollInfinito 30s linear infinite;
 }
 
-/* Pausar al pasar el mouse para que el cliente vea el detalle */
-.carousel-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes escanear {
-    0% {
-        width: 10%; /* Casi todo "Antes" */
-    }
-    100% {
-        width: 90%; /* Casi todo "Después" */
-    }
-}
-
+/* Cada cuadro de comparación */
 .mini-slider {
     position: relative;
-    width: 350px; /* Tamaño de cada comparación */
-    height: 450px;
-    border-radius: 20px;
+    width: 350px; /* Ancho fijo de la foto */
+    height: 450px; /* Alto fijo */
+    border-radius: 15px;
     overflow: hidden;
-    border: 1px solid rgba(0, 209, 255, 0.3);
     flex-shrink: 0;
+    border: 1px solid #333;
 }
 
 .mini-slider img {
-    width: 100%;
-    height: 100%;
+    width: 350px; /* IMPORTANTE: Mismo ancho que el padre */
+    height: 450px;
     object-fit: cover;
+    display: block;
 }
 
+/* La cortina del DESPUÉS */
 .after-img {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%; /* Empezará en la mitad */
     height: 100%;
     overflow: hidden;
-    border-right: 3px solid #00D1FF;
-    box-shadow: 10px 0 20px rgba(0, 209, 255, 0.4);
-    
-    /* ESTA ES LA MAGIA: Animación de escaneo automático */
-    animation: escanear 4s ease-in-out infinite alternate;
+    border-right: 4px solid #00D1FF;
+    box-shadow: 5px 0 20px rgba(0, 209, 255, 0.6);
+    z-index: 2;
+    /* Animación de escaneo total */
+    animation: escanearFoto 5s ease-in-out infinite alternate;
 }
 
+/* Asegura que la imagen interna NO se mueva ni se encoja */
 .after-img img {
-    width: 320px; /* Debe ser igual al ancho de .mini-slider */
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: none; 
 }
-        /* AJUSTE DE ETIQUETAS: DE VUELTA ARRIBA */
-        .label-before, .label-after {
-            position: absolute;
-            top: 20px; /* Cambiado de 'bottom' a 'top' */
-            z-index: 10;
-            padding: 5px 12px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 5px;
-            font-size: 0.65rem; /* Letra un poco más discreta */
-            font-weight: 800;
-            backdrop-filter: blur(4px);
-            text-transform: uppercase;
-        }
-        .label-before { left: 20px; color: #ff4444; }
-        .label-after { right: 20px; color: #00D1FF; }
 
-       @media (max-width: 480px) { 
-    .comparison-slider { 
-        max-width: 95%; /* Esto hace que en el celular se vea grande y cómodo */
-        margin: 10px auto; 
-    } 
-    .label-before, .label-after { top: 10px; font-size: 0.55rem; }
-    /* ... mantén lo demás que tengas aquí adentro ... */
+@keyframes escanearFoto {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+@keyframes scrollInfinito {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Ajuste para loop infinito */
 }
     </style>
 </head>
@@ -363,11 +340,13 @@
 
     </div>
     <section id="nosotros">
-     <section id="comparativa" style="text-align: center; padding: 60px 0;">
-    <h2 style="font-size: 2.5rem; font-weight: 900; color: #ffffff; margin-bottom: 10px;">
-        NUESTROS <span style="color: #00D1FF;">TRABAJOS</span>
-    </h2>
-    <p style="opacity: 0.7; margin-bottom: 40px;">Resultados reales en toda República Dominicana</p>
+    <section id="comparativa" style="background: #000; padding: 60px 0; overflow: hidden;">
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h2 style="font-size: 2rem; color: #fff; font-weight: 900;">
+            RESULTADOS <span style="color: #00D1FF;">REALES</span>
+        </h2>
+        <p style="color: #ccc;"> visualiza las transformaciones Lock and Go</p>
+    </div>
 
     <div class="carousel-container">
         <div class="carousel-track" id="panoramico-track">
@@ -637,35 +616,32 @@ function procesarVentaExpress() {
         `).join('');
     }
 
-   // 3. NUEVO: MOTOR DE CARRUSEL PANORÁMICO (ANTES vs DESPUÉS)
-    // Aquí agregas todas las parejas de fotos que tengas
-    const comparaciones = [
-        { antes: 'antes.jpg.jpeg', despues: 'despues.jpg.jpeg' },
-        { antes: 'antes2.jpg', despues: 'despues2.jpg' },
-        { antes: 'antes.jpg.jpeg', despues: 'despues.jpg.jpeg' },
-        { antes: 'antes2.jpg', despues: 'despues2.jpg' }
-    ];
+  // 3. MOTOR DE CARRUSEL PANORÁMICO
+const comparaciones = [
+    { antes: 'antes.jpg.jpeg', despues: 'despues.jpg.jpeg' },
+    { antes: 'antes2.jpeg', despues: 'despues2.jpeg' },
+];
 
-    function initCarruselPanoramico() {
-        const track = document.getElementById('panoramico-track');
-        if (!track) return;
+function initCarruselPanoramico() {
+    const track = document.getElementById('panoramico-track');
+    if (!track) return;
 
-        // Duplicamos el contenido para que el desplazamiento sea infinito sin saltos
-        const listaParaRenderizar = [...comparaciones, ...comparaciones];
+    // Para que el carrusel sea infinito y largo, repetimos el array
+    const listaLarga = [...comparaciones, ...comparaciones, ...comparaciones];
 
-        track.innerHTML = listaParaRenderizar.map(item => `
-    <div class="mini-slider">
-        <img src="${item.antes}" alt="Antes" onerror="this.src='antes.jpg.jpeg'">
-        
-        <div class="after-img">
-            <img src="${item.despues}" alt="Después" onerror="this.src='despues.jpg.jpeg'">
+    track.innerHTML = listaLarga.map(item => `
+        <div class="mini-slider">
+            <img src="${item.antes}" alt="Antes" onerror="this.src='antes.jpg.jpeg'">
+            
+            <div class="after-img">
+                <img src="${item.despues}" alt="Después" onerror="this.src='despues.jpg.jpeg'">
+            </div>
+            
+            <div style="position:absolute; bottom:10px; left:10px; background:black; color:white; font-size:10px; padding:4px 8px; border-radius:4px; z-index:10;">TRADICIONAL</div>
+            <div style="position:absolute; bottom:10px; right:10px; background:#00D1FF; color:black; font-size:10px; padding:4px 8px; border-radius:4px; font-weight:bold; z-index:10;">LOCK AND GO</div>
         </div>
-        
-        <div style="position:absolute; bottom:15px; left:15px; background:rgba(0,0,0,0.8); color:white; font-size:10px; padding:5px 10px; border-radius:5px; z-index:10; border:1px solid rgba(255,255,255,0.2);">ANTES</div>
-        <div style="position:absolute; bottom:15px; right:15px; background:#00D1FF; color:black; font-size:10px; padding:5px 10px; border-radius:5px; font-weight:bold; z-index:10; box-shadow: 0 0 10px #00D1FF;">DESPUÉS</div>
-    </div>
-`).join('');
-    }
+    `).join('');
+}
     // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
     const formCotizar = document.getElementById('formCotizar');
     
