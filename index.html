@@ -2,236 +2,1054 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lock & Go RD | Seguridad Inteligente Blindada</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Lock and Go RD | Seguridad Inteligente</title>
+    <link rel="icon" type="image/png" href="logo1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --dark-steel: #121416; /* Negro industrial */
-            --blue-steel: #2c3e50;  /* Azul seguridad */
-            --action-orange: #ff6b00; /* Color de alerta/acción */
-            --white: #ffffff;
-            --gray-bg: #f4f7f6;
-            --success-green: #27ae60;
-            --danger-red: #e74c3c;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background-color: #05080a;
+            color: white;
+            overflow-x: hidden;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', sans-serif; background-color: var(--white); color: var(--dark-steel); line-height: 1.6; scroll-behavior: smooth;}
-        
-        h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 800; }
-
-        /* --- HERO: IMPACTO DE AUTORIDAD --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1920');
+        /* FONDO MAESTRO */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fondo1.jpeg');
             background-size: cover;
             background-position: center;
-            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 20px;
+            background-attachment: fixed;
+            z-index: -1;
         }
-        .hero-content { max-width: 900px; animation: fadeInUp 1s ease; }
-        .hero h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); text-transform: uppercase; line-height: 1; margin-bottom: 20px; letter-spacing: -2px; }
-        .hero p { font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9; font-weight: 300; }
-        
-        .btn-cta {
-            background: var(--action-orange);
-            color: white;
-            padding: 22px 50px;
-            font-size: 1.4rem;
-            font-weight: 900;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3);
-        }
-        .btn-cta:hover { background: #e65c00; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 107, 0, 0.5); }
 
-        /* --- FEATURES: LA DEMOSTRACIÓN --- */
-        .specs { padding: 100px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .spec-card { text-align: center; padding: 50px 30px; border: 1px solid #eee; border-radius: 10px; transition: 0.3s; background: white; }
-        .spec-card:hover { border-color: var(--action-orange); box-shadow: 0 20px 40px rgba(0,0,0,0.05); transform: translateY(-5px); }
-        .spec-card i { font-size: 4rem; color: var(--blue-steel); margin-bottom: 25px; }
-        .spec-card h3 { font-size: 1.6rem; margin-bottom: 15px; color: var(--dark-steel); }
-
-        /* --- COMPARATIVA: LA TABLA DE AUTORIDAD --- */
-        .comparison { padding: 100px 20px; background: var(--gray-bg); text-align: center; }
-        .comparison h2 { font-size: 2.8rem; margin-bottom: 50px; text-transform: uppercase; }
-        
-        .table-wrap { max-width: 950px; margin: 0 auto; overflow-x: auto; background: white; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
-        table { width: 100%; border-collapse: collapse; min-width: 650px; }
-        th, td { padding: 25px; text-align: center; border-bottom: 1px solid #eee; }
-        th { background: var(--dark-steel); color: white; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
-        .f-name { text-align: left; font-weight: bold; background: #fbfbfb; width: 35%; color: var(--blue-steel); }
-        .our-p { background: rgba(255, 107, 0, 0.03); font-weight: bold; border-left: 2px solid rgba(255,107,0,0.1); border-right: 2px solid rgba(255,107,0,0.1); }
-        .check { color: var(--success-green); font-size: 1.6rem; }
-        .cross { color: var(--danger-red); font-size: 1.6rem; }
-
-        /* --- GARANTÍA: EL CIERRE DE CONFIANZA --- */
-        .guarantee {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, var(--blue-steel) 0%, var(--dark-steel) 100%);
-            color: white;
-            text-align: center;
-        }
-        .guarantee-content {
-            max-width: 800px;
-            margin: 0 auto;
+        header {
+            position: absolute;
+            top: 0; width: 100%;
+            background: transparent;
+            padding: 20px 5%;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            gap: 30px;
+            z-index: 2000;
         }
-        .guarantee-shield {
-            font-size: 6rem;
-            color: var(--action-orange);
-            filter: drop-shadow(0 0 15px rgba(255, 107, 0, 0.5));
-        }
-        .guarantee h2 { font-size: 2.8rem; text-transform: uppercase; color: var(--white); }
-        .guarantee p { font-size: 1.3rem; opacity: 0.9; font-weight: 300; max-width: 600px; }
 
-        /* --- CONTACTO / CTA FINAL --- */
-        .contact { padding: 100px 20px; max-width: 650px; margin: 0 auto; text-align: center; }
-        .contact h2 { font-size: 2.8rem; margin-bottom: 15px; text-transform: uppercase; }
+        #imgLogo { 
+            height: 180px;
+            width: auto;
+            filter: drop-shadow(0 0 25px rgba(0, 209, 255, 0.7)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+            mix-blend-mode: lighten;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
         
-        input, select { width: 100%; padding: 18px; margin-bottom: 18px; border: 1px solid #ddd; border-radius: 5px; font-size: 1.1rem; font-family: 'Roboto', sans-serif; }
-        input:focus, select:focus { border-color: var(--action-orange); outline: none; }
-        
-        .btn-final {
-            width: 100%;
-            background: var(--dark-steel);
+        nav ul li a { 
+            color: #ffffff !important; 
+            text-decoration: none; 
+            font-weight: 800; 
+            font-size: 1rem; 
+            text-transform: uppercase; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            display: block; 
+            white-space: nowrap;
+        }
+
+        section { padding: 100px 10%; position: relative; z-index: 10; }
+
+        .hero { 
+            height: 90vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+        }
+
+        .hero h1 { font-size: 3.5rem; font-weight: 900; color: #ffffff; text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); }
+
+        .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .info-box { background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; transition: 0.4s; }
+        .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
+        .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
+
+        #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
+        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; }
+        .card:hover { transform: translateY(-20px); border-color: #00D1FF; }
+        .card img { width: 100%; height: 320px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); margin-bottom: 25px; }
+
+        .precio-tag { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
+        .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
+
+        .formulario-container { max-width: 650px; margin: 0 auto; background: rgba(0, 0, 0, 0.5); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        input, select { 
+            width: 100%; 
+            padding: 18px; 
+            margin: 12px 0; 
+            border-radius: 12px; 
+            background: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+            color: white; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            outline: none;
+            appearance: none; /* Quita el estilo por defecto del sistema */
+        }
+
+        /* Esto corrige el color de las opciones dentro de la lista */
+        select option {
+            background-color: #0a0a0a; /* Fondo oscuro para que se vea el texto blanco */
             color: white;
-            border: none;
-            padding: 22px;
-            font-size: 1.4rem;
-            font-weight: 900;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
+            padding: 10px;
+        }
+
+        input:focus, select:focus {
+            border-color: #00D1FF;
+            background: rgba(0, 209, 255, 0.05);
+        }
+        .btn-form { background: #00D1FF; color: black; border: none; padding: 20px; border-radius: 12px; font-weight: 900; width: 100%; cursor: pointer; text-transform: uppercase; }
+
+        .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-decoration: none; transition: 0.3s; }
+        .whatsapp-bubble i { color: white; font-size: 45px; }
+
+        .social-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            color: white;
+            font-size: 2.5rem;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+        }
+
+        .social-icon:hover {
+            color: #00D1FF;
+            transform: scale(1.2) translateY(-5px);
+            filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.6));
+        }
+
+        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+/* --- NUEVO: ANIMACIÓN DE ECOSISTEMAS --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .ecosistema-icon {
+            text-align: center;
+            width: 90px;
+            transition: all 0.3s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Desfase para que se muevan de forma asíncrona */
+        .ecosistema-icon:nth-child(even) { animation-delay: 1s; }
+        .ecosistema-icon:nth-child(3) { animation-delay: 2s; }
+
+        .ecosistema-icon i, .ecosistema-icon img {
+            font-size: 2.2rem;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+            margin-bottom: 10px;
+        }
+
+        .ecosistema-icon:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.6));
+        }
+        @media (max-width: 480px) {
+            body::before { background-attachment: scroll !important; height: 100%; position: fixed; background-size: cover; }
+            header { flex-direction: row; align-items: flex-start; padding: 15px 5%; z-index: 3000; }
+            #imgLogo { height: 110px !important; margin-top: 5px; }
+            nav ul { margin-top: 15px; }
+            nav ul li a { font-size: 0.8rem; }
+            .hero { padding-top: 160px; justify-content: flex-start; height: auto; min-height: 70vh; }
+            .hero h1 { font-size: 1.9rem; line-height: 1.1; margin-bottom: 15px; }
+            .info-box, .card, .formulario-container { background: rgba(0, 0, 0, 0.7) !important; backdrop-filter: blur(5px); border: 1px solid rgba(0, 209, 255, 0.3); }
+            h2.titulo { font-size: 2.2rem; margin-top: 20px; }
+            .social-container { gap: 25px; }
+            .social-icon { font-size: 2rem; }
+        }
+        /* NOTIFICACIONES DE VENTA */
+        #notification-box {
+            position: fixed;
+            bottom: 30px;
+            left: -400px; /* Escondido al inicio */
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00D1FF;
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 9999;
+            transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 209, 255, 0.2);
+        }
+        #notification-box.show { left: 30px; }
+        .noti-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #00D1FF; }
+        .noti-text { font-size: 0.85rem; color: white; line-height: 1.3; }
+        .noti-text b { color: #00D1FF; display: block; }
+        
+        @media (max-width: 480px) {
+            #notification-box { bottom: 110px; left: -400px; width: 85%; }
+            #notification-box.show { left: 7.5%; }
+        }
+      /* --- ESTILOS OPTIMIZADOS (SIN ZOOM) --- */
+       /* --- ESTILOS FINALES AJUSTADOS --- */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            max-width: 400px; /* Lo bajamos de 600px a 400px */
+            margin: 20px auto; /* Menos espacio arriba y abajo */
+            overflow: hidden;
+            background: transparent; 
+            cursor: ew-resize;
+        }
+
+        .img-before-fix {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            position: relative; 
+            z-index: 1;
+        }
+
+        #after-box {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        #img-lockandgo {
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        .slider-bar {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 3px;
+            background: #00D1FF;
+            left: 50%;
+            cursor: ew-resize;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.8);
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35px; /* Botón un poco más pequeño */
+            height: 35px;
+            background: #00D1FF;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: black; font-size: 14px;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 1);
+            z-index: 101; pointer-events: none;
+        }
+
+        /* AJUSTE DE ETIQUETAS: DE VUELTA ARRIBA */
+        .label-before, .label-after {
+            position: absolute;
+            top: 20px; /* Cambiado de 'bottom' a 'top' */
+            z-index: 10;
+            padding: 5px 12px;
+            background: rgba(0, 0, 0, 0.6);
             border-radius: 5px;
+            font-size: 0.65rem; /* Letra un poco más discreta */
+            font-weight: 800;
+            backdrop-filter: blur(4px);
+            text-transform: uppercase;
         }
-        .btn-final:hover { background: var(--action-orange); transform: scale(1.02); }
+        .label-before { left: 20px; color: #ff4444; }
+        .label-after { right: 20px; color: #00D1FF; }
 
-        footer { background: #111; color: rgba(255,255,255,0.6); padding: 50px; text-align: center; font-size: 0.9rem; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* RESPONSIVE MÓVIL */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .hero p { font-size: 1.1rem; }
-            .btn-cta { padding: 18px 30px; font-size: 1.2rem; }
-            .comparison h2, .guarantee h2, .contact h2 { font-size: 2rem; }
-        }
+       @media (max-width: 480px) { 
+    .comparison-slider { 
+        max-width: 95%; /* Esto hace que en el celular se vea grande y cómodo */
+        margin: 10px auto; 
+    } 
+    .label-before, .label-after { top: 10px; font-size: 0.55rem; }
+    /* ... mantén lo demás que tengas aquí adentro ... */
+}
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Tu tranquilidad no es negociable</h1>
-            <p>Blindaje Grado 3 Anti-Bumping y Anti-Taladro para Lock & Go RD. Protección real e invulnerable para tu hogar o negocio.</p>
-            <a href="#comparar" class="btn-cta">Ver Blindaje PRO</a>
-        </div>
+    <a href="https://wa.me/18094572656" class="whatsapp-bubble" target="_blank" rel="noopener">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+    <header>
+        <img src="logo1.png" alt="Lock and Go" id="imgLogo">
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="specs">
-        <div class="spec-card">
-            <i class="fas fa-user-shield"></i>
-            <h3>Certificación Grado 3</h3>
-            <p>Probada bajo estándares internacionales contra ataques forzosos de alta intensidad.</p>
+    <section id="inicio" class="hero">
+        <h1>MÁS PROTECCIÓN, MÁS VIDA.</h1>
+        <p style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px;">Controla tu puerta desde cualquier lugar</p>
+    </section>
+<div style="background: rgba(0, 209, 255, 0.03); border-top: 1px solid rgba(0, 209, 255, 0.2); border-bottom: 1px solid rgba(0, 209, 255, 0.2); padding: 30px 5%; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; backdrop-filter: blur(10px); position: relative; z-index: 20;">
+  
+        
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-shield-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Garantía Real</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">2 Año de respaldo total</p>
         </div>
-        <div class="spec-card">
-            <i class="fas fa-user-lock"></i>
-            <h3>Tecnología Anti-Bumping</h3>
-            <p>Mecanismo de pines asimétricos que neutraliza la técnica de apertura más usada por intrusos.</p>
+
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-tools" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Instalación Certificada</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Técnicos certificados. Cuidamos cada detalle de tu puerta</p>
         </div>
-        <div class="spec-card">
-            <i class="fas fa-file-contract"></i>
-            <h3>Llaves Incopiables</h3>
-            <p>Duplicado controlado solo en centro autorizado Lock & Go RD mediante tarjeta de propiedad única.</p>
+
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-mobile-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Control total</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Gestiona tu propiedad desde cualquier parte del mundo</p>
+        </div>
+
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-headset" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Soporte 24/7</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Estamos a un WhatsApp de distancia siempre</p>
+        </div>
+
+    </div>
+    <section id="nosotros">
+      <section id="comparativa" style="text-align: center; padding: 40px 5%; background: transparent; overflow: hidden;">
+    <h2 style="font-size: clamp(1.8rem, 8vw, 2.5rem); font-weight: 900; color: #ffffff; width: 100%; margin: 0 auto; line-height: 1.2; word-wrap: break-word; padding: 0 10px;">
+        DE LO TRADICIONAL A LO <span style="color: #00D1FF; display: inline-block;">EXTRAORDINARIO</span>
+    </h2>
+    <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
+        
+        <div class="comparison-slider" id="slider">
+            <img src="antes.jpg.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
+
+            <div id="after-box">
+                <img src="despues.jpg.jpeg" alt="Lock and Go" id="img-lockandgo">
+            </div>
+
+            <div class="label-before">TRADICIONAL</div>
+            <div class="label-after">LOCK AND GO</div>
+            
+            <div id="bar" class="slider-bar">
+                <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
+            </div>
         </div>
     </section>
-
-    <section id="comparar" class="comparison">
-        <h2>¿Por qué somos la opción más segura en RD?</h2>
-        <div class="table-wrap">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Característica Técnica</th>
-                        <th>Cerradura Común</th>
-                        <th class="our-p">Lock & Go Blindada PRO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="f-name">Sistema Anti-Bumping Real</td>
-                        <td><i class="fas fa-times-circle cross"></i></td>
-                        <td class="our-p"><i class="fas fa-check-circle check"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="f-name">Escudo Protector de Acero Mn.</td>
-                        <td><i class="fas fa-times-circle cross"></i></td>
-                        <td class="our-p"><i class="fas fa-check-circle check"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="f-name">Control de Copia de Llave</td>
-                        <td>Libre (Cualquier cerrajería)</td>
-                        <td class="our-p">Tarjeta de Propiedad Única</td>
-                    </tr>
-                    <tr>
-                        <td class="f-name">Pines de Aleación Endurecida</td>
-                        <td>3-4 pines de latón</td>
-                        <td class="our-p">12+ pines de acero</td>
-                    </tr>
-                    <tr>
-                        <td class="f-name">Garantía de Intrusión</td>
-                        <td>No aplica</td>
-                        <td class="our-p">Garantía de por Vida</td>
-                    </tr>
-                </tbody>
-            </table>
+        <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
+        <div class="nosotros-grid">
+            <div class="info-box">
+                <i class="fas fa-bullseye"></i>
+                <h3>Misión</h3>
+                <p>🌟 MISIÓN – Lo que hacemos hoy
+Brindar soluciones de seguridad modernas, accesibles y confiables para hogares, negocios y Airbnb, mediante un servicio profesional, transparente y orientado a la satisfacción total del cliente.
+Nos comprometemos a ofrecer instalaciones precisas, asesoría clara y soporte continuo para garantizar tranquilidad y protección en cada espacio.
+</p>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-eye"></i>
+                <h3>Visión</h3>
+                <p>🚀 VISIÓN – Hacia dónde vamos
+Ser la empresa líder en soluciones de seguridad inteligente en la República Dominicana, reconocida por su formalidad, innovación, excelencia en el servicio y expansión sostenible a nivel nacional.
+Aspiramos a convertirnos en la marca de confianza que transforma la forma en que las personas protegen sus espacios.
+</p>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-medal"></i>
+                <h3>Valores</h3>
+                <p>💙 VALORES
+Lo que nos mueve en Lock and Go RD:
+🔹 Transparencia: hablamos claro y actuamos con honestidad.
+🔹 Innovación: tecnología que facilita tu vida.
+🔹 Responsabilidad: cumplimos, respondemos y damos garantía real.
+🔹 Servicio humano: atención cercana, cálida y profesional.
+🔹 Excelencia técnica: cada instalación, un trabajo bien hecho.
+🔹 Compromiso: estamos cuando nos necesitas.
+</p>
+            </div>
         </div>
     </section>
-
-    <section class="guarantee">
-        <div class="guarantee-content">
-            <i class="fas fa-award guarantee-shield"></i>
-            <h2>Garantía Blindada Lock & Go RD</h2>
-            <p>Riesgo Cero para ti. Si nuestros expertos no pueden instalarla en tu puerta, o si no te sientes 100% seguro con tu nueva cerradura blindada, te devolvemos tu inversión inmediatamente. **Tu seguridad está garantizada.**</p>
+<div style="padding: 60px 5% 20px 5%; text-align: center; background: rgba(0, 209, 255, 0.01); position: relative; z-index: 20;">
+    <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; color: #00D1FF; margin-bottom: 40px; font-weight: 700;">Integración Total con tu Smart Lock</p>
+    
+    <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto;">
+        
+        <div class="ecosistema-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto 10px; display: block;">
+                <path d="M11 19V9H7V7H17V9H13V19H11Z" fill="#ffffff"/>
+                <circle cx="18.5" cy="5.5" r="1.5" fill="#00D1FF"/>
+                <path d="M21 5C21 3.34315 19.6569 2 18 2" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                <path d="M22 8C22 5.79086 20.2091 4 18 4" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+            </svg>
+            <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">TUYA SMART</p>
         </div>
+
+        <div class="ecosistema-icon">
+            <i class="fas fa-unlock-alt" style="color: #ffffff;"></i>
+            <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">TTLOCK</p>
+        </div>
+
+        <div class="ecosistema-icon">
+            <i class="fab fa-amazon" style="color: #ffffff;"></i>
+            <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">ALEXA</p>
+        </div>
+
+        <div class="ecosistema-icon">
+            <i class="fab fa-google" style="color: #ffffff;"></i>
+            <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">GOOGLE HOME</p>
+        </div>
+
+        <div class="ecosistema-icon">
+            <i class="fas fa-video" style="color: #ffffff;"></i>
+            <p style="font-size: 0.65rem; font-weight: 800; opacity: 0.8;">ICSEE HOME</p>
+        </div>
+    </div>
+</div>
+    
+<div style="padding: 60px 5%; text-align: center; background: rgba(0, 209, 255, 0.02); position: relative; z-index: 20;">
+    <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; color: #00D1FF;">¿QUÉ TIPO DE PUERTA TIENES?</h2>
+    <p style="opacity: 0.7; margin-bottom: 40px; font-size: 0.9rem;">Selecciona tu puerta para una cotización exacta:</p>
+
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 1100px; margin: 0 auto;">
+        
+        <div onclick="seleccionarPuerta('Madera o Melamina', this)" style="flex: 1; min-width: 150px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s;" class="opcion-puerta">
+            <i class="fas fa-door-open" style="font-size: 2rem; color: #00D1FF; margin-bottom: 15px;"></i>
+            <h4 style="font-size: 0.8rem; text-transform: uppercase;">Madera / Melamina</h4>
+        </div>
+
+        <div onclick="seleccionarPuerta('Polimetal', this)" style="flex: 1; min-width: 150px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s;" class="opcion-puerta">
+            <i class="fas fa-border-all" style="font-size: 2rem; color: #00D1FF; margin-bottom: 15px;"></i>
+            <h4 style="font-size: 0.8rem; text-transform: uppercase;">Polimetal</h4>
+        </div>
+
+        <div onclick="seleccionarPuerta('Metal o Hierro', this)" style="flex: 1; min-width: 150px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s;" class="opcion-puerta">
+            <i class="fas fa-hammer" style="font-size: 2rem; color: #00D1FF; margin-bottom: 15px;"></i>
+            <h4 style="font-size: 0.8rem; text-transform: uppercase;">Metal / Hierro</h4>
+        </div>
+
+        <div onclick="seleccionarPuerta('Multilock de Seguridad', this)" style="flex: 1; min-width: 150px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s;" class="opcion-puerta">
+            <i class="fas fa-shield-alt" style="font-size: 2rem; color: #00D1FF; margin-bottom: 15px;"></i>
+            <h4 style="font-size: 0.8rem; text-transform: uppercase;">Multilock</h4>
+        </div>
+    </div>
+</div>
+    
+    <section id="catalogo">
+        <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Selección Lock And Go</h2>
+        <div id="grid-catalogo"></div>
     </section>
 
-    <section id="contacto" class="contact">
-        <h2>Protege tu propiedad hoy mismo</h2>
-        <p style="margin-bottom: 25px; opacity: 0.8;">Un experto en seguridad blindada te contactará en menos de 24 horas.</p>
-        <form>
-            <input type="text" placeholder="Tu Nombre Completo" required>
-            <input type="tel" placeholder="Teléfono de Contacto" required>
-            <select required>
-                <option value="" disabled selected>Tipo de propiedad...</option>
-                <option value="residencial">Residencial (Casa/Depto)</option>
-                <option value="comercial">Comercial (Negocio)</option>
-                <option value="industrial">Industrial</option>
-            </select>
-            <button type="submit" class="btn-final">SOLICITAR COTIZACIÓN DE SEGURIDAD</button>
-        </form>
+  <section id="contacto" style="padding: 100px 5%; background: rgba(0,0,0,0.3);">
+       <div class="formulario-container">
+    <h2 style="font-size: 1.8rem; font-weight: 900; color: #00D1FF; margin-bottom: 15px; text-transform: uppercase;">
+        ¿PROYECTO ESPECIAL O SOPORTE TÉCNICO?
+    </h2>
+    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 25px; line-height: 1.5;">
+        Déjanos tus datos y un experto corporativo de Lock and Go RD te contactará para brindarte asesoría de alto nivel.
+    </p>
+    <form id="formCotizar">
+        <input type="text" id="nombre" placeholder="Nombre completo / Empresa" required>
+        <input type="email" id="correo" placeholder="Correo electrónico corporativo" required>
+        
+        <select id="servicio" style="background: #05080a; color: white; width: 100%; padding: 18px; border-radius: 12px; margin: 12px 0; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
+            <option value="" disabled selected style="background: #05080a;">Selecciona el tipo de solicitud</option>
+            <option value="Proyecto Airbnb/Condominio" style="background: #05080a;">Proyectos Airbnb o Condominios</option>
+            <option value="Constructoras" style="background: #05080a;">Cotización para Constructoras</option>
+            <option value="Soporte Tecnico" style="background: #05080a;">Soporte Técnico o Instalación</option>
+            <option value="Otro" style="background: #05080a;">Otras consultas profesionales</option>
+        </select>
+        
+        <button type="submit" class="btn-form" style="margin-top: 10px;">ENVIAR SOLICITUD PROFESIONAL</button>
+    </form>
+</div>
     </section>
-
+    <div class="social-container">
+        <a href="https://wa.me/18094572656" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/lockandgord/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@lockandgord?" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/lockandgoRD/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+    </div>
+    <div id="modalCotizar" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10000; justify-content:center; align-items:center; backdrop-filter:blur(15px); padding: 20px;">
+    <div style="background:#0a0a0a; border:1px solid #00D1FF; padding:40px 30px; border-radius:35px; width:100%; max-width:420px; text-align:center; box-shadow: 0 0 50px rgba(0, 209, 255, 0.2);">
+        
+        <img src="logo1.png" alt="Lock and Go" style="height: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(0, 209, 255, 0.5));">
+        
+        <h3 id="modalTitulo" style="color:#ffffff; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-size: 1.4rem;">COTIZAR MODELO</h3>
+        <p style="font-size:0.85rem; opacity:0.7; margin-bottom:25px; line-height: 1.4;">Para brindarte asesoría personalizada y registrar tu interés, por favor indícanos:</p>
+        
+        <input type="text" id="modalNombre" placeholder="Tu nombre completo" style="width:100%; padding:15px; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; outline:none;">
+        
+        <input type="email" id="modalCorreo" placeholder="Tu correo electrónico" style="width:100%; padding:15px; margin-bottom:25px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; outline:none;">
+        
+        <button onclick="procesarVentaExpress()" style="background:#00D1FF; color:black; border:none; padding:18px; border-radius:50px; width:100%; font-weight:900; cursor:pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;">
+            HABLAR CON UN EXPERTO <i class="fab fa-whatsapp" style="margin-left: 8px;"></i>
+        </button>
+        
+        <p onclick="document.getElementById('modalCotizar').style.display='none'" style="margin-top:20px; font-size:0.75rem; opacity:0.4; cursor:pointer; text-decoration: underline;">Cerrar ventana</p>
+    </div>
+</div>
     <footer>
-        <div style="margin-bottom: 15px;">
-            <img src="https://via.placeholder.com/150x50/111111/ff6b00?text=Lock+%26+Go+RD" alt="Logo Lock & Go RD" style="max-height: 40px; opacity: 0.5;">
-        </div>
-        &copy; 2026 Lock & Go RD - Santo Domingo, República Dominicana. Expertos en Blindaje de Alta Seguridad.
+        <p>&copy; 2026 LOCK AND GO RD | Derechos reservados República Dominicana</p>
     </footer>
 
+    <div id="notification-box">
+        <img src="logo1.png" class="noti-img" alt="Venta">
+        <div class="noti-text" id="noti-content">
+            </div>
+    </div>
+
+    <script>
+    // 1. TU CONFIGURACIÓN (REEMPLAZA ESTA URL POR LA TUYA DE GOOGLE)
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxOtSpGMIpuGlLnmv4HfZXsDbUA-vbPVWFjwJC4Yv6H8WEE6jQwJrvRmbIoKP4trr4-JQ/exec';
+
+    // 2. PRODUCTOS (ESTO RECONSTRUYE TU CATÁLOGO)
+    const productos = [
+        { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
+        { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+        { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." }
+    ];
+
+    let puertaSeleccionada = "No especificada";
+
+    function seleccionarPuerta(tipo, elemento) {
+        puertaSeleccionada = tipo;
+        document.querySelectorAll('.opcion-puerta').forEach(opt => {
+            opt.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            opt.style.background = 'rgba(255, 255, 255, 0.05)';
+        });
+        elemento.style.borderColor = '#00D1FF';
+        elemento.style.background = 'rgba(0, 209, 255, 0.1)';
+    }
+
+    // WhatsApp para el catálogo (Venta rápida)
+    let productoTemporal = "";
+
+// Esta función abre el modal cuando dan clic en el catálogo
+function enviarCotizacion(modelo) {
+    productoTemporal = modelo; 
+    document.getElementById('modalTitulo').innerText = "COTIZAR " + modelo;
+    document.getElementById('modalCotizar').style.display = 'flex';
+}
+
+// Esta función procesa los datos y abre WhatsApp
+function procesarVentaExpress() {
+    const nombre = document.getElementById('modalNombre').value;
+    const email = document.getElementById('modalCorreo').value;
+    const btn = event.target.closest('button');
+
+    if(nombre.trim() === "" || email.trim() === "") {
+        alert("Por favor, completa tus datos para recibir la asesoría.");
+        return;
+    }
+
+    // --- INICIO DEL BLINDAJE ---
+    const originalText = btn.innerHTML;
+    btn.innerText = "VERIFICANDO SEGURIDAD...";
+    btn.disabled = true;
+
+    // Pedimos permiso al sensor de Google
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+            
+            // Si Google dice que es humano, seguimos con el registro
+            btn.innerText = "REGISTRANDO...";
+
+            // 1. Envío silencioso a Google Sheets (Agregamos el token al final)
+            const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
+            const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}&token=${token}`;
+            
+           fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+    .then(() => {
+        // 1. Preparamos el mensaje
+        const tel = "18094572656";
+        const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
+        
+        // 2. RECONDUCIR (Esto es lo que Safari NO bloquea)
+        window.location.href = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
+        
+        // 3. Limpiar y cerrar el modal (Opcional, ya que la página se moverá a WhatsApp)
+        document.getElementById('modalCotizar').style.display = 'none';
+        document.getElementById('modalNombre').value = "";
+        document.getElementById('modalCorreo').value = "";
+    })
+            .catch(err => {
+                console.error("Error al registrar:", err);
+                window.open(`https://wa.me/18094572656?text=Me interesa ${productoTemporal}`, '_blank');
+            })
+            .finally(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        });
+    });
+    // --- FIN DEL BLINDAJE ---
+}
+
+    function renderCatalogo() {
+        const container = document.getElementById('grid-catalogo');
+        if(!container) return;
+        container.innerHTML = productos.map(p => `
+            <div class="card">
+                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
+                <h3>${p.nombre}</h3>
+                <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
+                <span class="precio-tag">${p.precio}</span>
+                <button class="btn-wa" onclick="enviarCotizacion('${p.nombre}')">Solicitar cotización</button>
+            </div>
+        `).join('');
+    }
+
+    // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
+    function initSlider() {
+        const slider = document.getElementById('slider');
+        const afterBox = document.getElementById('after-box');
+        const bar = document.getElementById('bar');
+        const imgL = document.getElementById('img-lockandgo');
+        if (!slider || !imgL) return;
+        
+        const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
+        
+        const mover = (e) => {
+            let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
+            let r = slider.getBoundingClientRect();
+            let p = ((x - r.left) / r.width) * 100;
+            if (p >= 0 && p <= 100) { 
+                afterBox.style.width = p + "%"; 
+                bar.style.left = p + "%"; 
+            }
+        };
+
+        slider.addEventListener('mousemove', mover);
+        slider.addEventListener('touchmove', mover);
+        window.addEventListener('resize', sync);
+        sync();
+    }
+
+    // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
+    const formCotizar = document.getElementById('formCotizar');
+    
+formCotizar.onsubmit = function(e) {
+        e.preventDefault();
+        const btn = formCotizar.querySelector('button');
+        btn.disabled = true;
+        btn.innerText = "VERIFICANDO SEGURIDAD...";
+
+        // --- EL CERROJO FINAL DE GOOGLE ---
+        grecaptcha.ready(function() {
+           // Busca esta línea dentro de tu código de envío y pégala tal cual:
+grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+                
+                const clean = (str) => str.replace(/[<>]/g, "").trim(); 
+                const nombreLimpio = clean(document.getElementById('nombre').value);
+                const correoLimpio = clean(document.getElementById('correo').value);
+                const servicioLimpio = document.getElementById('servicio').value;
+                const mensajeFinal = "Puerta: " + puertaSeleccionada;
+
+                // Construimos la URL con el Token de Google incluido
+                const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombreLimpio)}&email=${encodeURIComponent(correoLimpio)}&servicio=${encodeURIComponent(servicioLimpio)}&mensaje=${encodeURIComponent(mensajeFinal)}&token=${token}`;
+                
+                fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+                .then(() => {
+                    alert("¡SOLICITUD REGISTRADA! Ya eres parte de nuestra base de datos exclusiva.");
+                    formCotizar.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Hubo un detalle técnico. Intenta de nuevo.");
+                })
+                .finally(() => {
+                    btn.innerText = "ENVIAR SOLICITUD";
+                    btn.disabled = false;
+                });
+            });
+        });
+    };
+
+    // 5. MOTOR DE NOTIFICACIONES
+    const ventas = [
+    { nombre: "Carlos Martínez", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+    { nombre: "Laura Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
+    { nombre: "JUAN RODRIGUEZ", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
+    { nombre: "Constructora Global S.A.", ciudad: "La Romana", modelo: "V80 PRO" },
+    { nombre: "miguel de los santos", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Ana k. Méndez", ciudad: "Bavaro", modelo: "H18 PRO MAX" },
+    { nombre: "Roberto Figueroa", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Elena Guzman P.", ciudad: "San Francisco", modelo: "AURUM X3 IA" },
+    { nombre: "Inversiones R&M, SRL", ciudad: "Santo Domingo", modelo: "H18 PRO MAX" },
+    { nombre: "pedro sanchez", ciudad: "Bani", modelo: "V80 PRO" },
+    { nombre: "Lucia Hernandez", ciudad: "Moca", modelo: "AURUM X3 IA" },
+    { nombre: "Marcos Tejada", ciudad: "La Vega", modelo: "H18 PRO MAX" },
+    { nombre: "Sonia Vargas", ciudad: "Bonao", modelo: "V80 PRO" },
+    { nombre: "DISTRIBUIDORA NACIONAL", ciudad: "Santiago", modelo: "AURUM X3 IA" },
+    { nombre: "Andres Lora", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Carla de Beras", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+    { nombre: "Jose Nunez", ciudad: "San Cristobal", modelo: "AURUM X3 IA" },
+    { nombre: "Marta Quezada", ciudad: "Azua", modelo: "H18 PRO MAX" },
+    { nombre: "Raul Williams", ciudad: "Barahona", modelo: "V80 PRO" },
+    { nombre: "Sofia Ximenez", ciudad: "Nagua", modelo: "AURUM X3 IA" },
+    { nombre: "Luis Javier", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Tech Solutions SRL", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+    { nombre: "Gabriel Castillo", ciudad: "Santiago", modelo: "AURUM X3 IA" },
+    { nombre: "Patricia Mejia R.", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
+    { nombre: "Fernando Alcantara", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+    { nombre: "Rosa Isela", ciudad: "La Romana", modelo: "AURUM X3 IA" },
+    { nombre: "Jorge Espinal", ciudad: "Bavaro", modelo: "H18 PRO MAX" },
+    { nombre: "daniela ortega", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Manuel Yepez", ciudad: "Puerto Plata", modelo: "AURUM X3 IA" },
+    { nombre: "Beatriz Ureña", ciudad: "Santo Domingo Este", modelo: "H18 PRO MAX" },
+    { nombre: "XAVIER GUERRERO", ciudad: "Santiago", modelo: "V80 PRO" },
+    { nombre: "Yolanda Fermin", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Zacarías Polanco", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
+    { nombre: "Agencia Estrella EIRL", ciudad: "La Romana", modelo: "V80 PRO" },
+    { nombre: "Bernardo kaufman", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Clara Santana", ciudad: "Moca", modelo: "H18 PRO MAX" },
+    { nombre: "Diego Lopez", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "Esteban Rosario", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "fabiola marte", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Gerardo Novas", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+    { nombre: "Hilda Jimenez", ciudad: "Santiago", modelo: "AURUM X3 IA" },
+    { nombre: "Ivan Batista", ciudad: "La Vega", modelo: "H18 PRO MAX" },
+    { nombre: "Julia de la Rosa", ciudad: "Bani", modelo: "V80 PRO" },
+    { nombre: "Kevin Diaz", ciudad: "Azua", modelo: "AURUM X3 IA" },
+    { nombre: "Leticia Valerio", ciudad: "Puerto Plata", modelo: "H18 PRO MAX" },
+    { nombre: "MARIO CABRERA", ciudad: "San Cristobal", modelo: "V80 PRO" },
+    { nombre: "Nora Garcia", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Oscar Troncoso", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Paola Espaillat", ciudad: "Nagua", modelo: "V80 PRO" },
+    { nombre: "Quirino Ramirez", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Ramon Luciano", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Silvia Pichardo", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Tomas Ozuna", ciudad: "La Romana", modelo: "AURUM X3 IA" },
+    { nombre: "Ursula Frías", ciudad: "Bavaro", modelo: "H18 PRO MAX" },
+    { nombre: "Victor Ml. Ruiz", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+    { nombre: "Wendy Suazo", ciudad: "Santiago", modelo: "AURUM X3 IA" },
+    { nombre: "Xiomara Abreu", ciudad: "Puerto Plata", modelo: "H18 PRO MAX" },
+    { nombre: "Yair Jimenez", ciudad: "Santo Domingo Este", modelo: "V80 PRO" },
+    { nombre: "Zulema Nina", ciudad: "La Vega", modelo: "AURUM X3 IA" },
+    { nombre: "Alpha Group RD", ciudad: "Santo Domingo", modelo: "H18 PRO MAX" },
+    { nombre: "Beto Kury", ciudad: "Santiago", modelo: "V80 PRO" },
+    { nombre: "Cynthia de Leon", ciudad: "Punta Cana", modelo: "AURUM X3 IA" },
+    { nombre: "David Xavier", ciudad: "Bavaro", modelo: "H18 PRO MAX" },
+    { nombre: "Elias Heredia", ciudad: "La Romana", modelo: "V80 PRO" },
+    { nombre: "Flora Gomez", ciudad: "San Francisco", modelo: "AURUM X3 IA" },
+    { nombre: "Gustavo Bisono", ciudad: "Bonao", modelo: "H18 PRO MAX" },
+    { nombre: "Heidi Lara", ciudad: "Higüey", modelo: "V80 PRO" },
+    { nombre: "Isaac Robles", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Jacobo Peynado", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Karen Morales", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Liam Sanchez", ciudad: "San Cristobal", modelo: "AURUM X3 IA" },
+    { nombre: "Miranda Flores", ciudad: "Santo Domingo Este", modelo: "H18 PRO MAX" },
+    { nombre: "Nestor Vasquez", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Olga Taveras", ciudad: "Bani", modelo: "AURUM X3 IA" },
+    { nombre: "Pavel Quezada", ciudad: "Azua", modelo: "H18 PRO MAX" },
+    { nombre: "Raquel Castillo", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+    { nombre: "Samuel de Moya", ciudad: "Santiago", modelo: "AURUM X3 IA" },
+    { nombre: "Tatiana Rivas", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
+    { nombre: "Uriel Belliard", ciudad: "Bavaro", modelo: "V80 PRO" },
+    { nombre: "Valeria Noble", ciudad: "La Romana", modelo: "AURUM X3 IA" },
+    { nombre: "WALTER ZAPATA", ciudad: "San Pedro", modelo: "H18 PRO MAX" },
+    { nombre: "Ximena Lora", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+    { nombre: "Yago Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
+    { nombre: "Zoe Guerrero", ciudad: "Puerto Plata", modelo: "H18 PRO MAX" },
+    { nombre: "Importadora Global RD", ciudad: "Santo Domingo", modelo: "V80 PRO" },
+    { nombre: "Adrian Marte", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Belinda Sosa", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
+    { nombre: "Cesar King", ciudad: "Santiago", modelo: "V80 PRO" },
+    { nombre: "Doris de Lancer", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Edgar Ferreras", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Fany Rojas", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "Gael Torres", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Hanna Beltré", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Iker Nova", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Jana Paredes", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "Kurt Vicini", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Lola Grullon", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Milo Caminero", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Nina Ximenez", ciudad: "Bani", modelo: "H18 PRO MAX" },
+    { nombre: "Omar Ramos", ciudad: "Azua", modelo: "V80 PRO" },
+    { nombre: "Perla Diaz", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Rocco Saviñon", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Sara Mota", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Tito Luna", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Una Paulino", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Vidal Bonilla", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Wilma kouri", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Xavi Rodriguez", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Yara Gonzalez", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Zion Felix", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Comercializadora J.D.", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Abel Quezada", ciudad: "Nagua", modelo: "V80 PRO" },
+    { nombre: "Brisa Marat", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Claudio Suriel", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Dalia de los Rios", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Emilio Tactuk", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Frida Pimentel", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Gino Lluberes", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "HELENA NICOLAS", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Ismael Baldera", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Jade Vargas", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Kenzo Garcia", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "Lia Fermin", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Marcos Salcedo", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Nuria de Castro", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Otto Duran", ciudad: "Bani", modelo: "H18 PRO MAX" },
+    { nombre: "Pia Xenes", ciudad: "Azua", modelo: "V80 PRO" },
+    { nombre: "Remo Rosario", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Santi Liriano", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Tania Prida", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Ulises Montero", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Vera Sosa", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Willy Brea", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Xena kemp", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Yuri Reinoso", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Zaid Gomez", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Inmobiliaria H. Hernandez", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Alan Mota", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Belen Polanco", ciudad: "Nagua", modelo: "V80 PRO" },
+    { nombre: "Caio Silverio", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Dina Rivas", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Enzo Tejada", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Fina Lizardo", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Gari Portes", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Hada Brito", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "Indira Nova", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Jairo Genao", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Katia Vasquez", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Leon Frías", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "Mona Suero", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Nico Cordero", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Olga de la Cruz", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Pepe Xid", ciudad: "Bani", modelo: "H18 PRO MAX" },
+    { nombre: "Rina Ramirez", ciudad: "Azua", modelo: "V80 PRO" },
+    { nombre: "Saul Ledesma", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Teo Paredes", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Uma Montes", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Vico de los Santos", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Wanda Bisono", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Xun K.", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Yago Rojas", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Zira Garcia", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Logística Express Dom", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Ariel Medina", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Berta Peña", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Ciro Silvestre", ciudad: "Nagua", modelo: "V80 PRO" },
+    { nombre: "Dana de la Rosa", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Erik Tejeda", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Fito Lantigua", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Gema Pineda", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Hans Beltrán", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Ines de la Nuez", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "Joel Guerrero", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Kyra Valdés", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Luan F.", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Maya Solano", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "Noel de Castro", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Oria Duran", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Polo Xenes", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Ruby Ramirez", ciudad: "Bani", modelo: "H18 PRO MAX" },
+    { nombre: "Sacha Liriano", ciudad: "Azua", modelo: "V80 PRO" },
+    { nombre: "Tito Paulino", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Uzi Mejia", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Vida Suazo", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Wolf B.", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Xara Kemp", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Yosef Reinoso", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Zora Gomez", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Servicios VIP RD", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Alba Marte", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Bruno Peralta", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Cleo Suriel", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Dante Rios", ciudad: "Nagua", modelo: "V80 PRO" },
+    { nombre: "Elsa Tactuk", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Fico Lluberes", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Gigi Pimentel", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Hugo Brea", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Irma Nicolas", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Jean Guerrero", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "Kora Valerio", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Lino Fermin", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Mila Salcedo", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Nico de Castro", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "Olaf Duran", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Pina Xid", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Roque Ramirez", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Suri Ledesma", ciudad: "Bani", modelo: "H18 PRO MAX" },
+    { nombre: "Tano Paredes", ciudad: "Azua", modelo: "V80 PRO" },
+    { nombre: "Uda Montes", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Vito de los Santos", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Wally Bisono", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Xilo K.", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Yuri Rojas", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Zaza Garcia", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Consultora Z", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Aldo Medina", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Bibi Peña", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Cato Silvestre", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Dora de la Rosa", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Eddy Tejeda", ciudad: "Nagua", modelo: "V80 PRO" },
+    { nombre: "Fay Lantigua", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Gus Pineda", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Hope Beltrán", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Ian de la Nuez", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Joy Guerrero", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Kimi Valdés", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "Lex F.", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Mia Solano", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Noa de Castro", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Oz Duran", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "Pam Xenes", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Ray Ramirez", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Sky Liriano", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Tex Paulino", ciudad: "Bani", modelo: "H18 PRO MAX" },
+    { nombre: "Umi Mejia", ciudad: "Azua", modelo: "V80 PRO" },
+    { nombre: "Val Suazo", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Wes B.", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Xia Kemp", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Yen Reinoso", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Zen Gomez", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Grupo Inova SRL", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Ada Marte", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Bob Peralta", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Cris Suriel", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Dot Rios", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Eli Tactuk", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Flo Lluberes", ciudad: "Nagua", modelo: "V80 PRO" },
+    { nombre: "Gil Pimentel", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Huy Brea", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Ira Nicolas", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Jon Guerrero", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Kip Valerio", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Luz Fermin", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "Max Salcedo", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Nia de Castro", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Ody Duran", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Paz Xid", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "Rio Ramirez", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Sol Ledesma", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Tia Paredes", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Urú Montes", ciudad: "Bani", modelo: "H18 PRO MAX" },
+    { nombre: "Vic de los Santos", ciudad: "Azua", modelo: "V80 PRO" },
+    { nombre: "Wyn Bisono", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Xon K.", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Yul Rojas", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Zoe Garcia", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Loma Linda SRL", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Ari Medina", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Ben Peña", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Cas Silvestre", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Dee de la Rosa", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Ema Tejeda", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Fe Lantigua", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Gus Pineda", ciudad: "Nagua", modelo: "V80 PRO" },
+    { nombre: "Han Beltrán", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Ida de la Nuez", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Joe Guerrero", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Kai Valdés", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Leo F.", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "May Solano", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "Nan de Castro", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Obi Duran", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Pue Xenes", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Ria Ramirez", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "Sia Liriano", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Tom Paulino", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Uba Mejia", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Van Suazo", ciudad: "Bani", modelo: "H18 PRO MAX" },
+    { nombre: "Wes B.", ciudad: "Azua", modelo: "V80 PRO" },
+    { nombre: "Xiu Kemp", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Yen Reinoso", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Zen Gomez", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Constructora RD", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Alf Medina", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Bea Peña", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Cid Silvestre", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Dom de la Rosa", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Ebi Tejeda", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Fez Lantigua", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Gia Pineda", ciudad: "Samaná", modelo: "H18 PRO MAX" },
+    { nombre: "Hao Beltrán", ciudad: "Nagua", modelo: "V80 PRO" },
+    { nombre: "Iva de la Nuez", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Jia Guerrero", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Koa Valdés", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Lue F.", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Mue Solano", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Nao de Castro", ciudad: "San Francisco", modelo: "V80 PRO" },
+    { nombre: "Opa Duran", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Pao Xenes", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Rui Ramirez", ciudad: "La Vega", modelo: "V80 PRO" },
+    { nombre: "Sea Liriano", ciudad: "Bonao", modelo: "AURUM X3 IA" },
+    { nombre: "Tia Paulino", ciudad: "Higüey", modelo: "H18 PRO MAX" },
+    { nombre: "Ura Mejia", ciudad: "Puerto Plata", modelo: "V80 PRO" },
+    { nombre: "Vea Suazo", ciudad: "Santo Domingo Este", modelo: "AURUM X3 IA" },
+    { nombre: "Woa B.", ciudad: "Bani", modelo: "H18 PRO MAX" },
+    { nombre: "Xia Kemp", ciudad: "Azua", modelo: "V80 PRO" },
+    { nombre: "Yua Reinoso", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Zia Gomez", ciudad: "Santiago", modelo: "H18 PRO MAX" },
+    { nombre: "Inversiones del Este S.A.", ciudad: "Punta Cana", modelo: "V80 PRO" },
+    { nombre: "Abba Medina", ciudad: "Bavaro", modelo: "AURUM X3 IA" },
+    { nombre: "Baco Peña", ciudad: "La Romana", modelo: "H18 PRO MAX" },
+    { nombre: "Ciro Silvestre", ciudad: "San Pedro", modelo: "V80 PRO" },
+    { nombre: "Dido de la Rosa", ciudad: "Santo Domingo", modelo: "AURUM X3 IA" },
+    { nombre: "Eros Tejeda", ciudad: "Santiago", modelo: "H18 PRO MAX" }
+];
+
+    function mostrarNotificacion() {
+        const notiBox = document.getElementById('notification-box');
+        const notiContent = document.getElementById('noti-content');
+        if (notiBox && notiContent) {
+            const v = ventas[Math.floor(Math.random() * ventas.length)];
+            notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}`;
+            notiBox.classList.add('show');
+            setTimeout(() => { notiBox.classList.remove('show'); }, 5000);
+        }
+    }
+
+    // INICIO DE TODO AL CARGAR LA PÁGINA
+    window.addEventListener('DOMContentLoaded', () => {
+        renderCatalogo();
+        initSlider();
+        setTimeout(mostrarNotificacion, 10000);
+        setInterval(mostrarNotificacion, 100000);
+    });
+</script>
 </body>
 </html>
