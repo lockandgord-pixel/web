@@ -303,10 +303,15 @@
 }
 /* EFECTO DESFILE Y CORTINA AUTOMÁTICA */
 #contenedor-desfile { 
-    width: 100%; 
+    width: 100vw; /* Ocupa todo el ancho de la ventana del navegador */
     overflow: hidden; 
-    background: #000; 
+    background: transparent; /* Eliminamos el fondo negro */
     padding: 60px 0; 
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 #carrusel-puertas { 
     display: flex; 
@@ -315,14 +320,14 @@
 }
 .puerta-box {
     position: relative;
-    width: 350px; /* Ancho de cada foto en el desfile */
-    height: 500px;
-    border-radius: 15px;
+    width: 380px; /* Ancho de cada foto en el desfile */
+    height: 550px; /* Alto de las fotos */
+    border-radius: 10px; /* Un borde más suave */
     overflow: hidden;
     flex-shrink: 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4); /* Sombra más realista */
+    margin: 0 10px; /* Espacio entre cada puerta */
 }
-.antes-capa {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-size: cover; background-position: center;
