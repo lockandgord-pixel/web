@@ -301,6 +301,44 @@
     .label-before, .label-after { top: 10px; font-size: 0.55rem; }
     /* ... mantén lo demás que tengas aquí adentro ... */
 }
+/* EFECTO DESFILE Y CORTINA AUTOMÁTICA */
+#contenedor-desfile { 
+    width: 100%; 
+    overflow: hidden; 
+    background: #000; 
+    padding: 60px 0; 
+}
+#carrusel-puertas { 
+    display: flex; 
+    gap: 30px; 
+    width: max-content; 
+}
+.puerta-box {
+    position: relative;
+    width: 350px; /* Ancho de cada foto en el desfile */
+    height: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.antes-capa {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+}
+.despues-capa {
+    position: absolute;
+    top: 0; left: 0; width: 50%; height: 100%;
+    background-size: cover; background-position: center;
+    border-right: 4px solid #fff;
+    /* ESTA ES LA CORTINA QUE SE MUEVE SOLA */
+    animation: cortinaMovil 4s infinite alternate ease-in-out; 
+}
+@keyframes cortinaMovil {
+    from { width: 15%; }
+    to { width: 85%; }
+}
     </style>
 </head>
 <body>
@@ -360,20 +398,14 @@
     </h2>
     <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
         
-        <div class="comparison-slider" id="slider">
-            <img src="antes1.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
-
-            <div id="after-box">
-                <img src="despues1.jpeg" alt="Lock and Go" id="img-lockandgo">
+        <div id="contenedor-desfile">
+    <h2 style="text-align: center; color: #fff; margin-bottom: 40px; font-size: 2rem;">De lo Tradicional a lo Extraordinario</h2>
+    
+    <div id="ventana-mascara" style="width: 100%; overflow: hidden; position: relative;">
+        <div id="carrusel-puertas">
             </div>
-
-            <div class="label-before">TRADICIONAL</div>
-            <div class="label-after">LOCK AND GO</div>
-            
-            <div id="bar" class="slider-bar">
-                <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
-            </div>
-        </div>
+    </div>
+</div>
     </section>
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
         <div class="nosotros-grid">
@@ -640,49 +672,52 @@ function procesarVentaExpress() {
 
     // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
    function initSlider() {
-        const slider = document.getElementById('slider');
-        const afterBox = document.getElementById('after-box');
-        const imgL = document.getElementById('img-lockandgo');
-        const bar = document.getElementById('bar');
-        if (!slider || !imgL) return;
+    const carrusel = document.getElementById('carrusel-puertas');
+    if (!carrusel) return;
 
-        let posicion = 50;
-        let direccion = 0.15; 
-        let pausado = false; // <-- LA VARIABLE DE PAUSA
+    // 1. LISTA DE TUS FOTOS (Cambia 'foto1_antes.jpg' etc. por tus nombres reales)
+    const misFotos = [
+        { antes: 'puerta1_vieja.jpg', despues: 'puerta1_lock.jpg' },
+        { antes: 'puerta2_vieja.jpg', despues: 'puerta2_lock.jpg' },
+        { antes: 'puerta3_vieja.jpg', despues: 'puerta3_lock.jpg' },
+        { antes: 'puerta4_vieja.jpg', despues: 'puerta4_lock.jpg' }
+    ];
 
-        const animar = () => {
-            if (!pausado) { // SI NO ESTÁ PAUSADO, SE MUEVE SOLO
-                imgL.style.width = slider.offsetWidth + "px";
-                if (posicion >= 90) direccion = -0.15;
-                if (posicion <= 10) direccion = 0.15;
-                posicion += direccion;
-                
-                afterBox.style.width = posicion + "%";
-                if(bar) bar.style.left = posicion + "%";
+    // Duplicamos la lista para que el desfile no tenga fin (loop infinito)
+    const fotosInfinitas = [...misFotos, ...misFotos, ...misFotos];
+
+    // 2. CREAR LAS PUERTAS EN EL HTML
+    carrusel.innerHTML = fotosInfinitas.map(f => `
+        <div class="puerta-box">
+            <div class="antes-capa" style="background-image: url('${f.antes}')"></div>
+            <div class="despues-capa" style="background-image: url('${f.despues}')"></div>
+        </div>
+    `).join('');
+
+    // 3. LOGICA DEL MOVIMIENTO AUTOMÁTICO (CORTINA DE AIRE)
+    let posicionX = 0;
+    let pausado = false;
+
+    function moverDesfile() {
+        if (!pausado) {
+            posicionX += 1.2; // Velocidad del desfile. Súbelo a 2 para que sea más rápido.
+            
+            // Si llega a la mitad del carrusel, reinicia a 0 para que no se acabe nunca
+            if (posicionX >= (carrusel.scrollWidth / 3)) {
+                posicionX = 0;
             }
-            requestAnimationFrame(animar);
-        };
-
-        animar();
-
-        // ESTO CONTROLA LA PAUSA AL PASAR EL MOUSE
-        slider.onmouseenter = () => pausado = true;
-        slider.onmouseleave = () => pausado = false;
-        slider.ontouchstart = () => pausado = true;
-        slider.ontouchend = () => pausado = false;
-
-        const mover = (e) => {
-            let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
-            let r = slider.getBoundingClientRect();
-            posicion = ((x - r.left) / r.width) * 100;
-            // Actualiza visualmente mientras mueves
-            afterBox.style.width = posicion + "%";
-            if(bar) bar.style.left = posicion + "%";
-        };
-
-        slider.addEventListener('mousemove', (e) => { if(e.buttons === 1) mover(e); });
-        slider.addEventListener('touchmove', mover);
+            carrusel.style.transform = `translateX(-${posicionX}px)`;
+        }
+        requestAnimationFrame(moverDesfile);
     }
+
+    // Iniciar el desfile
+    moverDesfile();
+
+    // Pausa cuando el usuario pone el mouse encima
+    carrusel.parentElement.onmouseenter = () => pausado = true;
+    carrusel.parentElement.onmouseleave = () => pausado = false;
+}
     // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
     const formCotizar = document.getElementById('formCotizar');
     
