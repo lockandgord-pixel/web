@@ -302,47 +302,67 @@
     /* ... mantén lo demás que tengas aquí adentro ... */
 }
 /* EFECTO DESFILE Y CORTINA AUTOMÁTICA */
+/* 1. ESTO HACE QUE EL DESFILE OCUPE TODA LA PANTALLA */
 #contenedor-desfile { 
-    width: 100vw; /* Ocupa todo el ancho de la ventana del navegador */
-    overflow: hidden; 
-    background: transparent; /* Eliminamos el fondo negro */
-    padding: 60px 0; 
+    width: 100vw; 
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    overflow: hidden; 
+    background: #f9f9f9; /* Color de fondo suave */
+    padding: 50px 0; 
 }
+
+/* 2. LA FILA DE FOTOS */
 #carrusel-puertas { 
     display: flex; 
-    gap: 30px; 
+    gap: 20px; 
     width: max-content; 
 }
+
+/* 3. EL MARCO DE CADA PUERTA */
 .puerta-box {
     position: relative;
-    width: 380px; /* Ancho de cada foto en el desfile */
-    height: 550px; /* Alto de las fotos */
-    border-radius: 10px; /* Un borde más suave */
+    width: 300px; 
+    height: 450px; 
+    border-radius: 15px;
     overflow: hidden;
     flex-shrink: 0;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4); /* Sombra más realista */
-    margin: 0 10px; /* Espacio entre cada puerta */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-size: cover; background-position: center;
+
+/* 4. LA FOTO DE ANTES (FONDO) */
+.antes-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-.despues-capa {
+
+/* 5. LA CORTINA MÁGICA (DESPUÉS) */
+.cortina-despues {
     position: absolute;
-    top: 0; left: 0; width: 50%; height: 100%;
-    background-size: cover; background-position: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%; 
+    overflow: hidden;
     border-right: 4px solid #fff;
-    /* ESTA ES LA CORTINA QUE SE MUEVE SOLA */
-    animation: cortinaMovil 4s infinite alternate ease-in-out; 
+    z-index: 2;
+    animation: cortinaLoop 4s infinite alternate ease-in-out;
 }
-@keyframes cortinaMovil {
-    from { width: 15%; }
-    to { width: 85%; }
+
+/* 6. LA FOTO DE DESPUÉS */
+.despues-img {
+    height: 100%;
+    width: 300px; /* Igual al ancho de puerta-box */
+    object-fit: cover;
+}
+
+@keyframes cortinaLoop {
+    from { width: 10%; }
+    to { width: 90%; }
 }
     </style>
 </head>
@@ -403,14 +423,11 @@
     </h2>
     <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
         
-        <div id="contenedor-desfile">
-    <h2 style="text-align: center; color: #fff; margin-bottom: 40px; font-size: 2rem;">De lo Tradicional a lo Extraordinario</h2>
-    
-    <div id="ventana-mascara" style="width: 100%; overflow: hidden; position: relative;">
-        <div id="carrusel-puertas">
-            </div>
-    </div>
-</div>
+      <section id="contenedor-desfile">
+    <h2 style="text-align: center; margin-bottom: 30px;">DE LO TRADICIONAL A LO EXTRAORDINARIO</h2>
+    <div id="carrusel-puertas">
+        </div>
+</section>
     </section>
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
         <div class="nosotros-grid">
@@ -676,52 +693,47 @@ function procesarVentaExpress() {
     }
 
     // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
-   function initSlider() {
+function initSlider() {
     const carrusel = document.getElementById('carrusel-puertas');
     if (!carrusel) return;
 
-    // 1. LISTA DE TUS FOTOS (Cambia 'foto1_antes.jpg' etc. por tus nombres reales)
+    // --- PON AQUÍ LOS NOMBRES DE TUS JPEGS ---
     const misFotos = [
         { antes: 'antes1.jpeg', despues: 'despues1.jpeg' },
-        { antes: 'antes1.jpeg', despues: 'despues1.jpeg' },
-        { antes: 'antes1.jpeg', despues: 'despues1.jpeg' },
-        { antes: 'antes1.jpeg', despues: 'despues1.jpeg' },
+         { antes: 'antes1.jpeg', despues: 'despues1.jpeg' },
+         { antes: 'antes1.jpeg', despues: 'despues1.jpeg' },
     ];
 
-    // Duplicamos la lista para que el desfile no tenga fin (loop infinito)
-    const fotosInfinitas = [...misFotos, ...misFotos, ...misFotos];
+    // Esto repite las fotos para que el desfile no se acabe
+    const fotosInfinitas = [...misFotos, ...misFotos, ...misFotos, ...misFotos];
 
-    // 2. CREAR LAS PUERTAS EN EL HTML
     carrusel.innerHTML = fotosInfinitas.map(f => `
         <div class="puerta-box">
-            <div class="antes-capa" style="background-image: url('${f.antes}')"></div>
-            <div class="despues-capa" style="background-image: url('${f.despues}')"></div>
+            <img src="${f.antes}" class="antes-img">
+            <div class="cortina-despues">
+                <img src="${f.despues}" class="despues-img">
+            </div>
         </div>
     `).join('');
 
-    // 3. LOGICA DEL MOVIMIENTO AUTOMÁTICO (CORTINA DE AIRE)
-    let posicionX = 0;
+    let x = 0;
     let pausado = false;
 
-    function moverDesfile() {
+    function mover() {
         if (!pausado) {
-            posicionX += 1.2; // Velocidad del desfile. Súbelo a 2 para que sea más rápido.
-            
-            // Si llega a la mitad del carrusel, reinicia a 0 para que no se acabe nunca
-            if (posicionX >= (carrusel.scrollWidth / 3)) {
-                posicionX = 0;
-            }
-            carrusel.style.transform = `translateX(-${posicionX}px)`;
+            x += 1; // Velocidad. Cámbialo a 2 para ir más rápido.
+            if (x >= (carrusel.scrollWidth / 4)) x = 0;
+            carrusel.style.transform = `translateX(-${x}px)`;
         }
-        requestAnimationFrame(moverDesfile);
+        requestAnimationFrame(mover);
     }
 
-    // Iniciar el desfile
-    moverDesfile();
+    mover();
 
-    // Pausa cuando el usuario pone el mouse encima
-    carrusel.parentElement.onmouseenter = () => pausado = true;
-    carrusel.parentElement.onmouseleave = () => pausado = false;
+    // Detener cuando tocas la foto
+    const seccion = document.getElementById('contenedor-desfile');
+    seccion.onmouseenter = () => pausado = true;
+    seccion.onmouseleave = () => pausado = false;
 }
     // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
     const formCotizar = document.getElementById('formCotizar');
