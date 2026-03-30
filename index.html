@@ -344,29 +344,37 @@
     object-fit: cover;
 }
 
-/* 5. LA CORTINA MÁGICA (DESPUÉS) */
+/* La cortina blanca que barre la foto */
 .cortina-despues {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    width: 50%; 
+    width: 0%; /* Empieza cerrada */
     overflow: hidden;
-    border-right: 4px solid #fff;
+    border-right: 4px solid #ffffff; /* Línea divisoria blanca */
     z-index: 2;
-    animation: cortinaLoop 4s infinite alternate ease-in-out;
+    /* 5s es un tiempo ideal para apreciar el cambio completo */
+    animation: cortinaBarridoTotal 5s infinite alternate ease-in-out;
+    will-change: width;
 }
 
-/* 6. LA FOTO DE DESPUÉS */
+/* Asegura que la imagen de 'Después' ocupe todo el ancho del cuadro */
 .despues-img {
     height: 100%;
-    width: 300px; /* Igual al ancho de puerta-box */
+    width: 300px; /* <--- Verifica que sea el mismo ancho que .puerta-box */
     object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-@keyframes cortinaLoop {
-    from { width: 10%; }
-    to { width: 90%; }
+@keyframes cortinaBarridoTotal {
+    0% { width: 0%; }    /* Solo se ve la puerta vieja (Antes) */
+    10% { width: 0%; }   /* Pequeña pausa al inicio para ver el 'Antes' */
+    90% { width: 100%; }  /* Cubre toda la foto con la puerta nueva (Después) */
+    100% { width: 100%; } /* Pequeña pausa al final para ver el 'Después' */
 }
     </style>
 </head>
@@ -422,9 +430,10 @@
     </div>
     <section id="nosotros">
       <section id="comparativa" style="text-align: center; padding: 40px 5%; background: transparent; overflow: hidden;">
-    <h2 style="font-size: clamp(1.8rem, 8vw, 2.5rem); font-weight: 900; color: #ffffff; width: 100%; margin: 0 auto; line-height: 1.2; word-wrap: break-word; padding: 0 10px;">
-        DE LO TRADICIONAL A LO <span style="color: #00D1FF; display: inline-block;">EXTRAORDINARIO</span>
-    </h2>
+    <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Arial Black', sans-serif; letter-spacing: -1px;">
+    <span style="color: #FF0000; text-transform: uppercase;">DE LO TRADICIONAL</span> 
+    <span style="color: #0000FF; text-transform: uppercase;">A LO EXTRAORDINARIO</span>
+</h2>
     <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
         
      <section id="contenedor-desfile">
@@ -723,16 +732,18 @@ function initSlider() {
     let x = 0;
     let pausado = false;
 
-    function mover() {
+    function animarDesfile() { // O tal vez se llame mover() en tu código
         if (!pausado) {
-            x += 1; // Velocidad. Cámbialo a 2 para ir más rápido.
-            if (x >= (carrusel.scrollWidth / 4)) x = 0;
+            
+            x += 1.2;  // <--- ¡ESTA ES LA LÍNEA QUE BUSCAS!
+            
+            if (x >= (carrusel.scrollWidth / 3)) {
+                x = 0;
+            }
             carrusel.style.transform = `translateX(-${x}px)`;
         }
-        requestAnimationFrame(mover);
+        requestAnimationFrame(animarDesfile);
     }
-
-    mover();
 
     // Detener cuando tocas la foto
     const seccion = document.getElementById('contenedor-desfile');
