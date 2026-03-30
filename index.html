@@ -231,9 +231,9 @@
 
 .carousel-track {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     width: max-content;
-    animation: scrollPanoramico 40s linear infinite;
+    animation: scrollInfinito 60s linear infinite; /* Más lento para apreciar el escaneo */
 }
 
 /* Pausar al pasar el mouse para que el cliente vea el detalle */
@@ -241,9 +241,13 @@
     animation-play-state: paused;
 }
 
-@keyframes scrollPanoramico {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Se mueve la mitad para el efecto infinito */
+@keyframes escanear {
+    0% {
+        width: 10%; /* Casi todo "Antes" */
+    }
+    100% {
+        width: 90%; /* Casi todo "Después" */
+    }
 }
 
 .mini-slider {
@@ -266,16 +270,21 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%; /* Por defecto mostramos mitad y mitad */
+    width: 50%; /* Empezará en la mitad */
     height: 100%;
     overflow: hidden;
-    border-right: 2px solid #00D1FF;
-    box-shadow: 5px 0 15px rgba(0, 209, 255, 0.5);
+    border-right: 3px solid #00D1FF;
+    box-shadow: 10px 0 20px rgba(0, 209, 255, 0.4);
+    
+    /* ESTA ES LA MAGIA: Animación de escaneo automático */
+    animation: escanear 4s ease-in-out infinite alternate;
 }
 
 .after-img img {
-    width: 350px; /* Debe coincidir con el ancho del padre para no deformar */
+    width: 320px; /* Debe ser igual al ancho de .mini-slider */
     height: 100%;
+    object-fit: cover;
+    display: block;
 }
         /* AJUSTE DE ETIQUETAS: DE VUELTA ARRIBA */
         .label-before, .label-after {
@@ -645,17 +654,17 @@ function procesarVentaExpress() {
         const listaParaRenderizar = [...comparaciones, ...comparaciones];
 
         track.innerHTML = listaParaRenderizar.map(item => `
-            <div class="mini-slider">
-                <img src="${item.antes}" alt="Antes" onerror="this.src='antes.jpg.jpeg'">
-                
-                <div class="after-img">
-                    <img src="${item.despues}" alt="Después" onerror="this.src='despues.jpg.jpeg'">
-                </div>
-                
-                <div style="position:absolute; top:15px; left:15px; background:rgba(0,0,0,0.7); color:white; font-size:9px; padding:3px 8px; border-radius:3px; z-index:5;">TRADICIONAL</div>
-                <div style="position:absolute; top:15px; right:15px; background:#00D1FF; color:black; font-size:9px; padding:3px 8px; border-radius:3px; font-weight:bold; z-index:5;">LOCK AND GO</div>
-            </div>
-        `).join('');
+    <div class="mini-slider">
+        <img src="${item.antes}" alt="Antes" onerror="this.src='antes.jpg.jpeg'">
+        
+        <div class="after-img">
+            <img src="${item.despues}" alt="Después" onerror="this.src='despues.jpg.jpeg'">
+        </div>
+        
+        <div style="position:absolute; bottom:15px; left:15px; background:rgba(0,0,0,0.8); color:white; font-size:10px; padding:5px 10px; border-radius:5px; z-index:10; border:1px solid rgba(255,255,255,0.2);">ANTES</div>
+        <div style="position:absolute; bottom:15px; right:15px; background:#00D1FF; color:black; font-size:10px; padding:5px 10px; border-radius:5px; font-weight:bold; z-index:10; box-shadow: 0 0 10px #00D1FF;">DESPUÉS</div>
+    </div>
+`).join('');
     }
     // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
     const formCotizar = document.getElementById('formCotizar');
