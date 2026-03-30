@@ -301,81 +301,6 @@
     .label-before, .label-after { top: 10px; font-size: 0.55rem; }
     /* ... mantén lo demás que tengas aquí adentro ... */
 }
-/* EFECTO DESFILE Y CORTINA AUTOMÁTICA */
-/* 1. ESTO HACE QUE EL DESFILE OCUPE TODA LA PANTALLA */
-#contenedor-desfile { 
-    width: 100vw; 
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    overflow: hidden; 
-    background: transparent; /* AHORA ES TRANSPARENTE */
-    padding: 20px 0; /* Menos espacio arriba y abajo */
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-/* 2. LA FILA DE FOTOS */
-#carrusel-puertas { 
-    display: flex; 
-    gap: 20px; 
-    width: max-content; 
-}
-
-/* 3. EL MARCO DE CADA PUERTA */
-.puerta-box {
-    position: relative;
-    width: 300px; 
-    height: 450px; 
-    border-radius: 15px;
-    overflow: hidden;
-    flex-shrink: 0;
-    /* Sombra más oscura para efecto de flotación */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
-    background: #000; /* Fondo interno negro por si la foto tarda */
-}
-
-/* 4. LA FOTO DE ANTES (FONDO) */
-.antes-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* La cortina blanca que barre la foto */
-.cortina-despues {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0%; /* Empieza cerrada */
-    overflow: hidden;
-    border-right: 4px solid #ffffff; /* Línea divisoria blanca */
-    z-index: 2;
-    /* 5s es un tiempo ideal para apreciar el cambio completo */
-    animation: cortinaBarridoTotal 5s infinite alternate ease-in-out;
-    will-change: width;
-}
-
-/* Asegura que la imagen de 'Después' ocupe todo el ancho del cuadro */
-.despues-img {
-    height: 100%;
-    width: 300px; /* <--- Verifica que sea el mismo ancho que .puerta-box */
-    object-fit: cover;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-@keyframes cortinaBarridoTotal {
-    0% { width: 0%; }    /* Solo se ve la puerta vieja (Antes) */
-    10% { width: 0%; }   /* Pequeña pausa al inicio para ver el 'Antes' */
-    90% { width: 100%; }  /* Cubre toda la foto con la puerta nueva (Después) */
-    100% { width: 100%; } /* Pequeña pausa al final para ver el 'Después' */
-}
     </style>
 </head>
 <body>
@@ -430,18 +355,25 @@
     </div>
     <section id="nosotros">
       <section id="comparativa" style="text-align: center; padding: 40px 5%; background: transparent; overflow: hidden;">
-   <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Arial Black', sans-serif; letter-spacing: -1px;">
-    <span style="color: #FF0000; text-transform: uppercase;">DE LO TRADICIONAL</span> 
-    <span style="color: #0000FF; text-transform: uppercase;">A LO EXTRAORDINARIO</span>
-</h2>
-
+    <h2 style="font-size: clamp(1.8rem, 8vw, 2.5rem); font-weight: 900; color: #ffffff; width: 100%; margin: 0 auto; line-height: 1.2; word-wrap: break-word; padding: 0 10px;">
+        DE LO TRADICIONAL A LO <span style="color: #00D1FF; display: inline-block;">EXTRAORDINARIO</span>
+    </h2>
     <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
         
-     <section id="contenedor-desfile">
-    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">DE LO TRADICIONAL A LO EXTRAORDINARIO</h2>
-    <div id="carrusel-puertas">
+        <div class="comparison-slider" id="slider">
+            <img src="antes.jpg.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
+
+            <div id="after-box">
+                <img src="despues.jpg.jpeg" alt="Lock and Go" id="img-lockandgo">
+            </div>
+
+            <div class="label-before">TRADICIONAL</div>
+            <div class="label-after">LOCK AND GO</div>
+            
+            <div id="bar" class="slider-bar">
+                <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
+            </div>
         </div>
-</section>
     </section>
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
         <div class="nosotros-grid">
@@ -706,115 +638,53 @@ function procesarVentaExpress() {
         `).join('');
     }
 
-<script>
-// 1. FUNCIÓN DEL DESFILE (ANTES Y DESPUÉS)
-function initSlider() {
-    const carrusel = document.getElementById('carrusel-puertas');
-    const seccion = document.getElementById('contenedor-desfile');
-    if (!carrusel) return;
-
-    // Tus fotos de antes y después
-    const misFotos = [
-        { antes: 'antes1.jpeg', despues: 'despues1.jpeg' },
-        { antes: 'antes2.jpeg', despues: 'despues2.jpeg' },
-        { antes: 'antes3.jpeg', despues: 'despues3.jpeg' }
-    ];
-
-    // Multiplicamos para que el desfile no tenga huecos
-    const fotosInfinitas = [...misFotos, ...misFotos, ...misFotos, ...misFotos];
-
-    carrusel.innerHTML = fotosInfinitas.map(f => `
-        <div class="puerta-box">
-            <img src="${f.antes}" class="antes-img" alt="Antes">
-            <div class="cortina-despues">
-                <img src="${f.despues}" class="despues-img" alt="Después">
-            </div>
-        </div>
-    `).join('');
-
-    let desplazamiento = 0;
-    let pausado = false;
-
-    function mover() {
-        if (!pausado) {
-            desplazamiento += 0.8; // Velocidad suave
-            if (desplazamiento >= (carrusel.scrollWidth / 4)) {
-                desplazamiento = 0;
+    // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
+    function initSlider() {
+        const slider = document.getElementById('slider');
+        const afterBox = document.getElementById('after-box');
+        const bar = document.getElementById('bar');
+        const imgL = document.getElementById('img-lockandgo');
+        if (!slider || !imgL) return;
+        
+        const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
+        
+        const mover = (e) => {
+            let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
+            let r = slider.getBoundingClientRect();
+            let p = ((x - r.left) / r.width) * 100;
+            if (p >= 0 && p <= 100) { 
+                afterBox.style.width = p + "%"; 
+                bar.style.left = p + "%"; 
             }
-            carrusel.style.transform = `translateX(-${desplazamiento}px)`;
-        }
-        requestAnimationFrame(mover);
+        };
+
+        slider.addEventListener('mousemove', mover);
+        slider.addEventListener('touchmove', mover);
+        window.addEventListener('resize', sync);
+        sync();
     }
 
-    mover();
-
-    if (seccion) {
-        seccion.onmouseenter = () => pausado = true;
-        seccion.onmouseleave = () => pausado = false<script>
-// 1. FUNCIÓN DEL DESFILE (ANTES Y DESPUÉS)
-function initSlider() {
-    const carrusel = document.getElementById('carrusel-puertas');
-    const seccion = document.getElementById('contenedor-desfile');
-    if (!carrusel) return;
-
-    // Tus fotos de antes y después
-    const misFotos = [
-        { antes: 'antes1.jpeg', despues: 'despues1.jpeg' },
-        { antes: 'antes2.jpeg', despues: 'despues2.jpeg' },
-        { antes: 'antes3.jpeg', despues: 'despues3.jpeg' }
-    ];
-
-    // Multiplicamos para que el desfile no tenga huecos
-    const fotosInfinitas = [...misFotos, ...misFotos, ...misFotos, ...misFotos];
-
-    carrusel.innerHTML = fotosInfinitas.map(f => `
-        <div class="puerta-box">
-            <img src="${f.antes}" class="antes-img" alt="Antes">
-            <div class="cortina-despues">
-                <img src="${f.despues}" class="despues-img" alt="Después">
-            </div>
-        </div>
-    `).join('');
-
-    let desplazamiento = 0;
-    let pausado = false;
-
-    function mover() {
-        if (!pausado) {
-            desplazamiento += 0.8; // Velocidad suave
-            if (desplazamiento >= (carrusel.scrollWidth / 4)) {
-                desplazamiento = 0;
-            }
-            carrusel.style.transform = `translateX(-${desplazamiento}px)`;
-        }
-        requestAnimationFrame(mover);
-    }
-
-    mover();
-
-    if (seccion) {
-        seccion.onmouseenter = () => pausado = true;
-        seccion.onmouseleave = () => pausado = false;
-    }
-}
-
-// 2. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
-const formCotizar = document.getElementById('formCotizar');
-if (formCotizar) {
-    formCotizar.onsubmit = function(e) {
+    // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
+    const formCotizar = document.getElementById('formCotizar');
+    
+formCotizar.onsubmit = function(e) {
         e.preventDefault();
         const btn = formCotizar.querySelector('button');
         btn.disabled = true;
         btn.innerText = "VERIFICANDO SEGURIDAD...";
 
+        // --- EL CERROJO FINAL DE GOOGLE ---
         grecaptcha.ready(function() {
-            grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+           // Busca esta línea dentro de tu código de envío y pégala tal cual:
+grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+                
                 const clean = (str) => str.replace(/[<>]/g, "").trim(); 
                 const nombreLimpio = clean(document.getElementById('nombre').value);
                 const correoLimpio = clean(document.getElementById('correo').value);
                 const servicioLimpio = document.getElementById('servicio').value;
-                const mensajeFinal = "Puerta: " + (typeof puertaSeleccionada !== 'undefined' ? puertaSeleccionada : "No especificada");
+                const mensajeFinal = "Puerta: " + puertaSeleccionada;
 
+                // Construimos la URL con el Token de Google incluido
                 const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombreLimpio)}&email=${encodeURIComponent(correoLimpio)}&servicio=${encodeURIComponent(servicioLimpio)}&mensaje=${encodeURIComponent(mensajeFinal)}&token=${token}`;
                 
                 fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
@@ -833,10 +703,9 @@ if (formCotizar) {
             });
         });
     };
-}
 
-// 3. MOTOR DE NOTIFICACIONES (TU LISTA COMPLETA SIN CORTES)
-const ventas = [
+    // 5. MOTOR DE NOTIFICACIONES
+    const ventas = [
     { nombre: "Carlos Martínez", ciudad: "Santo Domingo", modelo: "V80 PRO" },
     { nombre: "Laura Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
     { nombre: "JUAN RODRIGUEZ", ciudad: "Punta Cana", modelo: "H18 PRO MAX" },
@@ -1163,29 +1032,24 @@ const ventas = [
     { nombre: "Eros Tejeda", ciudad: "Santiago", modelo: "H18 PRO MAX" }
 ];
 
-function mostrarNotificacion() {
-    const notiBox = document.getElementById('notification-box');
-    const notiContent = document.getElementById('noti-content');
-    if (notiBox && notiContent && ventas.length > 0) {
-        const v = ventas[Math.floor(Math.random() * ventas.length)];
-        notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}`;
-        notiBox.classList.add('show');
-        setTimeout(() => { notiBox.classList.remove('show'); }, 5000);
+    function mostrarNotificacion() {
+        const notiBox = document.getElementById('notification-box');
+        const notiContent = document.getElementById('noti-content');
+        if (notiBox && notiContent) {
+            const v = ventas[Math.floor(Math.random() * ventas.length)];
+            notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}`;
+            notiBox.classList.add('show');
+            setTimeout(() => { notiBox.classList.remove('show'); }, 5000);
+        }
     }
-}
 
-// 4. EL INTERRUPTOR ÚNICO (Aquí se enciende TODO)
-window.addEventListener('DOMContentLoaded', () => {
-    // Si tienes catálogo, lo renderizamos
-    if (typeof renderCatalogo === 'function') renderCatalogo();
-    
-    // Arrancamos el desfile
-    initSlider();
-    
-    // Notificaciones
-    setTimeout(mostrarNotificacion, 10000);
-    setInterval(mostrarNotificacion, 30000);
-});
+    // INICIO DE TODO AL CARGAR LA PÁGINA
+    window.addEventListener('DOMContentLoaded', () => {
+        renderCatalogo();
+        initSlider();
+        setTimeout(mostrarNotificacion, 10000);
+        setInterval(mostrarNotificacion, 100000);
+    });
 </script>
 </body>
 </html>
