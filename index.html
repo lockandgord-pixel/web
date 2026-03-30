@@ -215,93 +215,105 @@
             #notification-box { bottom: 110px; left: -400px; width: 85%; }
             #notification-box.show { left: 7.5%; }
         }
-      /* --- ESTILOS OPTIMIZADOS (SIN ZOOM) --- */
-       /* --- ESTILOS FINALES AJUSTADOS --- */
-        .comparison-slider {
+      /* --- NUEVO: CARRUSEL PANORÁMICO DINÁMICO --- */
+        .carousel-container {
+            width: 100%;
             position: relative;
-            width: 100%;
-            max-width: 400px; /* Lo bajamos de 600px a 400px */
-            margin: 20px auto; /* Menos espacio arriba y abajo */
             overflow: hidden;
-            background: transparent; 
-            cursor: ew-resize;
+            padding: 40px 0;
+            background: transparent;
         }
 
-        .img-before-fix {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
+        .carousel-track {
+            display: flex;
+            gap: 25px;
+            width: max-content;
+            animation: scrollInfinito 60s linear infinite; /* Velocidad suave */
+            cursor: pointer;
+            will-change: transform;
+        }
+
+        /* Pausa al poner el mouse o el dedo */
+        .carousel-track:hover, .carousel-track:active {
+            animation-play-state: paused;
+        }
+
+        .mini-slider {
+            position: relative;
+            width: 320px;
+            height: 450px;
+            border-radius: 25px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #0a0a0a;
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        /* Imagen Antes (Base) */
+        .img-antes-carousel {
+            width: 320px;
+            height: 450px;
+            object-fit: cover;
             display: block;
-            position: relative; 
-            z-index: 1;
         }
 
-        #after-box {
+        /* Capa Después (Capa que escanea) */
+        .after-img {
             position: absolute;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             height: 100%;
             width: 50%;
             overflow: hidden;
+            border-right: 3px solid #00D1FF;
             z-index: 2;
+            box-shadow: 5px 0 20px rgba(0, 209, 255, 0.4);
+            /* Animación de escaneo automático de punta a punta */
+            animation: escanearFoto 5s ease-in-out infinite alternate;
         }
 
-        #img-lockandgo {
-            height: 100%;
-            object-fit: contain;
-            position: absolute;
-            top: 0; left: 0;
+        /* Imagen del Después fija adentro */
+        .after-img img {
+            width: 320px;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+            max-width: none;
         }
 
-        .slider-bar {
+        /* Etiquetas Neón */
+        .badge-antes, .badge-despues {
             position: absolute;
-            top: 0; bottom: 0;
-            width: 3px;
-            background: #00D1FF;
-            left: 50%;
-            cursor: ew-resize;
-            z-index: 100;
-            box-shadow: 0 0 15px rgba(0, 209, 255, 0.8);
-        }
-
-        .slider-button {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 35px; /* Botón un poco más pequeño */
-            height: 35px;
-            background: #00D1FF;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: black; font-size: 14px;
-            box-shadow: 0 0 15px rgba(0, 209, 255, 1);
-            z-index: 101; pointer-events: none;
-        }
-
-        /* AJUSTE DE ETIQUETAS: DE VUELTA ARRIBA */
-        .label-before, .label-after {
-            position: absolute;
-            top: 20px; /* Cambiado de 'bottom' a 'top' */
+            bottom: 20px;
             z-index: 10;
             padding: 5px 12px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 5px;
-            font-size: 0.65rem; /* Letra un poco más discreta */
+            border-radius: 6px;
+            font-size: 0.65rem;
             font-weight: 800;
-            backdrop-filter: blur(4px);
             text-transform: uppercase;
+            backdrop-filter: blur(5px);
         }
-        .label-before { left: 20px; color: #ff4444; }
-        .label-after { right: 20px; color: #00D1FF; }
+        .badge-antes { left: 20px; background: rgba(0, 0, 0, 0.7); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+        .badge-despues { right: 20px; background: rgba(0, 209, 255, 0.8); color: #000; box-shadow: 0 0 15px #00D1FF; }
 
-       @media (max-width: 480px) { 
-    .comparison-slider { 
-        max-width: 95%; /* Esto hace que en el celular se vea grande y cómodo */
-        margin: 10px auto; 
-    } 
-    .label-before, .label-after { top: 10px; font-size: 0.55rem; }
-    /* ... mantén lo demás que tengas aquí adentro ... */
-}
-    </style>
+        /* Keyframes para el movimiento */
+        @keyframes escanearFoto {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes scrollInfinito {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Ajuste para móviles */
+        @media (max-width: 480px) {
+            .mini-slider { width: 280px; height: 380px; }
+            .after-img img { width: 280px; height: 380px; }
+        }
+    <style>  
 </head>
 <body>
 
@@ -354,27 +366,19 @@
 
     </div>
     <section id="nosotros">
-      <section id="comparativa" style="text-align: center; padding: 40px 5%; background: transparent; overflow: hidden;">
-    <h2 style="font-size: clamp(1.8rem, 8vw, 2.5rem); font-weight: 900; color: #ffffff; width: 100%; margin: 0 auto; line-height: 1.2; word-wrap: break-word; padding: 0 10px;">
-        DE LO TRADICIONAL A LO <span style="color: #00D1FF; display: inline-block;">EXTRAORDINARIO</span>
-    </h2>
-    <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
-        
-        <div class="comparison-slider" id="slider">
-            <img src="antes.jpg.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
+     <section id="comparativa" style="width: 100%; overflow: hidden; padding: 50px 0; background: #000;">
+    <div style="text-align: center; margin-bottom: 30px; padding: 0 20px;">
+        <h2 style="font-size: 2.2rem; color: #fff; font-weight: 900; text-transform: uppercase;">
+            RESULTADOS <span style="color: #00D1FF;">REALES</span>
+        </h2>
+        <p style="color: #888; font-size: 1rem;">La diferencia entre lo tradicional y la máxima seguridad.</p>
+    </div>
 
-            <div id="after-box">
-                <img src="despues.jpg.jpeg" alt="Lock and Go" id="img-lockandgo">
+    <div class="carousel-container">
+        <div class="carousel-track" id="panoramico-track">
             </div>
-
-            <div class="label-before">TRADICIONAL</div>
-            <div class="label-after">LOCK AND GO</div>
-            
-            <div id="bar" class="slider-bar">
-                <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
         <div class="nosotros-grid">
             <div class="info-box">
@@ -1049,6 +1053,54 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
         initSlider();
         setTimeout(mostrarNotificacion, 10000);
         setInterval(mostrarNotificacion, 100000);
+    });
+                              // --- NUEVO MOTOR PARA EL CARRUSEL PANORÁMICO DINÁMICO ---
+    
+    // Aquí definimos las fotos de tus trabajos reales (Antes y Después)
+    const comparacionesReales = [
+        { antes: 'antes1.jpeg', despues: 'despues1.jpeg', modelo: "V80 PRO" },
+        { antes: 'antes2.jpeg', despues: 'despues2.jpeg', modelo: "AURUM X3 IA" },
+        { antes: 'antes3.jpeg', despues: 'despues3.jpeg', modelo: "H18 PRO MAX" },
+        { antes: 'antes4.jpeg', despues: 'despues4.jpeg', modelo: "V80 PRO" }
+    ];
+
+    function initCarruselDinamico() {
+        const track = document.getElementById('panoramico-track');
+        if (!track) return;
+
+        // Triplicamos la lista para que el carrusel sea infinito y no se corte el movimiento
+        const listaInfinita = [...comparacionesReales, ...comparacionesReales, ...comparacionesReales];
+
+        track.innerHTML = listaInfinita.map(item => `
+            <div class="mini-slider">
+                <img src="${item.antes}" class="img-antes-carousel" alt="Antes" onerror="this.src='logo1.png'">
+                
+                <div class="after-img">
+                    <img src="${item.despues}" alt="Después" onerror="this.src='logo1.png'">
+                </div>
+                
+                <div class="badge-antes">TRADICIONAL</div>
+                <div class="badge-despues">LOCK AND GO</div>
+                
+                <div style="position:absolute; top:15px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.8); color:#00D1FF; font-size:10px; padding:5px 12px; border-radius:20px; font-weight:bold; border:1px solid #00D1FF; z-index:5;">
+                    INSTALACIÓN: ${item.modelo}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // --- INICIALIZADOR MAESTRO ---
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCatalogo(); // Tu función actual
+        initCarruselDinamico(); // La nueva función del carrusel
+        
+        // Si tienes el slider manual viejo, lo iniciamos también
+        if(typeof initSlider === 'function') initSlider();
+        
+        // Iniciamos tus notificaciones de venta
+        if(typeof mostrarNotificacion === 'function') {
+            setInterval(mostrarNotificacion, 8000);
+        }
     });
 </script>
 </body>
