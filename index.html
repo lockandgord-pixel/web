@@ -639,31 +639,50 @@ function procesarVentaExpress() {
     }
 
     // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
-    function initSlider() {
+   function initSlider() {
         const slider = document.getElementById('slider');
         const afterBox = document.getElementById('after-box');
-        const bar = document.getElementById('bar');
         const imgL = document.getElementById('img-lockandgo');
+        const bar = document.getElementById('bar');
         if (!slider || !imgL) return;
-        
-        const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
-        
+
+        let posicion = 50;
+        let direccion = 0.15; 
+        let pausado = false; // <-- LA VARIABLE DE PAUSA
+
+        const animar = () => {
+            if (!pausado) { // SI NO ESTÁ PAUSADO, SE MUEVE SOLO
+                imgL.style.width = slider.offsetWidth + "px";
+                if (posicion >= 90) direccion = -0.15;
+                if (posicion <= 10) direccion = 0.15;
+                posicion += direccion;
+                
+                afterBox.style.width = posicion + "%";
+                if(bar) bar.style.left = posicion + "%";
+            }
+            requestAnimationFrame(animar);
+        };
+
+        animar();
+
+        // ESTO CONTROLA LA PAUSA AL PASAR EL MOUSE
+        slider.onmouseenter = () => pausado = true;
+        slider.onmouseleave = () => pausado = false;
+        slider.ontouchstart = () => pausado = true;
+        slider.ontouchend = () => pausado = false;
+
         const mover = (e) => {
             let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
             let r = slider.getBoundingClientRect();
-            let p = ((x - r.left) / r.width) * 100;
-            if (p >= 0 && p <= 100) { 
-                afterBox.style.width = p + "%"; 
-                bar.style.left = p + "%"; 
-            }
+            posicion = ((x - r.left) / r.width) * 100;
+            // Actualiza visualmente mientras mueves
+            afterBox.style.width = posicion + "%";
+            if(bar) bar.style.left = posicion + "%";
         };
 
-        slider.addEventListener('mousemove', mover);
+        slider.addEventListener('mousemove', (e) => { if(e.buttons === 1) mover(e); });
         slider.addEventListener('touchmove', mover);
-        window.addEventListener('resize', sync);
-        sync();
     }
-
     // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
     const formCotizar = document.getElementById('formCotizar');
     
