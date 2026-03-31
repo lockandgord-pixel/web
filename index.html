@@ -11,267 +11,297 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
     
-   <style>
-    /* Mantenemos tus estilos base */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
-    body {
-        background-color: #05080a;
-        color: white;
-        overflow-x: hidden;
-    }
+        body {
+            background-color: #05080a;
+            color: white;
+            overflow-x: hidden;
+        }
 
-    /* FONDO MAESTRO */
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fondo1.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        z-index: -1;
-    }
+        /* FONDO MAESTRO */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fondo1.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+        }
 
-    header {
-        position: absolute;
-        top: 0; width: 100%;
-        background: transparent;
-        padding: 20px 5%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 2000;
-    }
+        header {
+            position: absolute;
+            top: 0; width: 100%;
+            background: transparent;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2000;
+        }
 
-    #imgLogo { 
-        height: 180px;
-        width: auto;
-        filter: drop-shadow(0 0 25px rgba(0, 209, 255, 0.7)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
-        mix-blend-mode: lighten;
-        transition: transform 0.4s ease, filter 0.4s ease;
-    }
+        #imgLogo { 
+            height: 180px;
+            width: auto;
+            filter: drop-shadow(0 0 25px rgba(0, 209, 255, 0.7)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+            mix-blend-mode: lighten;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
 
-    nav ul { 
-        list-style: none; 
-        display: flex; 
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-    
-    nav ul li a { 
-        color: #ffffff !important; 
-        text-decoration: none; 
-        font-weight: 800; 
-        font-size: 1rem; 
-        text-transform: uppercase; 
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-        display: block; 
-        white-space: nowrap;
-    }
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+        
+        nav ul li a { 
+            color: #ffffff !important; 
+            text-decoration: none; 
+            font-weight: 800; 
+            font-size: 1rem; 
+            text-transform: uppercase; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            display: block; 
+            white-space: nowrap;
+        }
 
-    section { padding: 100px 10%; position: relative; z-index: 10; }
+        section { padding: 100px 10%; position: relative; z-index: 10; }
 
-    .hero { 
-        height: 90vh; 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        justify-content: center; 
-        text-align: center; 
-    }
+        .hero { 
+            height: 90vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+        }
 
-    .hero h1 { font-size: 3.5rem; font-weight: 900; color: #ffffff; text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); }
+        .hero h1 { font-size: 3.5rem; font-weight: 900; color: #ffffff; text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); }
 
-    .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-    .info-box { background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; transition: 0.4s; }
-    .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
-    .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
+        .nosotros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .info-box { background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; transition: 0.4s; }
+        .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
+        .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
 
-    #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
-    .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; }
-    .card:hover { transform: translateY(-20px); border-color: #00D1FF; }
-    .card img { width: 100%; height: 320px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); margin-bottom: 25px; }
+        #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
+        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; }
+        .card:hover { transform: translateY(-20px); border-color: #00D1FF; }
+        .card img { width: 100%; height: 320px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); margin-bottom: 25px; }
 
-    .precio-tag { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
-    .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
+        .precio-tag { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
+        .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
 
-    .formulario-container { max-width: 650px; margin: 0 auto; background: rgba(0, 0, 0, 0.5); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
-    input, select { 
-        width: 100%; 
-        padding: 18px; 
-        margin: 12px 0; 
-        border-radius: 12px; 
-        background: rgba(255, 255, 255, 0.05); 
-        color: white; 
-        border: 1px solid rgba(255, 255, 255, 0.1); 
-        outline: none;
-        appearance: none; 
-    }
+        .formulario-container { max-width: 650px; margin: 0 auto; background: rgba(0, 0, 0, 0.5); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        input, select { 
+            width: 100%; 
+            padding: 18px; 
+            margin: 12px 0; 
+            border-radius: 12px; 
+            background: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+            color: white; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            outline: none;
+            appearance: none; /* Quita el estilo por defecto del sistema */
+        }
 
-    select option {
-        background-color: #0a0a0a;
-        color: white;
-        padding: 10px;
-    }
+        /* Esto corrige el color de las opciones dentro de la lista */
+        select option {
+            background-color: #0a0a0a; /* Fondo oscuro para que se vea el texto blanco */
+            color: white;
+            padding: 10px;
+        }
 
-    input:focus, select:focus {
-        border-color: #00D1FF;
-        background: rgba(0, 209, 255, 0.05);
-    }
-    .btn-form { background: #00D1FF; color: black; border: none; padding: 20px; border-radius: 12px; font-weight: 900; width: 100%; cursor: pointer; text-transform: uppercase; }
+        input:focus, select:focus {
+            border-color: #00D1FF;
+            background: rgba(0, 209, 255, 0.05);
+        }
+        .btn-form { background: #00D1FF; color: black; border: none; padding: 20px; border-radius: 12px; font-weight: 900; width: 100%; cursor: pointer; text-transform: uppercase; }
 
-    .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-decoration: none; transition: 0.3s; }
-    .whatsapp-bubble i { color: white; font-size: 45px; }
+        .whatsapp-bubble { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-decoration: none; transition: 0.3s; }
+        .whatsapp-bubble i { color: white; font-size: 45px; }
 
-    .social-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 35px;
-        padding: 40px 0;
-        margin-bottom: 20px;
-    }
+        .social-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
 
-    .social-icon {
-        color: white;
-        font-size: 2.5rem;
-        transition: all 0.4s ease;
-        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
-    }
+        .social-icon {
+            color: white;
+            font-size: 2.5rem;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+        }
 
-    .social-icon:hover {
-        color: #00D1FF;
-        transform: scale(1.2) translateY(-5px);
-        filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.6));
-    }
+        .social-icon:hover {
+            color: #00D1FF;
+            transform: scale(1.2) translateY(-5px);
+            filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.6));
+        }
 
-    footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+/* --- NUEVO: ANIMACIÓN DE ECOSISTEMAS --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
 
-    @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0px); }
-    }
+        .ecosistema-icon {
+            text-align: center;
+            width: 90px;
+            transition: all 0.3s ease;
+            animation: float 4s ease-in-out infinite;
+        }
 
-    .ecosistema-icon {
-        text-align: center;
-        width: 90px;
-        transition: all 0.3s ease;
-        animation: float 4s ease-in-out infinite;
-    }
+        /* Desfase para que se muevan de forma asíncrona */
+        .ecosistema-icon:nth-child(even) { animation-delay: 1s; }
+        .ecosistema-icon:nth-child(3) { animation-delay: 2s; }
 
-    .ecosistema-icon:nth-child(even) { animation-delay: 1s; }
-    .ecosistema-icon:nth-child(3) { animation-delay: 2s; }
+        .ecosistema-icon i, .ecosistema-icon img {
+            font-size: 2.2rem;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+            margin-bottom: 10px;
+        }
 
-    .ecosistema-icon i, .ecosistema-icon img {
-        font-size: 2.2rem;
-        filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
-        margin-bottom: 10px;
-    }
+        .ecosistema-icon:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.6));
+        }
+        @media (max-width: 480px) {
+            body::before { background-attachment: scroll !important; height: 100%; position: fixed; background-size: cover; }
+            header { flex-direction: row; align-items: flex-start; padding: 15px 5%; z-index: 3000; }
+            #imgLogo { height: 110px !important; margin-top: 5px; }
+            nav ul { margin-top: 15px; }
+            nav ul li a { font-size: 0.8rem; }
+            .hero { padding-top: 160px; justify-content: flex-start; height: auto; min-height: 70vh; }
+            .hero h1 { font-size: 1.9rem; line-height: 1.1; margin-bottom: 15px; }
+            .info-box, .card, .formulario-container { background: rgba(0, 0, 0, 0.7) !important; backdrop-filter: blur(5px); border: 1px solid rgba(0, 209, 255, 0.3); }
+            h2.titulo { font-size: 2.2rem; margin-top: 20px; }
+            .social-container { gap: 25px; }
+            .social-icon { font-size: 2rem; }
+        }
+        /* NOTIFICACIONES DE VENTA */
+        #notification-box {
+            position: fixed;
+            bottom: 30px;
+            left: -400px; /* Escondido al inicio */
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00D1FF;
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 9999;
+            transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 209, 255, 0.2);
+        }
+        #notification-box.show { left: 30px; }
+        .noti-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #00D1FF; }
+        .noti-text { font-size: 0.85rem; color: white; line-height: 1.3; }
+        .noti-text b { color: #00D1FF; display: block; }
+        
+        @media (max-width: 480px) {
+            #notification-box { bottom: 110px; left: -400px; width: 85%; }
+            #notification-box.show { left: 7.5%; }
+        }
+      /* --- ESTILOS OPTIMIZADOS (SIN ZOOM) --- */
+       /* --- ESTILOS FINALES AJUSTADOS --- */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            max-width: 400px; /* Lo bajamos de 600px a 400px */
+            margin: 20px auto; /* Menos espacio arriba y abajo */
+            overflow: hidden;
+            background: transparent; 
+            cursor: ew-resize;
+        }
 
-    .ecosistema-icon:hover {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.6));
-    }
+        .img-before-fix {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            position: relative; 
+            z-index: 1;
+        }
 
-    /* --- COMPARATIVA OPTIMIZADA Y ELEGANTE --- */
-    .comparison-slider {
-        position: relative;
-        width: 100%;
-        max-width: 420px; 
-        margin: 30px auto;
-        overflow: hidden;
-        background: #000; 
-        cursor: ew-resize;
-        border-radius: 20px; /* Bordes más redondeados */
-        box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05); /* Sombra de profundidad + borde fino */
-    }
+        #after-box {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            z-index: 2;
+        }
 
-    .img-before-fix {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        display: block;
-        position: relative; 
-        z-index: 1;
-        opacity: 0.8; /* El 'Antes' es un poco más oscuro para resaltar el 'Después' */
-    }
+        #img-lockandgo {
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0; left: 0;
+        }
 
-    #after-box {
-        position: absolute;
-        top: 0; left: 0;
-        height: 100%;
-        width: 50%;
-        overflow: hidden;
-        z-index: 2;
-        /* Línea divisoria brillante */
-        border-right: 2px solid #00D1FF;
-        box-shadow: 10px 0 30px rgba(0, 209, 255, 0.3);
-    }
+        .slider-bar {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 3px;
+            background: #00D1FF;
+            left: 50%;
+            cursor: ew-resize;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.8);
+        }
 
-    #img-lockandgo {
-        height: 100%;
-        object-fit: contain;
-        position: absolute;
-        top: 0; left: 0;
-    }
+        .slider-button {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35px; /* Botón un poco más pequeño */
+            height: 35px;
+            background: #00D1FF;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: black; font-size: 14px;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 1);
+            z-index: 101; pointer-events: none;
+        }
 
-    .slider-bar {
-        position: absolute;
-        top: 0; bottom: 0;
-        width: 2px;
-        background: transparent; /* La barra real la hace el borde del after-box */
-        left: 50%;
-        cursor: ew-resize;
-        z-index: 100;
-    }
+        /* AJUSTE DE ETIQUETAS: DE VUELTA ARRIBA */
+        .label-before, .label-after {
+            position: absolute;
+            top: 20px; /* Cambiado de 'bottom' a 'top' */
+            z-index: 10;
+            padding: 5px 12px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+            font-size: 0.65rem; /* Letra un poco más discreta */
+            font-weight: 800;
+            backdrop-filter: blur(4px);
+            text-transform: uppercase;
+        }
+        .label-before { left: 20px; color: #ff4444; }
+        .label-after { right: 20px; color: #00D1FF; }
 
-    /* Botón flotante premium */
-    .slider-button {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 44px;
-        height: 44px;
-        background: rgba(0, 209, 255, 1);
-        border: 4px solid rgba(5, 8, 10, 0.8); /* Anillo que lo separa de la imagen */
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        color: #000;
-        font-size: 16px;
-        box-shadow: 0 0 20px rgba(0, 209, 255, 0.6);
-        z-index: 101; 
-        pointer-events: none;
-    }
-
-    /* Etiquetas minimalistas */
-    .label-before, .label-after {
-        position: absolute;
-        top: 15px; 
-        z-index: 10;
-        padding: 6px 12px;
-        background: rgba(0, 0, 0, 0.7);
-        border-radius: 8px;
-        font-size: 0.6rem;
-        font-weight: 900;
-        letter-spacing: 1px;
-        backdrop-filter: blur(8px);
-        text-transform: uppercase;
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-    .label-before { left: 15px; color: #ff4444; }
-    .label-after { right: 15px; color: #00D1FF; }
-
-    @media (max-width: 480px) {
-        header { flex-direction: row; align-items: flex-start; padding: 15px 5%; z-index: 3000; }
-        #imgLogo { height: 110px !important; }
-        .hero h1 { font-size: 1.9rem; }
-        .comparison-slider { max-width: 92%; border-radius: 15px; }
-        .slider-button { width: 38px; height: 38px; font-size: 14px; }
-    }
-</style>
+       @media (max-width: 480px) { 
+    .comparison-slider { 
+        max-width: 95%; /* Esto hace que en el celular se vea grande y cómodo */
+        margin: 10px auto; 
+    } 
+    .label-before, .label-after { top: 10px; font-size: 0.55rem; }
+    /* ... mantén lo demás que tengas aquí adentro ... */
+}
+    </style>
 </head>
 <body>
 
@@ -331,10 +361,10 @@
     <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
         
         <div class="comparison-slider" id="slider">
-            <img src="antes.jpg.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
+            <img src="antes.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
 
             <div id="after-box">
-                <img src="despues.jpg.jpeg" alt="Lock and Go" id="img-lockandgo">
+                <img src="despues.jpeg" alt="Lock and Go" id="img-lockandgo">
             </div>
 
             <div class="label-before">TRADICIONAL</div>
@@ -508,103 +538,173 @@ Lo que nos mueve en Lock and Go RD:
     </div>
 
     <script>
+    // 1. TU CONFIGURACIÓN (REEMPLAZA ESTA URL POR LA TUYA DE GOOGLE)
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxOtSpGMIpuGlLnmv4HfZXsDbUA-vbPVWFjwJC4Yv6H8WEE6jQwJrvRmbIoKP4trr4-JQ/exec';
-    
+
+    // 2. PRODUCTOS (ESTO RECONSTRUYE TU CATÁLOGO)
     const productos = [
-        { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, clave, tarjeta, llave física y App." },
-        { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D e IA avanzada." },
-        { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna y control total por App." }
+        { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
+        { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+        { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." }
     ];
+
+    let puertaSeleccionada = "No especificada";
+
+    function seleccionarPuerta(tipo, elemento) {
+        puertaSeleccionada = tipo;
+        document.querySelectorAll('.opcion-puerta').forEach(opt => {
+            opt.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            opt.style.background = 'rgba(255, 255, 255, 0.05)';
+        });
+        elemento.style.borderColor = '#00D1FF';
+        elemento.style.background = 'rgba(0, 209, 255, 0.1)';
+    }
+
+    // WhatsApp para el catálogo (Venta rápida)
+    let productoTemporal = "";
+
+// Esta función abre el modal cuando dan clic en el catálogo
+function enviarCotizacion(modelo) {
+    productoTemporal = modelo; 
+    document.getElementById('modalTitulo').innerText = "COTIZAR " + modelo;
+    document.getElementById('modalCotizar').style.display = 'flex';
+}
+
+// Esta función procesa los datos y abre WhatsApp
+function procesarVentaExpress() {
+    const nombre = document.getElementById('modalNombre').value;
+    const email = document.getElementById('modalCorreo').value;
+    const btn = event.target.closest('button');
+
+    if(nombre.trim() === "" || email.trim() === "") {
+        alert("Por favor, completa tus datos para recibir la asesoría.");
+        return;
+    }
+
+    // --- INICIO DEL BLINDAJE ---
+    const originalText = btn.innerHTML;
+    btn.innerText = "VERIFICANDO SEGURIDAD...";
+    btn.disabled = true;
+
+    // Pedimos permiso al sensor de Google
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+            
+            // Si Google dice que es humano, seguimos con el registro
+            btn.innerText = "REGISTRANDO...";
+
+            // 1. Envío silencioso a Google Sheets (Agregamos el token al final)
+            const detallePedido = `INTERÉS CATÁLOGO - Modelo: ${productoTemporal} | Puerta: ${puertaSeleccionada}`;
+            const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&servicio=Venta Rapida&mensaje=${encodeURIComponent(detallePedido)}&token=${token}`;
+            
+           fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+    .then(() => {
+        // 1. Preparamos el mensaje
+        const tel = "18094572656";
+        const texto = `¡Hola Lock and Go! Mi nombre es ${nombre}. Estoy interesado en el modelo *${productoTemporal}* para mi puerta de *${puertaSeleccionada}*.`;
+        
+        // 2. RECONDUCIR (Esto es lo que Safari NO bloquea)
+        window.location.href = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
+        
+        // 3. Limpiar y cerrar el modal (Opcional, ya que la página se moverá a WhatsApp)
+        document.getElementById('modalCotizar').style.display = 'none';
+        document.getElementById('modalNombre').value = "";
+        document.getElementById('modalCorreo').value = "";
+    })
+            .catch(err => {
+                console.error("Error al registrar:", err);
+                window.open(`https://wa.me/18094572656?text=Me interesa ${productoTemporal}`, '_blank');
+            })
+            .finally(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        });
+    });
+    // --- FIN DEL BLINDAJE ---
+}
 
     function renderCatalogo() {
         const container = document.getElementById('grid-catalogo');
-        if (container) {
-            container.innerHTML = productos.map(p => `
-                <div class="card">
-                    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
-                    <h3>${p.nombre}</h3>
-                    <span class="precio-tag">${p.precio}</span>
-                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">${p.desc}</p>
-                    <button class="btn-wa" onclick="enviarWhatsApp('${p.nombre}')">Cotizar Ahora</button>
-                </div>
-            `).join('');
-        }
+        if(!container) return;
+        container.innerHTML = productos.map(p => `
+            <div class="card">
+                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
+                <h3>${p.nombre}</h3>
+                <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
+                <span class="precio-tag">${p.precio}</span>
+                <button class="btn-wa" onclick="enviarCotizacion('${p.nombre}')">Solicitar cotización</button>
+            </div>
+        `).join('');
     }
 
-    function enviarWhatsApp(modelo) {
-        const num = "18094572656";
-        const msg = encodeURIComponent(`¡Hola Lock and Go! Me interesa el modelo ${modelo}. ¿Podrían darme más información?`);
-        window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
-    }
-
-    // --- SLIDER DINÁMICO (MOVIMIENTO POR HOVER RECUPERADO) ---
+    // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
     function initSlider() {
         const slider = document.getElementById('slider');
         const afterBox = document.getElementById('after-box');
         const bar = document.getElementById('bar');
         const imgL = document.getElementById('img-lockandgo');
-        
         if (!slider || !imgL) return;
         
         const sync = () => { imgL.style.width = slider.offsetWidth + "px"; };
         
         const mover = (e) => {
-            // Detecta posición tanto en PC (hover) como en Móvil (touch)
             let x = (e.type.includes('touch')) ? e.touches[0].clientX : e.clientX;
             let r = slider.getBoundingClientRect();
             let p = ((x - r.left) / r.width) * 100;
-            
             if (p >= 0 && p <= 100) { 
                 afterBox.style.width = p + "%"; 
                 bar.style.left = p + "%"; 
             }
         };
 
-        // Movimiento por simple paso del mouse (sin click)
         slider.addEventListener('mousemove', mover);
-        slider.addEventListener('touchmove', (e) => {
-            if (e.cancelable) e.preventDefault();
-            mover(e);
-        }, {passive: false});
-
+        slider.addEventListener('touchmove', mover);
         window.addEventListener('resize', sync);
         sync();
-        setTimeout(sync, 500);
     }
 
-    // --- FORMULARIO ---
+    // 4. ENVÍO DEL FORMULARIO A GOOGLE SHEETS
     const formCotizar = document.getElementById('formCotizar');
-    if(formCotizar) {
-        formCotizar.onsubmit = function(e) {
-            e.preventDefault();
-            const btn = formCotizar.querySelector('button');
-            btn.disabled = true;
-            btn.innerText = "ENVIANDO...";
+    
+formCotizar.onsubmit = function(e) {
+        e.preventDefault();
+        const btn = formCotizar.querySelector('button');
+        btn.disabled = true;
+        btn.innerText = "VERIFICANDO SEGURIDAD...";
 
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
-                    const formData = new FormData();
-                    formData.append('nombre', document.getElementById('nombre').value);
-                    formData.append('correo', document.getElementById('correo').value);
-                    formData.append('modelo', document.getElementById('modelo').value);
-                    formData.append('g-recaptcha-response', token);
+        // --- EL CERROJO FINAL DE GOOGLE ---
+        grecaptcha.ready(function() {
+           // Busca esta línea dentro de tu código de envío y pégala tal cual:
+grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'}).then(function(token) {
+                
+                const clean = (str) => str.replace(/[<>]/g, "").trim(); 
+                const nombreLimpio = clean(document.getElementById('nombre').value);
+                const correoLimpio = clean(document.getElementById('correo').value);
+                const servicioLimpio = document.getElementById('servicio').value;
+                const mensajeFinal = "Puerta: " + puertaSeleccionada;
 
-                    fetch(scriptURL, { method: 'POST', body: formData })
-                        .then(() => {
-                            alert("¡Solicitud enviada con éxito!");
-                            formCotizar.reset();
-                        })
-                        .catch(() => alert("Error al enviar."))
-                        .finally(() => {
-                            btn.disabled = false;
-                            btn.innerText = "ENVIAR SOLICITUD";
-                        });
+                // Construimos la URL con el Token de Google incluido
+                const finalRequestURL = `${scriptURL}?nombre=${encodeURIComponent(nombreLimpio)}&email=${encodeURIComponent(correoLimpio)}&servicio=${encodeURIComponent(servicioLimpio)}&mensaje=${encodeURIComponent(mensajeFinal)}&token=${token}`;
+                
+                fetch(finalRequestURL, { method: 'GET', mode: 'no-cors' })
+                .then(() => {
+                    alert("¡SOLICITUD REGISTRADA! Ya eres parte de nuestra base de datos exclusiva.");
+                    formCotizar.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Hubo un detalle técnico. Intenta de nuevo.");
+                })
+                .finally(() => {
+                    btn.innerText = "ENVIAR SOLICITUD";
+                    btn.disabled = false;
                 });
             });
-        };
-    }
+        });
+    };
 
- // 5. MOTOR DE NOTIFICACIONES
+    // 5. MOTOR DE NOTIFICACIONES
     const ventas = [
     { nombre: "Carlos Martínez", ciudad: "Santo Domingo", modelo: "V80 PRO" },
     { nombre: "Laura Peralta", ciudad: "Santiago", modelo: "AURUM X3 IA" },
@@ -953,24 +1053,3 @@ Lo que nos mueve en Lock and Go RD:
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
