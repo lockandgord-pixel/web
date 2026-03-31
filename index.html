@@ -354,17 +354,53 @@
     <i class="fab fa-whatsapp"></i>
 </a>
 
-    <header>
-        <img src="logo1.png" alt="Lock and Go" id="imgLogo">
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav id="main-nav" style="
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 80px;
+    z-index: 99999; 
+    background: rgba(0, 0, 0, 0.8); 
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0, 209, 255, 0.2); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 5%;
+    box-sizing: border-box;
+">
+    
+    <a href="#inicio" style="text-decoration: none; display: flex; align-items: center;">
+        <img src="logo1.png" alt="Lock and Go" style="height: 60px; width: auto; filter: drop-shadow(0 0 10px rgba(0, 209, 255, 0.5));">
+    </a>
+
+    <ul style="display: flex; list-style: none; gap: 25px; margin: 0; padding: 0;" class="nav-links">
+        <li><a href="#inicio" style="color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8;">Inicio</a></li>
+        <li><a href="#catalogo" style="color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8;">Tienda</a></li>
+    </ul>
+
+    <div style="display: flex; gap: 20px; align-items: center;">
+        <a href="#login" style="color: white; font-size: 1.2rem; opacity: 0.8;"><i class="far fa-user-circle"></i></a>
+        <div id="cart-icon" style="position: relative; cursor: pointer; color: #00D1FF; font-size: 1.2rem;">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-count" style="
+                position: absolute; 
+                top: -10px; 
+                right: -12px; 
+                background: white; 
+                color: black; 
+                font-size: 0.6rem; 
+                font-weight: 900; 
+                padding: 2px 6px; 
+                border-radius: 50%;
+                box-shadow: 0 0 10px #00D1FF;
+            ">0</span>
+        </div>
+    </div>
+</nav>
+
+<div style="height: 80px;"></div>
 
    <section id="inicio" class="hero" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 0 5%; background: radial-gradient(circle at center, rgba(0, 209, 255, 0.05) 0%, transparent 70%);">
     <div style="max-width: 850px; text-align: center;">
