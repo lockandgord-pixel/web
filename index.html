@@ -354,142 +354,105 @@
     <i class="fab fa-whatsapp"></i>
 </a>
 
-    <nav id="main-nav" style="
-    position: fixed; 
-    top: 0; 
-    left: 0;
-    width: 100%; 
-    height: 80px;
-    z-index: 99999; 
-    background: rgba(0, 0, 0, 0.8); 
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(0, 209, 255, 0.2); 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 0 5%;
-    box-sizing: border-box;
-">
-    
-    <a href="#inicio" style="text-decoration: none; display: flex; align-items: center;">
-        <img src="logo1.png" alt="Lock and Go" style="height: 60px; width: auto; filter: drop-shadow(0 0 10px rgba(0, 209, 255, 0.5));">
-    </a>
+    <header>
+        <img src="logo1.png" alt="Lock and Go" id="imgLogo">
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <ul style="display: flex; list-style: none; gap: 25px; margin: 0; padding: 0;" class="nav-links">
-        <li><a href="#inicio" style="color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8;">Inicio</a></li>
-        <li><a href="#catalogo" style="color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8;">Tienda</a></li>
-    </ul>
-
-    <div style="display: flex; gap: 20px; align-items: center;">
-        <a href="#login" style="color: white; font-size: 1.2rem; opacity: 0.8;"><i class="far fa-user-circle"></i></a>
-        <div id="cart-icon" style="position: relative; cursor: pointer; color: #00D1FF; font-size: 1.2rem;">
-            <i class="fas fa-shopping-cart"></i>
-            <span id="cart-count" style="
-                position: absolute; 
-                top: -10px; 
-                right: -12px; 
-                background: white; 
-                color: black; 
-                font-size: 0.6rem; 
-                font-weight: 900; 
-                padding: 2px 6px; 
-                border-radius: 50%;
-                box-shadow: 0 0 10px #00D1FF;
-            ">0</span>
-        </div>
-    </div>
-</nav>
-
-<div style="height: 80px;"></div>
-
-   <section id="inicio" class="hero" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 0 5%; background: radial-gradient(circle at center, rgba(0, 209, 255, 0.05) 0%, transparent 70%);">
-    <div style="max-width: 850px; text-align: center;">
-        <h1 style="font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; line-height: 1; letter-spacing: -2px; margin-bottom: 20px;">
-            MÁS PROTECCIÓN, <br><span style="color: #00D1FF;">MÁS LIBERTAD.</span>
-        </h1>
-        <p style="font-size: 1.2rem; font-weight: 300; opacity: 0.8; margin-bottom: 40px; letter-spacing: 1px;">
-            Control total de tu puerta desde el celular. Tecnología de grado militar para tu hogar o Airbnb.
-        </p>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-            <a href="#contacto" class="btn-form" style="background: #00D1FF; color: #000; padding: 18px 40px; border-radius: 5px; font-weight: 800; text-decoration: none; text-transform: uppercase; font-size: 0.9rem;">
-                COTIZAR MI PROYECTO
-            </a>
-            <a href="#catalogo" style="border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 18px 40px; border-radius: 5px; font-weight: 600; text-decoration: none; font-size: 0.9rem;">
-                VER MODELOS
-            </a>
-        </div>
-    </div>
-</section>
-
-<div style="border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 25px 5%; display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; background: rgba(255,255,255,0.01);">
-    <span style="font-size: 0.75rem; opacity: 0.5; letter-spacing: 2px; display: flex; align-items: center; gap: 8px;"><i class="fas fa-shield-alt"></i> GARANTÍA DE 2 AÑOS</span>
-    <span style="font-size: 0.75rem; opacity: 0.5; letter-spacing: 2px; display: flex; align-items: center; gap: 8px;"><i class="fas fa-tools"></i> INSTALACIÓN EN 24H</span>
-    <span style="font-size: 0.75rem; opacity: 0.5; letter-spacing: 2px; display: flex; align-items: center; gap: 8px;"><i class="fas fa-check-circle"></i> +500 CLIENTES</span>
-</div>
-
-<div id="urgency-banner" style="
-    margin: 30px auto; 
-    text-align: center;
-    width: fit-content;
-    background: rgba(0, 209, 255, 0.05); 
-    backdrop-filter: blur(10px); 
-    border: 1px solid rgba(0, 209, 255, 0.2); 
-    padding: 10px 30px; 
-    border-radius: 50px;
-    display: block;
-">
-    <p style="margin: 0; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 500; color: #fff; display: flex; align-items: center; justify-content: center; gap: 12px;">
-        <span style="color: #00D1FF; font-weight: 800; text-transform: uppercase;">Oferta Especial:</span> 
-        15% OFF EN INSTALACIÓN 
-        <span id="timer" style="color: #00D1FF; font-weight: 900; background: rgba(0,209,255,0.1); padding: 2px 12px; border-radius: 20px; border: 1px solid rgba(0,209,255,0.2); min-width: 60px;">15:00</span>
-    </p>
-</div>
-<section id="comparativa" style="padding: 100px 5%; text-align: center;">
-    <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 50px;">LA TRANSFORMACIÓN <span style="color: #00D1FF;">LOCK & GO</span></h2>
-    
-    <div class="comparison-slider" id="slider" style="max-width: 320px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-        <img src="antes1.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
-        <div id="after-box">
-            <img src="despues1.jpeg" alt="Lock and Go" id="img-lockandgo">
-        </div>
-        <div id="bar" class="slider-bar">
-            <div class="slider-button" style="background: #00D1FF; color: #000;"><i class="fas fa-arrows-alt-h"></i></div>
-        </div>
-    </div>
-</section>
-     <section id="nosotros" style="padding: 80px 5%; background: rgba(0, 209, 255, 0.02);">
-    <h2 class="titulo" style="text-align: center; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 50px; letter-spacing: -1px;">
-        POR QUÉ <span style="color: #00D1FF;">LOCK & GO RD</span>
-    </h2>
-    
-    <div class="nosotros-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+    <section id="inicio" class="hero">
+        <h1>MÁS PROTECCIÓN, MÁS VIDA.</h1>
+        <p style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px;">Controla tu puerta desde cualquier lugar</p>
+    </section>
+<div style="background: rgba(0, 209, 255, 0.03); border-top: 1px solid rgba(0, 209, 255, 0.2); border-bottom: 1px solid rgba(0, 209, 255, 0.2); padding: 30px 5%; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; backdrop-filter: blur(10px); position: relative; z-index: 20;">
+  
         
-        <div class="info-box" style="background: rgba(255,255,255,0.03); padding: 40px 30px; border-radius: 15px; border: 1px solid rgba(0, 209, 255, 0.1); transition: 0.3s; text-align: center;">
-            <i class="fas fa-shield-check" style="color: #00D1FF; font-size: 2.5rem; margin-bottom: 20px;"></i>
-            <h3 style="font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase; color: #fff; font-weight: 800;">Seguridad Sin Llaves</h3>
-            <p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.8;">
-                Nuestra misión es liberarte del estrés. Instalamos tecnología que te permite dar acceso a tu hogar o Airbnb desde tu celular con un solo toque, vivas donde vivas.
-            </p>
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-shield-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Garantía Real</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">2 Año de respaldo total</p>
         </div>
 
-        <div class="info-box" style="background: rgba(255,255,255,0.03); padding: 40px 30px; border-radius: 15px; border: 1px solid rgba(0, 209, 255, 0.1); transition: 0.3s; text-align: center;">
-            <i class="fas fa-tools" style="color: #00D1FF; font-size: 2.5rem; margin-bottom: 20px;"></i>
-            <h3 style="font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase; color: #fff; font-weight: 800;">Instalación de Élite</h3>
-            <p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.8;">
-                No solo vendemos cerraduras, garantizamos perfección. Técnicos certificados que cuidan tu puerta y garantizan un acabado estético impecable.
-            </p>
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-tools" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Instalación Certificada</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Técnicos certificados. Cuidamos cada detalle de tu puerta</p>
         </div>
 
-        <div class="info-box" style="background: rgba(255,255,255,0.03); padding: 40px 30px; border-radius: 15px; border: 1px solid rgba(0, 209, 255, 0.1); transition: 0.3s; text-align: center;">
-            <i class="fas fa-handshake-alt" style="color: #00D1FF; font-size: 2.5rem; margin-bottom: 20px;"></i>
-            <h3 style="font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase; color: #fff; font-weight: 800;">Garantía Real</h3>
-            <p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.8;">
-                Hablamos claro y actuamos con honestidad. Ofrecemos 2 años de respaldo total y soporte humano por WhatsApp siempre que nos necesites.
-            </p>
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-mobile-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Control total</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Gestiona tu propiedad desde cualquier parte del mundo</p>
+        </div>
+
+        <div style="text-align: center; min-width: 150px; flex: 1;">
+            <i class="fas fa-headset" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
+            <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Soporte 24/7</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Estamos a un WhatsApp de distancia siempre</p>
         </div>
 
     </div>
-</section>
+    <section id="nosotros">
+      <section id="comparativa" style="text-align: center; padding: 40px 5%; background: transparent; overflow: hidden;">
+    <h2 style="font-size: clamp(1.8rem, 8vw, 2.5rem); font-weight: 900; color: #ffffff; width: 100%; margin: 0 auto; line-height: 1.2; word-wrap: break-word; padding: 0 10px;">
+        DE LO TRADICIONAL A LO <span style="color: #00D1FF; display: inline-block;">EXTRAORDINARIO</span>
+    </h2>
+    <p style="opacity: 0.8; margin-top: 15px; margin-bottom: 30px; font-size: 0.9rem; padding: 0 15px;">Desliza para ver la potencia de Lock and Go RD</p>
+        
+        <div class="comparison-slider" id="slider">
+            <img src="antes1.jpeg" alt="Tradicional" class="img-before-fix" id="img-fondo"> 
+
+            <div id="after-box">
+                <img src="despues1.jpeg" alt="Lock and Go" id="img-lockandgo">
+            </div>
+
+            <div class="label-before">TRADICIONAL</div>
+            <div class="label-after">LOCK AND GO</div>
+            
+            <div id="bar" class="slider-bar">
+                <div class="slider-button"><i class="fas fa-arrows-alt-h"></i></div>
+            </div>
+        </div>
+    </section>
+        <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Nuestra Esencia</h2>
+        <div class="nosotros-grid">
+            <div class="info-box">
+                <i class="fas fa-bullseye"></i>
+                <h3>Misión</h3>
+                <p>🌟 MISIÓN – Lo que hacemos hoy
+Brindar soluciones de seguridad modernas, accesibles y confiables para hogares, negocios y Airbnb, mediante un servicio profesional, transparente y orientado a la satisfacción total del cliente.
+Nos comprometemos a ofrecer instalaciones precisas, asesoría clara y soporte continuo para garantizar tranquilidad y protección en cada espacio.
+</p>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-eye"></i>
+                <h3>Visión</h3>
+                <p>🚀 VISIÓN – Hacia dónde vamos
+Ser la empresa líder en soluciones de seguridad inteligente en la República Dominicana, reconocida por su formalidad, innovación, excelencia en el servicio y expansión sostenible a nivel nacional.
+Aspiramos a convertirnos en la marca de confianza que transforma la forma en que las personas protegen sus espacios.
+</p>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-medal"></i>
+                <h3>Valores</h3>
+                <p>💙 VALORES
+Lo que nos mueve en Lock and Go RD:
+🔹 Transparencia: hablamos claro y actuamos con honestidad.
+🔹 Innovación: tecnología que facilita tu vida.
+🔹 Responsabilidad: cumplimos, respondemos y damos garantía real.
+🔹 Servicio humano: atención cercana, cálida y profesional.
+🔹 Excelencia técnica: cada instalación, un trabajo bien hecho.
+🔹 Compromiso: estamos cuando nos necesitas.
+</p>
+            </div>
+        </div>
+    </section>
 <div style="padding: 60px 5% 20px 5%; text-align: center; background: rgba(0, 209, 255, 0.01); position: relative; z-index: 20;">
     <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; color: #00D1FF; margin-bottom: 40px; font-weight: 700;">Integración Total con tu Smart Lock</p>
     
@@ -580,9 +543,9 @@
             <option value="Otro" style="background: #05080a;">Otras consultas profesionales</option>
         </select>
         
-        <button type="submit" class="btn-submit" style="background: #00D1FF; color: #000; width: 100%; padding: 20px; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">
-    <i class="fas fa-check-circle"></i> ¡Quiero mi presupuesto gratuito ahora!
-</button>
+        <button type="submit" class="btn-form" style="margin-top: 10px;">ENVIAR SOLICITUD PROFESIONAL</button>
+    </form>
+</div>
     </section>
     <div class="social-container">
         <a href="https://wa.me/18094572656" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
@@ -1125,26 +1088,12 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
         }
     }
 
-   // INICIO DE TODO AL CARGAR LA PÁGINA
+    // INICIO DE TODO AL CARGAR LA PÁGINA
     window.addEventListener('DOMContentLoaded', () => {
         renderCatalogo();
         initSlider();
         setTimeout(mostrarNotificacion, 10000);
         setInterval(mostrarNotificacion, 100000);
-
-        // MOTOR DEL RELOJ DE URGENCIA
-        let seconds = 900; // 15 minutos
-        const timerElement = document.getElementById('timer');
-        
-        if (timerElement) {
-            setInterval(() => {
-                let mins = Math.floor(seconds / 60);
-                let secs = seconds % 60;
-                timerElement.innerHTML = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-                if (seconds > 0) seconds--;
-                else seconds = 900; // Reinicia el contador para mantener la urgencia
-            }, 1000);
-        }
     });
 </script>
 </body>
