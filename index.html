@@ -348,6 +348,55 @@
 }
     </style>
 </head>
+    <div id="side-cart" style="position: fixed; top: 0; right: -400px; width: 350px; height: 100%; background: #0a0a0a; z-index: 100001; transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1); box-shadow: -10px 0 30px rgba(0,0,0,0.5); border-left: 1px solid rgba(0, 209, 255, 0.2); display: flex; flex-direction: column;">
+    
+    <div style="padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 1rem; letter-spacing: 2px; text-transform: uppercase;">Tu Selección</h3>
+        <span onclick="toggleCart()" style="cursor: pointer; font-size: 1.5rem; opacity: 0.5;">&times;</span>
+    </div>
+
+    <div id="cart-items-list" style="flex-grow: 1; overflow-y: auto; padding: 20px;">
+        <p id="empty-msg" style="text-align: center; opacity: 0.4; margin-top: 50px; font-size: 0.8rem;">El carrito está vacío</p>
+    </div>
+
+    <div style="padding: 25px; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <span style="opacity: 0.6;">Total Estimado:</span>
+            <span id="cart-total" style="color: #00D1FF; font-weight: 900;">$0.00</span>
+        </div>
+        <button onclick="irAPagar()" class="btn-checkout" style="
+    width: 100%; 
+    background: #00D1FF; 
+    color: #000; 
+    border: none; 
+    padding: 18px; 
+    border-radius: 8px; 
+    font-weight: 900; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(0, 209, 255, 0.2);
+">
+    <i class="fas fa-lock" style="font-size: 0.8rem; opacity: 0.7;"></i> 
+    Pagar de forma segura
+</button>
+
+<style>
+    .btn-checkout:hover {
+        background: #fff !important;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(0, 209, 255, 0.4);
+    }
+</style>
+    </div>
+</div>
+
+<div id="cart-overlay" onclick="toggleCart()" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 100000; display: none; backdrop-filter: blur(5px);"></div>
 <body>
 
     <a href="https://wa.me/18094572656" class="whatsapp-bubble" target="_blank" rel="noopener">
@@ -1141,26 +1190,44 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
         }
     });
 </script>
-        <script>
+       <script>
 let carrito = [];
-const contadorCarrito = document.getElementById('cart-count');
+const sideCart = document.getElementById('side-cart');
+const overlay = document.getElementById('cart-overlay');
+const itemsContainer = document.getElementById('cart-items-list');
+const totalDisplay = document.getElementById('cart-total');
 
-// Función para añadir al carrito (conectarás esto a tus botones de productos)
+function toggleCart() {
+    const isOpen = sideCart.style.right === "0px";
+    sideCart.style.right = isOpen ? "-400px" : "0px";
+    overlay.style.display = isOpen ? "none" : "block";
+}
+
 function agregarAlCarrito(nombre, precio) {
     carrito.push({ nombre, precio });
-    actualizarInterfaz();
+    actualizarCarrito();
+    if (sideCart.style.right !== "0px") toggleCart(); // Abre el carrito al agregar
+}
+
+function actualizarCarrito() {
+    document.getElementById('cart-count').innerText = carrito.length;
+    document.getElementById('empty-msg').style.display = carrito.length > 0 ? "none" : "block";
     
-    // Feedback visual estilo "clase mundial"
-    contadorCarrito.style.transform = "scale(1.5)";
-    setTimeout(() => contadorCarrito.style.transform = "scale(1)", 200);
+    itemsContainer.innerHTML = carrito.map((item, index) => `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px;">
+            <span style="font-size: 0.8rem;">${item.nombre}</span>
+            <span style="font-size: 0.8rem; font-weight: 700;">$${item.precio.toLocaleString()}</span>
+        </div>
+    `).join('') + (carrito.length === 0 ? '<p id="empty-msg" style="text-align: center; opacity: 0.4; margin-top: 50px; font-size: 0.8rem;">El carrito está vacío</p>' : '');
+
+    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+    totalDisplay.innerText = `$${total.toLocaleString()}`;
 }
 
-function actualizarInterfaz() {
-    contadorCarrito.innerText = carrito.length;
+function irAPagar() {
+    alert("Redirigiendo a pasarela de pago segura...");
+    // Aquí conectarás con Stripe o Azul más adelante
 }
-
-// Ejemplo: Para que tus botones actuales funcionen, dales este atributo:
-// onclick="agregarAlCarrito('Cerradura Aurum', 15000)"
 </script>
 </body>
 </html>
