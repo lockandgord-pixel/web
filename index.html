@@ -599,7 +599,9 @@
 </div>
     
     <section id="catalogo">
-        <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Selección Lock And Go</h2>
+        <h2 style="text-align: center; font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 50px;">
+    NUESTRA <span style="color: #00D1FF;">COLECCIÓN</span>
+</h2>
         <div id="grid-catalogo"></div>
     </section>
 
@@ -1191,6 +1193,51 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
     });
 </script>
        <script>
+           // BASE DE DATOS DE PRODUCTOS (CLASE MUNDIAL)
+const productos = [
+    {
+        id: 1,
+        nombre: "Cerradura Inteligente V80 PRO",
+        precio:Desde 18699,
+        img: "llavin1.png.png", // Asegúrate de tener esta imagen o cámbiala
+        desc: "econocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto."
+    },
+    {
+        id: 2,
+        nombre: "AURUM X3 IA",
+        precio: Desde 31699,
+        img: "aurumx3ia.png",
+        desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto."
+    },
+    {
+        id: 3,
+        nombre: "H18 PRO MAX",
+        precio: Desde 17699,
+        img: "H18PROMAX.png",
+        desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto."
+    }
+];
+
+// FUNCIÓN PARA PINTAR LOS PRODUCTOS EN EL GRID
+function renderizarProductos() {
+    const grid = document.getElementById('grid-catalogo');
+    grid.innerHTML = productos.map(p => `
+        <div class="card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease;">
+            <img src="${p.img}" alt="${p.nombre}" style="width: 100%; height: 250px; object-fit: contain; margin-bottom: 20px;">
+            <h3 style="font-size: 1.2rem; margin-bottom: 10px;">${p.nombre}</h3>
+            <p style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 15px;">${p.desc}</p>
+            <span style="display: block; font-size: 1.5rem; font-weight: 900; color: #00D1FF; margin-bottom: 20px;">
+                RD$ ${p.precio.toLocaleString()}
+            </span>
+            <button onclick="agregarAlCarrito('${p.nombre}', ${p.precio})" class="btn-wa" style="background: #00D1FF; color: black; border: none; padding: 15px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; text-transform: uppercase;">
+                <i class="fas fa-cart-plus"></i> Añadir al Carrito
+            </button>
+        </div>
+    `).join('');
+}
+
+// Ejecutar al cargar la página
+renderizarProductos();
 let carrito = [];
 const sideCart = document.getElementById('side-cart');
 const overlay = document.getElementById('cart-overlay');
