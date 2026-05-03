@@ -133,10 +133,28 @@
         .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
         .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
 
-        #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
-        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; }
-        .card:hover { transform: translateY(-20px); border-color: #00D1FF; }
-        .card img { width: 100%; height: 320px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); margin-bottom: 25px; }
+       #grid-catalogo {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+    cursor: grab;
+}
+#grid-catalogo::-webkit-scrollbar { display: none; }
+
+.card {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 35px;
+    padding: 30px;
+    text-align: center;
+    transition: 0.3s;
+}
+.card:hover { border-color: #00D1FF; transform: scale(1.02); }
+.card img { width: 100%; height: 250px; object-fit: contain; margin-bottom: 15px; }
 
         .precio-tag { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
         .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
@@ -582,37 +600,17 @@ Lo que nos mueve en Lock and Go RD:
             </div>
     </div>
 
-    <script>
-    // 1. TU CONFIGURACIÓN (REEMPLAZA ESTA URL POR LA TUYA DE GOOGLE)
+   <script>
+    // 1. CONFIGURACIÓN
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxOtSpGMIpuGlLnmv4HfZXsDbUA-vbPVWFjwJC4Yv6H8WEE6jQwJrvRmbIoKP4trr4-JQ/exec';
 
-    // 2. PRODUCTOS (CATÁLOGO CORREGIDO)
-const productos = [
-    { 
-        nombre: "V80 PRO", 
-        precio: "Desde RD$18,699", 
-        imagen: "llavin1.png.png", 
-        desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." 
-    },
-    { 
-        nombre: "AURUM X3 IA", 
-        precio: "Desde RD$31,699", 
-        imagen: "aurumx3ia.png", 
-        desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." 
-    },
-    { 
-        nombre: "H18 PRO MAX", 
-        precio: "Desde RD$17,699", 
-        imagen: "H18PROMAX.png", 
-        desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." 
-    }, // <--- ¡Aquí faltaba la coma!
-    { 
-        nombre: "TITAN LINE 68CM", 
-        precio: "Desde RD$28,590", 
-        imagen: "AJS1.png", 
-        desc: "Cerradura con tirador incrustado, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto."  
-    }
-];
+    // 2. PRODUCTOS
+    const productos = [
+        { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "llavin1.png.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
+        { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+        { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." },
+        { nombre: "TITAN LINE 68CM", precio: "Desde RD$28,590", imagen: "AJS1.png", desc: "Cerradura con tirador incrustado, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." }
+    ];
 
     let puertaSeleccionada = "No especificada";
 
@@ -625,6 +623,32 @@ const productos = [
         elemento.style.borderColor = '#00D1FF';
         elemento.style.background = 'rgba(0, 209, 255, 0.1)';
     }
+
+    // 3. FUNCIÓN PARA PINTAR EL CATÁLOGO (Esto es lo que faltaba)
+    function renderCatalogo() {
+        const grid = document.getElementById('grid-catalogo');
+        if (!grid) return;
+
+        grid.innerHTML = ''; // Limpia el contenedor
+
+        productos.forEach(prod => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${prod.imagen}" alt="${prod.nombre}">
+                <h3>${prod.nombre}</h3>
+                <span class="precio-tag">${prod.precio}</span>
+                <p style="font-size: 0.9rem; margin-bottom: 20px;">${prod.desc}</p>
+                <button class="btn-wa" onclick="window.open('https://wa.me/18094572656?text=Quiero%20cotizar%20${encodeURIComponent(prod.nombre)}')">Cotizar Ahora</button>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // 4. INICIO AUTOMÁTICO
+    window.addEventListener('DOMContentLoaded', () => {
+        renderCatalogo();
+    });
 
     // WhatsApp para el catálogo (Venta rápida)
     let productoTemporal = "";
