@@ -133,13 +133,14 @@
         .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
         .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
 
-       #grid-catalogo {
+     #grid-catalogo {
     display: flex;
     overflow-x: auto;
     gap: 20px;
     padding: 20px 0;
     scroll-snap-type: x mandatory;
     cursor: grab;
+    scroll-behavior: smooth; /* ESTO HARÁ QUE EL DESPLAZAMIENTO SEA SUAVE */
 }
 #grid-catalogo::-webkit-scrollbar { display: none; }
 
@@ -1133,13 +1134,40 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
         }
     }
 
-    // INICIO DE TODO AL CARGAR LA PÁGINA
-    window.addEventListener('DOMContentLoaded', () => {
-        renderCatalogo();
-        initSlider();
-        setTimeout(mostrarNotificacion, 10000);
-        setInterval(mostrarNotificacion, 100000);
-    });
+  // INICIO DE TODO AL CARGAR LA PÁGINA
+window.addEventListener('DOMContentLoaded', () => {
+    renderCatalogo();
+    initSlider();
+
+    // LÓGICA DEL CARRUSEL AUTOMÁTICO (HACIA LA IZQUIERDA)
+    const container = document.getElementById('grid-catalogo');
+    let autoScrollInterval;
+
+    function startAutoScroll() {
+        if (!container) return; 
+        autoScrollInterval = setInterval(() => {
+            // Mover a la izquierda restando píxeles
+            container.scrollLeft -= 320; 
+            
+            // Si llega al inicio (0), saltar al final del todo para hacer el loop
+            if (container.scrollLeft <= 0) {
+                container.scrollLeft = container.scrollWidth;
+            }
+        }, 3000); // 3 segundos
+    }
+
+    // Pausar al pasar el mouse
+    if (container) {
+        container.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+        container.addEventListener('mouseleave', () => startAutoScroll());
+    }
+
+    startAutoScroll(); // Iniciar movimiento
+    // FIN DEL CARRUSEL
+
+    setTimeout(mostrarNotificacion, 10000);
+    setInterval(mostrarNotificacion, 100000);
+});
 </script>
 </body>
 </html>
