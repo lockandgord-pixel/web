@@ -603,24 +603,24 @@ Lo que nos mueve en Lock and Go RD:
     // 1. CONFIGURACIÓN
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxOtSpGMIpuGlLnmv4HfZXsDbUA-vbPVWFjwJC4Yv6H8WEE6jQwJrvRmbIoKP4trr4-JQ/exec';
 
-    // 2. PRODUCTOS
-    const productos = [
-        { nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "V80.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
-        { nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-        { nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." },
-        { nombre: "TITAN LINE 110CM", precio: "Desde RD$38,590", imagen: "AJS3.png", desc: "Cerradura con tirador incrustado, Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-        { nombre: "TITAN LINE 80CM", precio: "Desde RD$33,590", imagen: "AJS2.png", desc: "Cerradura con tirador incrustado, Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-        { nombre: "TITAN LINE 68CM", precio: "Desde RD$28,590", imagen: "AJS4.png", desc: "Cerradura con tirador incrustado, Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-        { nombre: "ESSENCE S1", precio: "Desde RD$8,990", imagen: "Z21.png", desc: "Seguridad biométrica de alta velocidad, acceso mediante huellas, códigos digitales y tarjetas token. Diseño minimalista y resistente." },
-        { nombre: "SYNC BLACK", precio: "Desde RD$18,990", imagen: "S9black.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-        { nombre: "SYNC SILVER", precio: "Desde RD$18,990", imagen: "S9silver.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-        { nombre: "SYNC ROSE", precio: "Desde RD$18,990", imagen: "S9rosa.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-        { nombre: "SYNC GOLD", precio: "Desde RD$20,990", imagen: "S9oro.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-        { nombre: "DDL", precio: "Desde RD$14,999", imagen: "DDL9.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." },
-        { nombre: "W10 PRO", precio: "Desde RD$21,990", imagen: "W10.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
-        { nombre: "XF4S", precio: "Desde RD$13,990", imagen: "XF4S.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." },
-        { nombre: "FD7", precio: "Desde RD$11,690", imagen: "FD71.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." },
-    ]; 
+  // 2. PRODUCTOS
+const productos = [
+    { id: "v80-pro", nombre: "V80 PRO", precio: "Desde RD$18,699", imagen: "V80.png", desc: "Reconocimiento Facial 3D, palma, huellas, codigos, tarjeta de proximidad, Visión Nocturna y desbloqueo remoto." },
+    { id: "aurum-x3-ia", nombre: "AURUM X3 IA", precio: "Desde RD$31,699", imagen: "aurumx3ia.png", desc: "Triple cámara, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+    { id: "h18-pro-max", nombre: "H18 PRO MAX", precio: "Desde RD$17,699", imagen: "H18PROMAX.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." },
+    { id: "titan-line-110cm", nombre: "TITAN LINE 110CM", precio: "Desde RD$38,590", imagen: "AJS3.png", desc: "Cerradura con tirador incrustado, Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+    { id: "titan-line-80cm", nombre: "TITAN LINE 80CM", precio: "Desde RD$33,590", imagen: "AJS2.png", desc: "Cerradura con tirador incrustado, Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+    { id: "titan-line-68cm", nombre: "TITAN LINE 68CM", precio: "Desde RD$28,590", imagen: "AJS4.png", desc: "Cerradura con tirador incrustado, Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+    { id: "essence-s1", nombre: "ESSENCE S1", precio: "Desde RD$8,990", imagen: "Z21.png", desc: "Seguridad biométrica de alta velocidad, acceso mediante huellas, códigos digitales y tarjetas token. Diseño minimalista y resistente." },
+    { id: "sync-black", nombre: "SYNC BLACK", precio: "Desde RD$18,990", imagen: "S9black.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+    { id: "sync-silver", nombre: "SYNC SILVER", precio: "Desde RD$18,990", imagen: "S9silver.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+    { id: "sync-rose", nombre: "SYNC ROSE", precio: "Desde RD$18,990", imagen: "S9rosa.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+    { id: "sync-gold", nombre: "SYNC GOLD", precio: "Desde RD$20,990", imagen: "S9oro.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+    { id: "ddl", nombre: "DDL", precio: "Desde RD$14,999", imagen: "DDL9.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." },
+    { id: "w10-pro", nombre: "W10 PRO", precio: "Desde RD$21,990", imagen: "W10.png", desc: "Resistente al calor , Resistente al agua, Visión Nocturna, Reconocimiento Facial 3D, reconocimiento de palma, huellas dactilares, codigos, tarjeta de proximidad, inteligencia artificial incorporada y desbloqueo remoto." },
+    { id: "xf4s", nombre: "XF4S", precio: "Desde RD$13,990", imagen: "XF4S.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." },
+    { id: "fd7", nombre: "FD7", precio: "Desde RD$11,690", imagen: "FD71.png", desc: "Reconocimiento Facial 3D, huellas, vision nocturna, codigos, tarjeta, timbre inteligente y desbloqueo remoto." },
+];
 
     let puertaSeleccionada = "No especificada";
 
@@ -634,26 +634,25 @@ Lo que nos mueve en Lock and Go RD:
         elemento.style.background = 'rgba(0, 209, 255, 0.1)';
     }
 
-    // 3. FUNCIÓN PARA PINTAR EL CATÁLOGO (Esto es lo que faltaba)
-    function renderCatalogo() {
-        const grid = document.getElementById('grid-catalogo');
-        if (!grid) return;
-
-        grid.innerHTML = ''; // Limpia el contenedor
-
-        productos.forEach(prod => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <img src="${prod.imagen}" alt="${prod.nombre}">
-                <h3>${prod.nombre}</h3>
-                <span class="precio-tag">${prod.precio}</span>
-                <p style="font-size: 0.9rem; margin-bottom: 20px;">${prod.desc}</p>
-                <button class="btn-wa" onclick="window.open('https://wa.me/18094572656?text=Quiero%20cotizar%20${encodeURIComponent(prod.nombre)}')">Cotizar Ahora</button>
-            `;
-            grid.appendChild(card);
-        });
-    }
+   function renderCatalogo() {
+    const grid = document.getElementById('grid-catalogo');
+    if (!grid) return;
+    grid.innerHTML = ''; 
+    productos.forEach(prod => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.id = prod.id; // IMPORTANTE: Esto conecta el HTML con el ID
+        card.innerHTML = `
+            <img src="${prod.imagen}" alt="${prod.nombre}">
+            <h3>${prod.nombre}</h3>
+            <p>${prod.desc}</p>
+            <button class="btn-share" onclick="compartirProducto('${prod.id}')">
+                Compartir Producto
+            </button>
+        `;
+        grid.appendChild(card);
+    });
+}
 
     // 4. INICIO AUTOMÁTICO
     window.addEventListener('DOMContentLoaded', () => {
@@ -1154,7 +1153,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function startAutoScroll() {
         if (!container) return; 
-        // Limpiamos antes de empezar para evitar duplicados
         clearInterval(autoScrollInterval); 
         
         autoScrollInterval = setInterval(() => {
@@ -1195,7 +1193,40 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // --- LÓGICA DE RECEPCIÓN (EL LINK) ---
+    // Esto se ejecuta un poco después de que todo cargue para asegurar que el catálogo exista
+    setTimeout(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const modeloParam = urlParams.get('modelo'); 
+
+        if (modeloParam) {
+            const elemento = document.getElementById(modeloParam);
+            if (elemento) {
+                // Baja automáticamente hasta el producto
+                elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Efecto visual para resaltar el producto
+                elemento.style.border = "2px solid #00D1FF";
+                setTimeout(() => { elemento.style.border = "none"; }, 3000);
+            }
+        }
+    }, 800); // 800ms de espera para dar tiempo a renderizar el catálogo
 });
+       function compartirProducto(modeloId) {
+    const linkProducto = window.location.origin + window.location.pathname + "?modelo=" + modeloId;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'Mira este modelo en Lock and Go RD',
+            text: 'Encontré esta cerradura que te puede interesar:',
+            url: linkProducto,
+        }).catch(console.error);
+    } else {
+        navigator.clipboard.writeText(linkProducto);
+        alert("Enlace copiado al portapapeles");
+    }
+}
 </script>
 </body>
 </html>
