@@ -140,7 +140,7 @@
     padding: 20px 0;
     scroll-snap-type: x mandatory;
     cursor: grab;
-    scroll-behavior: smooth; /* ESTO HARÁ QUE EL DESPLAZAMIENTO SEA SUAVE */
+         
 }
 #grid-catalogo::-webkit-scrollbar { display: none; }
 
@@ -1139,30 +1139,33 @@ window.addEventListener('DOMContentLoaded', () => {
     renderCatalogo();
     initSlider();
 
-    // LÓGICA DEL CARRUSEL AUTOMÁTICO (HACIA LA IZQUIERDA)
+    // LÓGICA DEL CARRUSEL CONTINUO (FLUJO SUAVE)
     const container = document.getElementById('grid-catalogo');
-    let autoScrollInterval;
+    let animationFrame;
+    let speed = 1.0; // Ajusta a 0.5 para más lento o 2.0 para más rápido
 
-    function startAutoScroll() {
-        if (!container) return; 
-        autoScrollInterval = setInterval(() => {
-            // Mover a la izquierda restando píxeles
-            container.scrollLeft -= 320; 
-            
-            // Si llega al inicio (0), saltar al final del todo para hacer el loop
-            if (container.scrollLeft <= 0) {
-                container.scrollLeft = container.scrollWidth;
-            }
-        }, 3000); // 3 segundos
+    function continuousScroll() {
+        if (!container) return;
+
+        // Desplaza hacia la derecha para que el contenido fluya hacia la izquierda
+        container.scrollLeft += speed;
+
+        // Si llega al final, reinicia al principio para que sea infinito
+        if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) {
+            container.scrollLeft = 0;
+        }
+
+        animationFrame = requestAnimationFrame(continuousScroll);
     }
 
     // Pausar al pasar el mouse
     if (container) {
-        container.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-        container.addEventListener('mouseleave', () => startAutoScroll());
+        container.addEventListener('mouseenter', () => cancelAnimationFrame(animationFrame));
+        container.addEventListener('mouseleave', () => continuousScroll());
     }
 
-    startAutoScroll(); // Iniciar movimiento
+    // Iniciar movimiento
+    continuousScroll();
     // FIN DEL CARRUSEL
 
     setTimeout(mostrarNotificacion, 10000);
