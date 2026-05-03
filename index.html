@@ -140,7 +140,7 @@
     padding: 20px 0;
     scroll-snap-type: x mandatory;
     cursor: grab;
-         
+    scroll-behavior: smooth; /* ESTO HARÁ QUE EL DESPLAZAMIENTO SEA SUAVE */
 }
 #grid-catalogo::-webkit-scrollbar { display: none; }
 
@@ -1136,46 +1136,35 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
 
   // INICIO DE TODO AL CARGAR LA PÁGINA
 window.addEventListener('DOMContentLoaded', () => {
-    // 1. Ejecutamos las funciones necesarias
     renderCatalogo();
-    if (typeof initSlider === 'function') { initSlider(); }
-    
-    // 2. LÓGICA DEL CARRUSEL CONTINUO
+    initSlider();
+
+    // LÓGICA DEL CARRUSEL AUTOMÁTICO (HACIA LA IZQUIERDA)
     const container = document.getElementById('grid-catalogo');
-    
-    // Verificación de seguridad: ¿Existe el contenedor?
-    if (!container) {
-        console.error("¡ERROR! No encontré el elemento #grid-catalogo");
-        return; 
+    let autoScrollInterval;
+
+    function startAutoScroll() {
+        if (!container) return; 
+        autoScrollInterval = setInterval(() => {
+            // Mover a la izquierda restando píxeles
+            container.scrollLeft -= 320; 
+            
+            // Si llega al inicio (0), saltar al final del todo para hacer el loop
+            if (container.scrollLeft <= 0) {
+                container.scrollLeft = container.scrollWidth;
+            }
+        }, 3000); // 3 segundos
     }
 
-    let speed = 1.0; // Velocidad del movimiento
-    
-    function continuousScroll() {
-        // Si el usuario puso el mouse encima, no hacemos nada (pausado)
-        if (container.dataset.isHovered === "true") {
-            requestAnimationFrame(continuousScroll);
-            return;
-        }
-
-        container.scrollLeft += speed;
-
-        // Si llegamos al final del contenido, volvemos al inicio (efecto infinito)
-        if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) {
-            container.scrollLeft = 0;
-        }
-        
-        requestAnimationFrame(continuousScroll);
+    // Pausar al pasar el mouse
+    if (container) {
+        container.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+        container.addEventListener('mouseleave', () => startAutoScroll());
     }
 
-    // Eventos para pausar/reanudar
-    container.addEventListener('mouseenter', () => container.dataset.isHovered = "true");
-    container.addEventListener('mouseleave', () => container.dataset.isHovered = "false");
+    startAutoScroll(); // Iniciar movimiento
+    // FIN DEL CARRUSEL
 
-    // Iniciamos la animación
-    continuousScroll();
-
-    // 3. Notificaciones
     setTimeout(mostrarNotificacion, 10000);
     setInterval(mostrarNotificacion, 100000);
 });
