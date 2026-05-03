@@ -133,11 +133,11 @@
         .info-box:hover { border-color: #00D1FF; transform: translateY(-10px); }
         .info-box i { font-size: 2.5rem; color: #00D1FF; margin-bottom: 20px; }
 
-        #grid-catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
-        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; }
-        .card:hover { transform: translateY(-20px); border-color: #00D1FF; }
-        .card img { width: 100%; height: 320px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); margin-bottom: 25px; }
-
+        #grid-catalogo { display: flex; overflow-x: auto; gap: 40px; margin-top: 50px; scroll-snap-type: x mandatory; padding-bottom: 20px; }
+#grid-catalogo::-webkit-scrollbar { display: none; }
+.card { flex: 0 0 320px; scroll-snap-align: start; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 35px; padding: 40px; text-align: center; transition: 0.5s ease; }
+.card:hover { transform: translateY(-20px); border-color: #00D1FF; }
+.card img { width: 100%; height: 320px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 25px 35px rgba(0,0,0,1)); margin-bottom: 25px; }
         .precio-tag { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
         .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
 
