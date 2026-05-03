@@ -1136,38 +1136,46 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
 
   // INICIO DE TODO AL CARGAR LA PÁGINA
 window.addEventListener('DOMContentLoaded', () => {
+    // 1. Ejecutamos las funciones necesarias
     renderCatalogo();
-    initSlider();
-
-    // LÓGICA DEL CARRUSEL CONTINUO (FLUJO SUAVE)
+    if (typeof initSlider === 'function') { initSlider(); }
+    
+    // 2. LÓGICA DEL CARRUSEL CONTINUO
     const container = document.getElementById('grid-catalogo');
-    let animationFrame;
-    let speed = 1.0; // Ajusta a 0.5 para más lento o 2.0 para más rápido
+    
+    // Verificación de seguridad: ¿Existe el contenedor?
+    if (!container) {
+        console.error("¡ERROR! No encontré el elemento #grid-catalogo");
+        return; 
+    }
 
+    let speed = 1.0; // Velocidad del movimiento
+    
     function continuousScroll() {
-        if (!container) return;
+        // Si el usuario puso el mouse encima, no hacemos nada (pausado)
+        if (container.dataset.isHovered === "true") {
+            requestAnimationFrame(continuousScroll);
+            return;
+        }
 
-        // Desplaza hacia la derecha para que el contenido fluya hacia la izquierda
         container.scrollLeft += speed;
 
-        // Si llega al final, reinicia al principio para que sea infinito
+        // Si llegamos al final del contenido, volvemos al inicio (efecto infinito)
         if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) {
             container.scrollLeft = 0;
         }
-
-        animationFrame = requestAnimationFrame(continuousScroll);
+        
+        requestAnimationFrame(continuousScroll);
     }
 
-    // Pausar al pasar el mouse
-    if (container) {
-        container.addEventListener('mouseenter', () => cancelAnimationFrame(animationFrame));
-        container.addEventListener('mouseleave', () => continuousScroll());
-    }
+    // Eventos para pausar/reanudar
+    container.addEventListener('mouseenter', () => container.dataset.isHovered = "true");
+    container.addEventListener('mouseleave', () => container.dataset.isHovered = "false");
 
-    // Iniciar movimiento
+    // Iniciamos la animación
     continuousScroll();
-    // FIN DEL CARRUSEL
 
+    // 3. Notificaciones
     setTimeout(mostrarNotificacion, 10000);
     setInterval(mostrarNotificacion, 100000);
 });
