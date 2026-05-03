@@ -1143,7 +1143,7 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
         }
     }
 
- // INICIO DE TODO AL CARGAR LA PÁGINA
+// INICIO DE TODO AL CARGAR LA PÁGINA
 window.addEventListener('DOMContentLoaded', () => {
     renderCatalogo();
     initSlider();
@@ -1154,6 +1154,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function startAutoScroll() {
         if (!container) return; 
+        // Limpiamos antes de empezar para evitar duplicados
+        clearInterval(autoScrollInterval); 
+        
         autoScrollInterval = setInterval(() => {
             container.scrollLeft -= 320; 
             if (container.scrollLeft <= 0) {
@@ -1163,8 +1166,17 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     if (container) {
+        // EVENTOS MOUSE (PC)
         container.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
         container.addEventListener('mouseleave', () => startAutoScroll());
+
+        // EVENTOS TÁCTILES (CELULAR)
+        container.addEventListener('touchstart', () => clearInterval(autoScrollInterval), { passive: true });
+        
+        // Al soltar el dedo, esperamos 3 segundos antes de seguir moviendo
+        container.addEventListener('touchend', () => {
+            setTimeout(startAutoScroll, 3000);
+        }, { passive: true });
     }
 
     startAutoScroll();
@@ -1173,7 +1185,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(mostrarNotificacion, 10000);
     setInterval(mostrarNotificacion, 100000);
 
-    // --- AQUÍ VA LA LÓGICA DEL BOTÓN "VOLVER AL INICIO" ---
+    // LÓGICA DEL BOTÓN "VOLVER AL INICIO"
     const btnArriba = document.getElementById('btn-arriba');
     if (btnArriba) {
         btnArriba.addEventListener('click', () => {
@@ -1183,7 +1195,6 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    // --------------------------------------------------------
 });
 </script>
 </body>
