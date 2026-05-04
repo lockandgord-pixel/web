@@ -870,19 +870,8 @@ function procesarVentaExpress() {
     // --- FIN DEL BLINDAJE ---
 }
 
-    function renderCatalogo() {
-        const container = document.getElementById('grid-catalogo');
-        if(!container) return;
-        container.innerHTML = productos.map(p => `
-            <div class="card">
-                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='logo1.png'">
-                <h3>${p.nombre}</h3>
-                <p style="opacity: 0.8; margin-bottom: 10px;">${p.desc}</p>
-                <span class="precio-tag">${p.precio}</span>
-                <button class="btn-wa" onclick="enviarCotizacion('${p.nombre}')">QUIERO ESTA</button>
-            </div>
-        `).join('');
-    }
+    // renderCatalogo definitiva con botones de compartir
+    // (la version actualizada esta arriba, esta queda eliminada)
 
     // 3. DINÁMICA DEL SLIDER (TRADICIONAL VS LOCK AND GO)
     function initSlider() {
