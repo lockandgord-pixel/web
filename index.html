@@ -638,7 +638,38 @@ Lo que nos mueve en Lock and Go RD:
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Selección Lock And Go</h2>
         <div id="grid-catalogo"></div>
     </section>
+<section id="faq-section" style="max-width: 900px; margin: 40px auto; padding: 20px; color: white;">
+    <h2 style="text-align: center; margin-bottom: 25px; color: #fff;">Preguntas Frecuentes</h2>
+    
+    <style>
+        .faq-box { margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .faq-btn { width: 100%; padding: 18px; text-align: left; background: transparent; border: none; cursor: pointer; color: white; font-weight: bold; font-size: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .faq-res { display: none; padding: 0 18px 18px 18px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+    </style>
 
+    <div class="faq-box">
+        <button class="faq-btn" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">¿Son resistentes al agua y al calor? <span>+</span></button>
+        <div class="faq-res">¡Sí! Nuestras líneas TITAN LINE, SYNC y la serie S9 están diseñadas para el Caribe, resistiendo humedad y altas temperaturas.</div>
+    </div>
+
+    <div class="faq-box">
+        <button class="faq-btn" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">¿Qué pasa si se va la energía eléctrica? <span>+</span></button>
+        <div class="faq-res">No te preocupes. Nuestras cerraduras usan baterías internas independientes, por lo que la seguridad está garantizada incluso en apagones.</div>
+    </div>
+
+    <div class="faq-box">
+        <button class="faq-btn" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">¿Qué sucede si se agotan las baterías? <span>+</span></button>
+        <div class="faq-res">Incluyen un puerto USB de emergencia para conectar una power bank y abrir, además de llave física de respaldo.</div>
+    </div>
+
+    <div class="faq-box">
+        <button class="faq-btn" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">¿Puedo abrir si no estoy en casa? <span>+</span></button>
+        <div class="faq-res">Sí, mediante nuestra App puedes gestionar el acceso remotamente desde cualquier lugar del mundo.</div>
+    </div>
+</section>
+
+<div id="shareModal">
+... (el resto de tu código)
   <section id="contacto" style="padding: 100px 5%; background: rgba(0,0,0,0.3);">
        <div class="formulario-container">
     <h2 style="font-size: 1.8rem; font-weight: 900; color: #00D1FF; margin-bottom: 15px; text-transform: uppercase;">
@@ -690,38 +721,6 @@ Lo que nos mueve en Lock and Go RD:
         </button>
         <p>&copy; 2026 LOCK AND GO RD | Derechos reservados República Dominicana</p>
     </footer>
-<section id="faq-section" style="max-width: 900px; margin: 40px auto; padding: 20px; color: white;">
-    <h2 style="text-align: center; margin-bottom: 25px; color: #fff;">Preguntas Frecuentes</h2>
-    
-    <style>
-        .faq-box { margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.2); }
-        .faq-btn { width: 100%; padding: 18px; text-align: left; background: transparent; border: none; cursor: pointer; color: white; font-weight: bold; font-size: 16px; display: flex; justify-content: space-between; align-items: center; }
-        .faq-res { display: none; padding: 0 18px 18px 18px; color: rgba(255,255,255,0.7); line-height: 1.6; }
-    </style>
-
-    <div class="faq-box">
-        <button class="faq-btn" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">¿Son resistentes al agua y al calor? <span>+</span></button>
-        <div class="faq-res">¡Sí! Nuestras líneas TITAN LINE, SYNC y la serie S9 están diseñadas para el Caribe, resistiendo humedad y altas temperaturas.</div>
-    </div>
-
-    <div class="faq-box">
-        <button class="faq-btn" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">¿Qué pasa si se va la energía eléctrica? <span>+</span></button>
-        <div class="faq-res">No te preocupes. Nuestras cerraduras usan baterías internas independientes, por lo que la seguridad está garantizada incluso en apagones.</div>
-    </div>
-
-    <div class="faq-box">
-        <button class="faq-btn" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">¿Qué sucede si se agotan las baterías? <span>+</span></button>
-        <div class="faq-res">Incluyen un puerto USB de emergencia para conectar una power bank y abrir, además de llave física de respaldo.</div>
-    </div>
-
-    <div class="faq-box">
-        <button class="faq-btn" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">¿Puedo abrir si no estoy en casa? <span>+</span></button>
-        <div class="faq-res">Sí, mediante nuestra App puedes gestionar el acceso remotamente desde cualquier lugar del mundo.</div>
-    </div>
-</section>
-
-<div id="shareModal">
-... (el resto de tu código)
 
     <!-- MODAL COMPARTIR PRODUCTO - ESTILO TEMU/SHEIN/AMAZON -->
     <div id="shareModal">
