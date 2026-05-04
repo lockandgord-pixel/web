@@ -160,6 +160,103 @@
         .precio-tag { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
         .btn-wa { background: #00D1FF; color: black; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; }
 
+        /* ===== SHARE BUTTON EN CARD ===== */
+        .card-actions { display: flex; gap: 10px; margin-top: 15px; }
+        .btn-cotizar-card { background: #00D1FF; color: black; border: none; padding: 14px 20px; border-radius: 50px; font-weight: 900; cursor: pointer; flex: 1; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; font-family: 'Poppins', sans-serif; }
+        .btn-cotizar-card:hover { background: #00b8e0; transform: scale(1.03); }
+        .btn-share-card { background: rgba(255,255,255,0.07); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 14px 16px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 1rem; font-family: 'Poppins', sans-serif; flex-shrink: 0; }
+        .btn-share-card:hover { background: rgba(0,209,255,0.15); border-color: #00D1FF; color: #00D1FF; }
+
+        /* ===== MODAL COMPARTIR (estilo Temu/Shein) ===== */
+        #shareModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 20000;
+            align-items: flex-end;
+            justify-content: center;
+            backdrop-filter: blur(12px);
+            padding: 0;
+        }
+        #shareModal.active { display: flex; }
+        .share-sheet {
+            background: #0d1117;
+            border: 1px solid rgba(0,209,255,0.2);
+            border-radius: 30px 30px 0 0;
+            width: 100%;
+            max-width: 520px;
+            padding: 0 0 30px 0;
+            animation: slideUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .share-handle { width: 40px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 14px auto 0; }
+        .share-product-preview {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .share-product-preview img { width: 60px; height: 60px; object-fit: contain; border-radius: 12px; background: rgba(255,255,255,0.04); }
+        .share-product-info h4 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 4px; }
+        .share-product-info p { font-size: 0.8rem; color: #00D1FF; font-weight: 600; }
+        .share-title { padding: 18px 25px 10px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.4); font-weight: 700; }
+        .share-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 20px 20px; }
+        .share-opt {
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            padding: 14px 8px; border-radius: 16px; cursor: pointer;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+            transition: 0.2s; text-decoration: none; color: white;
+        }
+        .share-opt:hover { background: rgba(0,209,255,0.1); border-color: rgba(0,209,255,0.3); transform: translateY(-2px); }
+        .share-opt-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .share-opt span { font-size: 0.65rem; font-weight: 700; text-align: center; opacity: 0.8; }
+        .share-opt.wa .share-opt-icon { background: #25d366; }
+        .share-opt.fb .share-opt-icon { background: #1877f2; }
+        .share-opt.ig .share-opt-icon { background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af); }
+        .share-opt.tt .share-opt-icon { background: #010101; border: 1px solid rgba(255,255,255,0.2); }
+        .share-opt.copy .share-opt-icon { background: rgba(0,209,255,0.15); border: 1px solid rgba(0,209,255,0.3); color: #00D1FF; }
+        .share-opt.sms .share-opt-icon { background: #34c759; }
+        .share-opt.mail .share-opt-icon { background: #666; }
+        .share-opt.native .share-opt-icon { background: rgba(255,255,255,0.1); }
+        .share-link-box {
+            margin: 0 20px 0;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            overflow: hidden;
+        }
+        .share-link-text { flex: 1; font-size: 0.72rem; color: rgba(255,255,255,0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .share-copy-btn {
+            background: #00D1FF; color: black; border: none; padding: 8px 16px;
+            border-radius: 8px; font-weight: 900; font-size: 0.72rem; cursor: pointer;
+            white-space: nowrap; transition: 0.2s; font-family: 'Poppins', sans-serif; text-transform: uppercase;
+        }
+        .share-copy-btn:hover { background: #00b8e0; }
+        .share-copy-btn.copied { background: #25d366; color: white; }
+        .share-close-btn {
+            display: block; width: calc(100% - 40px); margin: 16px 20px 0;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            color: white; padding: 14px; border-radius: 14px; font-weight: 700;
+            cursor: pointer; font-size: 0.85rem; font-family: 'Poppins', sans-serif; transition: 0.2s;
+        }
+        .share-close-btn:hover { background: rgba(255,255,255,0.1); }
+        @media (max-width: 480px) {
+            .share-options { grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 0 12px 16px; }
+            .share-opt-icon { width: 38px; height: 38px; font-size: 1.1rem; }
+            .share-product-preview { padding: 15px 18px; }
+            .share-link-box { margin: 0 12px 0; }
+            .share-close-btn { width: calc(100% - 24px); margin: 14px 12px 0; }
+        }
+
         .formulario-container { max-width: 650px; margin: 0 auto; background: rgba(0, 0, 0, 0.5); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
         input, select { 
             width: 100%; 
@@ -594,6 +691,50 @@ Lo que nos mueve en Lock and Go RD:
         <p>&copy; 2026 LOCK AND GO RD | Derechos reservados República Dominicana</p>
     </footer>
 
+
+    <!-- MODAL COMPARTIR PRODUCTO - ESTILO TEMU/SHEIN/AMAZON -->
+    <div id="shareModal">
+        <div class="share-sheet">
+            <div class="share-handle"></div>
+            <div class="share-product-preview">
+                <img id="shareProductoImg" src="" alt="Producto">
+                <div class="share-product-info">
+                    <h4 id="shareProductoNombre"></h4>
+                    <p id="shareProductoPrecio"></p>
+                </div>
+            </div>
+            <p class="share-title">Compartir con</p>
+            <div class="share-options">
+                <a id="shareOptWA" href="#" target="_blank" class="share-opt wa" onclick="cerrarShareModal()">
+                    <div class="share-opt-icon"><i class="fab fa-whatsapp" style="color:white;"></i></div>
+                    <span>WhatsApp</span>
+                </a>
+                <a id="shareOptFB" href="#" target="_blank" class="share-opt fb" onclick="cerrarShareModal()">
+                    <div class="share-opt-icon"><i class="fab fa-facebook-f" style="color:white;"></i></div>
+                    <span>Facebook</span>
+                </a>
+                <a id="shareOptSMS" href="#" class="share-opt sms" onclick="cerrarShareModal()">
+                    <div class="share-opt-icon"><i class="fas fa-comment-sms" style="color:white;"></i></div>
+                    <span>Mensaje</span>
+                </a>
+                <a id="shareOptMail" href="#" class="share-opt mail" onclick="cerrarShareModal()">
+                    <div class="share-opt-icon"><i class="fas fa-envelope" style="color:white;"></i></div>
+                    <span>Email</span>
+                </a>
+                <button onclick="shareNativo()" class="share-opt native" style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04);">
+                    <div class="share-opt-icon"><i class="fas fa-ellipsis-h" style="color:white; font-size:1rem;"></i></div>
+                    <span>Mas opciones</span>
+                </button>
+            </div>
+            <div class="share-link-box">
+                <i class="fas fa-link" style="color:rgba(255,255,255,0.3); font-size:0.9rem; flex-shrink:0;"></i>
+                <span class="share-link-text" id="shareLinkText"></span>
+                <button class="share-copy-btn" id="shareCopyBtn" onclick="copiarLinkShare()">COPIAR</button>
+            </div>
+            <button class="share-close-btn" onclick="cerrarShareModal()">Cancelar</button>
+        </div>
+    </div>
+
     <div id="notification-box">
         <img src="logo1.png" class="noti-img" alt="Venta">
         <div class="noti-text" id="noti-content"></div>
@@ -641,14 +782,20 @@ const productos = [
     productos.forEach(prod => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.id = prod.id; // IMPORTANTE: Esto conecta el HTML con el ID
+        card.id = prod.id;
         card.innerHTML = `
             <img src="${prod.imagen}" alt="${prod.nombre}">
             <h3>${prod.nombre}</h3>
-            <p>${prod.desc}</p>
-            <button class="btn-share" onclick="compartirProducto('${prod.id}')">
-                Compartir Producto
-            </button>
+            <span class="precio-tag">${prod.precio}</span>
+            <p style="font-size:0.82rem; opacity:0.7; margin-bottom:10px;">${prod.desc}</p>
+            <div class="card-actions">
+                <button class="btn-cotizar-card" onclick="enviarCotizacion('${prod.nombre}')">
+                    <i class="fab fa-whatsapp" style="margin-right:6px;"></i>Cotizar
+                </button>
+                <button class="btn-share-card" onclick="abrirShareModal('${prod.id}')" title="Compartir">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+            </div>
         `;
         grid.appendChild(card);
     });
@@ -1213,20 +1360,78 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }, 800); // 800ms de espera para dar tiempo a renderizar el catálogo
 });
-       function compartirProducto(modeloId) {
-    const linkProducto = window.location.origin + window.location.pathname + "?modelo=" + modeloId;
-    
-    if (navigator.share) {
-        navigator.share({
-            title: 'Mira este modelo en Lock and Go RD',
-            text: 'Encontré esta cerradura que te puede interesar:',
-            url: linkProducto,
-        }).catch(console.error);
-    } else {
-        navigator.clipboard.writeText(linkProducto);
-        alert("Enlace copiado al portapapeles");
+    // =========================================================
+    // SISTEMA DE COMPARTIR - ESTILO TEMU / SHEIN / AMAZON
+    // =========================================================
+    let shareProductoActual = null;
+
+    function abrirShareModal(productoId) {
+        const prod = productos.find(p => p.id === productoId);
+        if (!prod) return;
+        shareProductoActual = prod;
+
+        const link = window.location.origin + window.location.pathname + "?modelo=" + productoId;
+        const textoWA = encodeURIComponent(`🔒 Mira esta cerradura inteligente en *Lock and Go RD*:\n*${prod.nombre}* - ${prod.precio}\n\n${link}`);
+        const textoGeneral = encodeURIComponent(`Mira este modelo: ${prod.nombre} - ${prod.precio}`);
+
+        document.getElementById('shareProductoImg').src = prod.imagen;
+        document.getElementById('shareProductoNombre').textContent = prod.nombre;
+        document.getElementById('shareProductoPrecio').textContent = prod.precio;
+        document.getElementById('shareLinkText').textContent = link;
+        document.getElementById('shareLinkText').dataset.link = link;
+
+        document.getElementById('shareOptWA').href = `https://wa.me/?text=${textoWA}`;
+        document.getElementById('shareOptFB').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}&quote=${textoGeneral}`;
+        document.getElementById('shareOptSMS').href = `sms:?body=${textoWA}`;
+        document.getElementById('shareOptMail').href = `mailto:?subject=${encodeURIComponent('Te recomiendo: ' + prod.nombre)}&body=${encodeURIComponent('Hola, mira esta cerradura inteligente:\n' + prod.nombre + ' - ' + prod.precio + '\n\n' + link)}`;
+
+        const modal = document.getElementById('shareModal');
+        modal.classList.add('active');
+
+        modal.addEventListener('click', function handler(e) {
+            if (e.target === modal) {
+                cerrarShareModal();
+                modal.removeEventListener('click', handler);
+            }
+        });
     }
-}
+
+    function cerrarShareModal() {
+        document.getElementById('shareModal').classList.remove('active');
+        const btn = document.getElementById('shareCopyBtn');
+        btn.textContent = 'COPIAR';
+        btn.classList.remove('copied');
+    }
+
+    function copiarLinkShare() {
+        const link = document.getElementById('shareLinkText').dataset.link;
+        const btn = document.getElementById('shareCopyBtn');
+        navigator.clipboard.writeText(link).then(() => {
+            btn.textContent = '✓ COPIADO';
+            btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = 'COPIAR'; btn.classList.remove('copied'); }, 2500);
+        }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = link; document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); document.body.removeChild(ta);
+            btn.textContent = '✓ COPIADO'; btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = 'COPIAR'; btn.classList.remove('copied'); }, 2500);
+        });
+    }
+
+    function shareNativo() {
+        if (!shareProductoActual) return;
+        const link = window.location.origin + window.location.pathname + "?modelo=" + shareProductoActual.id;
+        if (navigator.share) {
+            navigator.share({
+                title: 'Lock and Go RD — ' + shareProductoActual.nombre,
+                text: `🔒 ${shareProductoActual.nombre} - ${shareProductoActual.precio}\nCerraduras inteligentes en RD`,
+                url: link,
+            }).catch(() => {});
+        }
+    }
+
+    function compartirProducto(modeloId) { abrirShareModal(modeloId); }
 </script>
 </body>
 </html>
