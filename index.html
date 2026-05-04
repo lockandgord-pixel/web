@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="no-referrer-when-downgrade">
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT" async defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock and Go RD | Cerraduras Inteligentes en República Dominicana</title>
     <link rel="icon" type="image/png" href="logo1.png">
@@ -78,7 +78,7 @@
         }
 
         header {
-            position: absolute;
+            position: fixed;
             top: 0; width: 100%;
             background: transparent;
             padding: 20px 5%;
@@ -86,7 +86,20 @@
             justify-content: space-between;
             align-items: center;
             z-index: 2000;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
         }
+        header.scrolled {
+            background: rgba(5, 8, 10, 0.92);
+            box-shadow: 0 2px 30px rgba(0, 209, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 12px 5%;
+        }
+        /* HAMBURGUESA */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 3100; }
+        .hamburger span { display: block; width: 26px; height: 2px; background: white; border-radius: 2px; transition: 0.35s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         #imgLogo { 
             height: 180px;
@@ -99,21 +112,29 @@
         nav ul { 
             list-style: none; 
             display: flex; 
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 5px;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
         }
-        
         nav ul li a { 
-            color: #ffffff !important; 
+            color: rgba(255,255,255,0.85) !important; 
             text-decoration: none; 
-            font-weight: 800; 
-            font-size: 1rem; 
-            text-transform: uppercase; 
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            font-weight: 700; 
+            font-size: 0.85rem; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
             display: block; 
             white-space: nowrap;
+            transition: color 0.3s, text-shadow 0.3s;
         }
+        nav ul li a:hover { color: #00D1FF !important; text-shadow: 0 0 12px rgba(0,209,255,0.5); }
+        .nav-cta-btn {
+            background: #00D1FF; color: #000 !important; padding: 10px 22px;
+            border-radius: 50px; font-weight: 900 !important; font-size: 0.8rem !important;
+            transition: background 0.3s, transform 0.2s !important;
+            text-shadow: none !important;
+        }
+        .nav-cta-btn:hover { background: #00b8e0 !important; transform: scale(1.05); color: #000 !important; }
 
         section { padding: 100px 10%; position: relative; z-index: 10; }
 
@@ -462,6 +483,51 @@
     .label-before, .label-after { top: 10px; font-size: 0.55rem; }
     /* ... mantén lo demás que tengas aquí adentro ... */
 }
+
+        /* BADGES DE CARACTERÍSTICAS */
+        .badges-row { display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin:8px 0 12px; }
+        .badge-feat { background:rgba(0,209,255,0.08); border:1px solid rgba(0,209,255,0.2); color:rgba(255,255,255,0.8); padding:4px 10px; border-radius:20px; font-size:0.68rem; font-weight:700; white-space:nowrap; }
+
+        /* PRECIO EN COLOR DESTACADO */
+        .precio-tag { color:#00D1FF !important; font-size:1.4rem; font-weight:900; margin:8px 0 4px; display:block; }
+
+        /* FAQ */
+        .faq-item { border:1px solid rgba(255,255,255,0.08); border-radius:16px; margin-bottom:12px; overflow:hidden; transition:0.3s; }
+        .faq-item:hover { border-color:rgba(0,209,255,0.3); }
+        .faq-q { padding:20px 25px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:0.92rem; background:rgba(255,255,255,0.02); }
+        .faq-q:hover { background:rgba(0,209,255,0.05); }
+        .faq-icon { color:#00D1FF; font-size:1.2rem; transition:transform 0.3s; flex-shrink:0; margin-left:15px; }
+        .faq-a { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
+        .faq-a.open { max-height:300px; }
+        .faq-a p { padding:5px 25px 20px; opacity:0.7; font-size:0.88rem; line-height:1.7; }
+
+        /* STAT COUNTER ANIMATION */
+        @keyframes countUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+        .stat-num { animation:countUp 0.6s ease forwards; }
+
+        /* HERO ANIMATION */
+        @keyframes heroFadeIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+        .hero h1 { animation:heroFadeIn 0.8s ease 0.2s both; }
+        .hero p { animation:heroFadeIn 0.8s ease 0.4s both; }
+        .hero .hero-btns { animation:heroFadeIn 0.8s ease 0.6s both; }
+
+        /* MOBILE NAV */
+        @media (max-width: 768px) {
+            .hamburger { display:flex; }
+            #navMenu { position:fixed; top:0; right:-100%; width:75%; max-width:300px; height:100vh; background:rgba(5,8,10,0.97); backdrop-filter:blur(20px); border-left:1px solid rgba(0,209,255,0.2); padding:100px 30px 40px; transition:right 0.4s cubic-bezier(0.175,0.885,0.32,1.275); z-index:3000; }
+            #navMenu.open { right:0; }
+            #navMenu ul { flex-direction:column; gap:20px; align-items:flex-start; }
+            #navMenu ul li a { font-size:1.1rem; }
+            .nav-cta-btn { margin-top:10px; display:inline-block; }
+        }
+        @media (max-width: 480px) {
+            .hamburger { display:flex; }
+        }
+
+        /* CARD hover más pronunciado */
+        .card { position:relative; }
+        .card::after { content:''; position:absolute; inset:0; border-radius:35px; background:linear-gradient(135deg,rgba(0,209,255,0.04),transparent); opacity:0; transition:opacity 0.3s; pointer-events:none; }
+        .card:hover::after { opacity:1; }
     </style>
 </head>
 <body>
@@ -472,19 +538,39 @@
 
     <header>
         <img src="logo1.png" alt="Lock and Go" id="imgLogo">
-        <nav>
+        <nav id="navMenu">
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#catalogo" class="nav-cta-btn">Ver Precios</a></li>
             </ul>
         </nav>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
     </header>
 
     <section id="inicio" class="hero">
-        <h1>MÁS PROTECCIÓN, MÁS VIDA.</h1>
-        <p style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px;">Controla tu puerta desde cualquier lugar</p>
+        <div style="display:inline-block; background:rgba(0,209,255,0.1); border:1px solid rgba(0,209,255,0.3); border-radius:50px; padding:6px 18px; font-size:0.75rem; font-weight:700; letter-spacing:2px; color:#00D1FF; margin-bottom:20px; text-transform:uppercase;">
+            🔒 #1 en Cerraduras Inteligentes en RD
+        </div>
+        <h1>MÁS PROTECCIÓN,<br>MÁS VIDA.</h1>
+        <p style="font-size:1.2rem; font-weight:300; letter-spacing:2px; margin-top:15px; opacity:0.85; max-width:600px;">Controla tu puerta desde cualquier lugar del mundo.<br>Instalación certificada. Garantía real. Soporte 24/7.</p>
+        <div class="hero-btns" style="display:flex; gap:15px; margin-top:35px; flex-wrap:wrap; justify-content:center;">
+            <a href="#catalogo" style="background:#00D1FF; color:black; padding:18px 40px; border-radius:50px; font-weight:900; font-size:1rem; text-decoration:none; text-transform:uppercase; letter-spacing:1px; transition:0.3s; display:inline-block;" onmouseover="this.style.background='#00b8e0';this.style.transform='scale(1.05)'" onmouseout="this.style.background='#00D1FF';this.style.transform='scale(1)'">
+                Ver Catálogo &nbsp;→
+            </a>
+            <a href="https://wa.me/18094572656?text=Hola%20Lock%20and%20Go%2C%20quiero%20una%20asesor%C3%ADa" target="_blank" style="background:transparent; color:white; padding:18px 40px; border-radius:50px; font-weight:700; font-size:1rem; text-decoration:none; text-transform:uppercase; letter-spacing:1px; border:2px solid rgba(255,255,255,0.3); transition:0.3s; display:inline-block;" onmouseover="this.style.borderColor='#00D1FF';this.style.color='#00D1FF'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)';this.style.color='white'">
+                <i class="fab fa-whatsapp" style="margin-right:8px;"></i>Asesoría gratis
+            </a>
+        </div>
+        <div style="display:flex; gap:30px; margin-top:50px; flex-wrap:wrap; justify-content:center; opacity:0.6; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:1px;">
+            <span>✓ +500 instalaciones</span>
+            <span>✓ 2 años de garantía</span>
+            <span>✓ Instalación el mismo día</span>
+        </div>
     </section>
 <div style="background: rgba(0, 209, 255, 0.03); border-top: 1px solid rgba(0, 209, 255, 0.2); border-bottom: 1px solid rgba(0, 209, 255, 0.2); padding: 30px 5%; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; backdrop-filter: blur(10px); position: relative; z-index: 20;">
   
@@ -492,7 +578,7 @@
         <div style="text-align: center; min-width: 150px; flex: 1;">
             <i class="fas fa-shield-alt" style="color: #00D1FF; font-size: 1.8rem; margin-bottom: 10px;"></i>
             <h4 style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase;">Garantía Real</h4>
-            <p style="font-size: 0.75rem; opacity: 0.7;">2 Año de respaldo total</p>
+            <p style="font-size: 0.75rem; opacity: 0.7;">2 Años de respaldo total</p>
         </div>
 
         <div style="text-align: center; min-width: 150px; flex: 1;">
@@ -541,31 +627,17 @@
             <div class="info-box">
                 <i class="fas fa-bullseye"></i>
                 <h3>Misión</h3>
-                <p>🌟 MISIÓN – Lo que hacemos hoy
-Brindar soluciones de seguridad modernas, accesibles y confiables para hogares, negocios y Airbnb, mediante un servicio profesional, transparente y orientado a la satisfacción total del cliente.
-Nos comprometemos a ofrecer instalaciones precisas, asesoría clara y soporte continuo para garantizar tranquilidad y protección en cada espacio.
-</p>
+                <p>Brindar seguridad inteligente, accesible y confiable para hogares, negocios y Airbnb en toda la República Dominicana. Cada instalación, un trabajo impecable.</p>
             </div>
             <div class="info-box">
                 <i class="fas fa-eye"></i>
                 <h3>Visión</h3>
-                <p>🚀 VISIÓN – Hacia dónde vamos
-Ser la empresa líder en soluciones de seguridad inteligente en la República Dominicana, reconocida por su formalidad, innovación, excelencia en el servicio y expansión sostenible a nivel nacional.
-Aspiramos a convertirnos en la marca de confianza que transforma la forma en que las personas protegen sus espacios.
-</p>
+                <p>Ser la marca líder en seguridad inteligente de RD — reconocida por su innovación, formalidad y servicio de excelencia que transforma cómo las personas protegen sus espacios.</p>
             </div>
             <div class="info-box">
                 <i class="fas fa-medal"></i>
                 <h3>Valores</h3>
-                <p>💙 VALORES
-Lo que nos mueve en Lock and Go RD:
-🔹 Transparencia: hablamos claro y actuamos con honestidad.
-🔹 Innovación: tecnología que facilita tu vida.
-🔹 Responsabilidad: cumplimos, respondemos y damos garantía real.
-🔹 Servicio humano: atención cercana, cálida y profesional.
-🔹 Excelencia técnica: cada instalación, un trabajo bien hecho.
-🔹 Compromiso: estamos cuando nos necesitas.
-</p>
+                <p>Transparencia · Innovación · Responsabilidad · Servicio humano · Excelencia técnica · Compromiso total con el cliente. Así somos en Lock and Go RD.</p>
             </div>
         </div>
     </section>
@@ -634,11 +706,41 @@ Lo que nos mueve en Lock and Go RD:
     </div>
 </div>
     
+
+<!-- SECCIÓN ESTADÍSTICAS -->
+<div style="padding:60px 5%; text-align:center; position:relative; z-index:20; border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05);">
+    <p style="text-transform:uppercase; letter-spacing:4px; font-size:0.72rem; color:#00D1FF; margin-bottom:40px; font-weight:700;">Números que hablan por sí solos</p>
+    <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:20px; max-width:900px; margin:0 auto;">
+        <div style="flex:1; min-width:160px; background:rgba(0,209,255,0.04); border:1px solid rgba(0,209,255,0.15); border-radius:20px; padding:30px 20px;">
+            <div class="stat-num" data-target="500" style="font-size:2.8rem; font-weight:900; color:#00D1FF; line-height:1;">0+</div>
+            <p style="font-size:0.78rem; opacity:0.7; margin-top:8px; text-transform:uppercase; letter-spacing:1px;">Instalaciones realizadas</p>
+        </div>
+        <div style="flex:1; min-width:160px; background:rgba(0,209,255,0.04); border:1px solid rgba(0,209,255,0.15); border-radius:20px; padding:30px 20px;">
+            <div class="stat-num" data-target="15" style="font-size:2.8rem; font-weight:900; color:#00D1FF; line-height:1;">0+</div>
+            <p style="font-size:0.78rem; opacity:0.7; margin-top:8px; text-transform:uppercase; letter-spacing:1px;">Modelos disponibles</p>
+        </div>
+        <div style="flex:1; min-width:160px; background:rgba(0,209,255,0.04); border:1px solid rgba(0,209,255,0.15); border-radius:20px; padding:30px 20px;">
+            <div style="font-size:2.8rem; font-weight:900; color:#00D1FF; line-height:1;">2</div>
+            <p style="font-size:0.78rem; opacity:0.7; margin-top:8px; text-transform:uppercase; letter-spacing:1px;">Años de garantía</p>
+        </div>
+        <div style="flex:1; min-width:160px; background:rgba(0,209,255,0.04); border:1px solid rgba(0,209,255,0.15); border-radius:20px; padding:30px 20px;">
+            <div style="font-size:2.8rem; font-weight:900; color:#00D1FF; line-height:1;">24/7</div>
+            <p style="font-size:0.78rem; opacity:0.7; margin-top:8px; text-transform:uppercase; letter-spacing:1px;">Soporte disponible</p>
+        </div>
+    </div>
+</div>
     <section id="catalogo">
         <h2 class="titulo" style="text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom: 30px;">Selección Lock And Go</h2>
         <div id="grid-catalogo"></div>
     </section>
 
+
+<!-- SECCIÓN FAQ -->
+<div style="padding:70px 5%; position:relative; z-index:20; max-width:900px; margin:0 auto;">
+    <h2 style="text-align:center; font-size:2rem; font-weight:900; margin-bottom:10px;">Preguntas Frecuentes</h2>
+    <p style="text-align:center; opacity:0.6; font-size:0.9rem; margin-bottom:40px;">Todo lo que necesitas saber antes de comprar</p>
+    <div id="faq-container"></div>
+</div>
   <section id="contacto" style="padding: 100px 5%; background: rgba(0,0,0,0.3);">
        <div class="formulario-container">
     <h2 style="font-size: 1.8rem; font-weight: 900; color: #00D1FF; margin-bottom: 15px; text-transform: uppercase;">
@@ -775,6 +877,20 @@ const productos = [
         elemento.style.background = 'rgba(0, 209, 255, 0.1)';
     }
 
+   // Extrae badges de características desde la descripción
+    function getBadges(desc) {
+        const badges = [];
+        if (/facial/i.test(desc))       badges.push({icon:'👁', label:'Facial 3D'});
+        if (/palma/i.test(desc))        badges.push({icon:'✋', label:'Palma'});
+        if (/huella/i.test(desc))       badges.push({icon:'☝', label:'Huellas'});
+        if (/agua/i.test(desc))         badges.push({icon:'💧', label:'Anti-agua'});
+        if (/nocturna/i.test(desc))     badges.push({icon:'🌙', label:'Nocturna'});
+        if (/inteligencia|IA/i.test(desc)) badges.push({icon:'🤖', label:'IA'});
+        if (/timbre/i.test(desc))       badges.push({icon:'🔔', label:'Timbre'});
+        if (/remoto/i.test(desc))       badges.push({icon:'📱', label:'Remoto'});
+        return badges.slice(0, 4);
+    }
+
    function renderCatalogo() {
     const grid = document.getElementById('grid-catalogo');
     if (!grid) return;
@@ -783,14 +899,16 @@ const productos = [
         const card = document.createElement('div');
         card.className = 'card';
         card.id = prod.id;
+        const badges = getBadges(prod.desc);
+        const badgesHtml = badges.map(b => `<span class="badge-feat">${b.icon} ${b.label}</span>`).join('');
         card.innerHTML = `
-            <img src="${prod.imagen}" alt="${prod.nombre}">
+            <img src="${prod.imagen}" alt="${prod.nombre}" loading="lazy">
             <h3>${prod.nombre}</h3>
             <span class="precio-tag">${prod.precio}</span>
-            <p style="font-size:0.82rem; opacity:0.7; margin-bottom:10px;">${prod.desc}</p>
+            <div class="badges-row">${badgesHtml}</div>
             <div class="card-actions">
                 <button class="btn-cotizar-card" onclick="enviarCotizacion('${prod.nombre}')">
-                    <i class="fab fa-whatsapp" style="margin-right:6px;"></i>LA QUIERO
+                    <i class="fab fa-whatsapp" style="margin-right:6px;"></i>Cotizar
                 </button>
                 <button class="btn-share-card" onclick="abrirShareModal('${prod.id}')" title="Compartir">
                     <i class="fas fa-share-alt"></i>
@@ -1272,7 +1390,15 @@ grecaptcha.execute('6Lclf5UsAAAAALVfCP7p1kMhGj64P2fPJSIwjfIT', {action: 'submit'
         const notiContent = document.getElementById('noti-content');
         if (notiBox && notiContent) {
             const v = ventas[Math.floor(Math.random() * ventas.length)];
-            notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> acaba de cotizar un modelo ${v.modelo}`;
+            const acciones = [
+                'acaba de adquirir el modelo',
+                'está consultando sobre el',
+                'acaba de instalar el',
+                'acaba de cotizar el',
+                'reservó una instalación del'
+            ];
+            const accion = acciones[Math.floor(Math.random() * acciones.length)];
+            notiContent.innerHTML = `<b>${v.nombre} de ${v.ciudad}</b> ${accion} ${v.modelo}`;
             notiBox.classList.add('show');
             setTimeout(() => { notiBox.classList.remove('show'); }, 5000);
         }
@@ -1296,7 +1422,7 @@ window.addEventListener('DOMContentLoaded', () => {
             if (container.scrollLeft <= 0) {
                 container.scrollLeft = container.scrollWidth;
             }
-        }, 2000); // 2 segundos
+        }, 4000); // 4 segundos - más tiempo para leer
     }
 
     if (container) {
@@ -1316,8 +1442,8 @@ window.addEventListener('DOMContentLoaded', () => {
     startAutoScroll();
 
     // NOTIFICACIONES
-    setTimeout(mostrarNotificacion, 10000);
-    setInterval(mostrarNotificacion, 100000);
+    setTimeout(mostrarNotificacion, 6000);
+    setInterval(mostrarNotificacion, 18000);
 
     // LÓGICA DEL BOTÓN "VOLVER AL INICIO"
     const btnArriba = document.getElementById('btn-arriba');
